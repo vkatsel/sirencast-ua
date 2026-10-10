@@ -41,8 +41,9 @@ def run_phase_1():
     print("=" * 60)
     df, stats = load_and_clean_official_data()
     print(f"Clean alerts dataset ready: {len(df):,} valid alerts.")
-    print(f"Date range: {df['start_utc'].min()} to {df['end_utc'].max()}")
-    print(f"Duplicates removed: {stats['duplicates_removed']:,} records ({stats['duplicate_pct']:.2f}% of raw dump).")
+    dup_pct = (stats['duplicates_removed'] / stats['initial_rows']) * 100
+    print(f"Date range: {stats['min_date']} to {stats['max_date']}")
+    print(f"Duplicates removed: {stats['duplicates_removed']:,} records ({dup_pct:.2f}% of raw dump).")
     return df
 
 

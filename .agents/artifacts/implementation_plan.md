@@ -1,261 +1,122 @@
-# Архітектурний план реалізації: Прогнозування тривог для м. Київ (SirenCast UA)
+# Implementation Plan: Live Forecasting Suite (CLI, Jupyter Notebook & Local Web Dashboard)
 
-> **Ціль проєкту:** Модель прогнозування ймовірності початку повітряної тривоги для м. Київ (Kyiv City) на 30-хвилинному горизонті із запобіганням витоку даних (No Data Leakage).
-> **Поточний статус:** 
-> - **Фаза 1 завершена успішно ✅** (Дані очищено, 113k дублікатів видалено, тести пройдені, Parquet згенеровано).
-> - **Фаза 2 завершена успішно ✅** (Сітка 30m згенерована, 77 колонок 4 рівнів радара, 64 561 крок, нуль витоку даних, тести пройдено).
-> - **Фаза 3 завершена успішно ✅** (Baseline V1 та Walk-Forward бектестинг: середній ROC-AUC = **0.902**, PR-AUC = **0.800**, Brier = **0.034**, графіки експортовано в `reports/figures/`, 15 тестів пройдено).
-> - **Фаза 4 завершена успішно ✅** (V2 Мультимодальне збагачення: 124k повідомлень Monitor та ПС ЗСУ, фільтрація "чисто/збито", Fold 1 ROC-AUC піднявся до **0.9167**, Onset PR-AUC виріс на **+21.4%**, графік `v1_vs_v2_comparison.png`, 21 тест пройдено).
-> - **На черзі:** Фаза 5 (Фіналізація репозиторію, скрипт `run_experiment.py`, `README.md`).
+This plan extends **SirenCast UA** beyond retrospective backtesting into **real-time live inference**, enabling anyone cloning the repository to run live 30-minute alert probability forecasts for Kyiv City using current physical sirens and live Telegram warnings.
 
 ---
 
-## 1. Фактчекінг та результати Фази 1 (Очищення даних) — ЗАВЕРШЕНО ✅
+## 🎯 Goal Description
 
-Під час технічного аналізу `official_data_en.csv` було виявлено механічну склейку двох дампів всередині одного файлу (починаючи з рядка 113913 дані починалися знову з 2022 року).
-
-### Результати очищення:
-* **Початкова кількість рядків:** 299,275
-* **Видалено точних дублікатів:** **113,845 рядків (38.04%)**
-* **Очищений датасет:** **185,430 рядків**
-* **Часовий діапазон:** 2022-03-15 16:10:34 UTC — 2026-09-07 05:28:22 UTC
-* **Аномалії тривалості ($t_{\text{end}} < t_{\text{start}}$):** 0
-* **Пропущені дати:** 0
-* **Збережений артефакт:** `data/processed/clean_alerts.parquet` (розмір зменшено з 31 МБ до 3.4 МБ).
-* **Автоматичні тести:** Модуль `tests/test_data_loader.py` перевірив відсутність дублікатів, валідність UTC таймстемпів та повне просторове покриття всіх 25 областей та 7 районів Київщини. Усі 6 тестів пройдено успішно.
-
----
-
-## 2. Результати Фази 2 (30m Сітка та Feature Store) — ЗАВЕРШЕНО ✅
-
-* **Параметри сітки:** Регулярний часовий ряд з кроком 30 хвилин з 2023-01-01 до 2026-09-07 (64 561 півгодинний крок).
-* **Розмірність матриці:** **64 561 рядків $\times$ 77 колонок**.
-* **Цільова змінна ($y_t$ — старт тривоги в Києві в наступні 30 хв):**
-  * Загальна кількість початку тривог: **1 753 події (2.72% позитивний клас)**.
-  * У спокійні періоди (коли в Києві тихо в момент $t$): 1 707 початку тривог (2.83%).
-* **Просторові рівні радара:**
-  * Рівень 0: локальний Київ (тиша, тривалість поточної сирени, сумарні тривоги за 6 та 24 години).
-  * Рівень 1: 7 районів Київщини (активність, лаги $t-30\text{m}$, $t-60\text{m}$, сумарна кількість, нові запуски).
-  * Рівень 2: 5 суміжних областей (активність, лаги $t-30\text{m}$, $t-60\text{m}$).
-  * Рівень 3: Східний та Південний фланги (Каспійський вектор та Чорноморський вектор з лагами до $t-90\text{m}$).
-  * Рівень 4: Загальнонаціональна макро-хвиля (кількість областей $N \in [0, 25]$ та швидкість наростання $\Delta N$).
-  * Циклічний час: $\sin/\cos$ для години доби та дня тижня.
-* **Збережений артефакт:** `data/processed/features_30m.parquet` (1.9 МБ).
-* **Контроль відсутності витоку даних (No Leakage Guarantee):**
-  * Модуль `tests/test_features_causality.py` програмно верифікував лагову строгість (`assert lag[1:] == unlagged[:-1]`), фізичні межі просторових сум та одиничне коло для $\sin/\cos$.
+Build a live inference extension comprising:
+1. **Live Data Ingestion Engine (`src/live_data.py`):**
+   * **Real-time Sirens:** Pull active alert states across all 25 Ukrainian oblasts and Kyiv City using the open API (`https://ubilling.net.ua/aerialalerts/`). Strict rate limiting hygiene: adhere to the API's 2 RPS limit by implementing an in-memory client-side cache with minimum 5-second TTL (default polling 10–15s), preventing HTTP 429.
+   * **Real-time Telegram:** Pull the latest live messages from `@war_monitor` and `@kpszsu` using public channel web previews (`https://t.me/s/war_monitor` and `https://t.me/s/kpszsu`). **Zero-config, zero tokens, no .env required** — runs out of the box for anyone.
+2. **Real-time Feature Synthesizer & Predictor (`src/live_forecast.py`):**
+   * Pre-trains/loads the best calibrated LightGBM model.
+   * Maps current siren states into the 4-tier spatial radar (Tier 0 Kyiv, Tier 1 Inner Ring, Tier 2 Bordering Oblasts, Tier 3 Launch Corridors, Tier 4 National Surge).
+   * Runs the causal NLP extractor on recent live Telegram messages.
+   * Outputs calibrated probability formatted as **percentage** (e.g., **`48.2%`**), threat severity label (LOW / ELEVATED / HIGH / CRITICAL), and key threat drivers.
+3. **Interactive Demonstrations (The Trifecta — to be documented in `README.md`):**
+   * **CLI Live Dashboard:** `python run_experiment.py --live` (live polling terminal dashboard with percentage gauge).
+   * **Jupyter Notebook:** `demo.ipynb` (clean, interactive walkthrough with visual percentage gauge, radar tier breakdown, and interactive What-If scenario simulator).
+   * **Lightweight Web UI:** `python run_experiment.py --serve` (zero-dependency Python standard library HTTP server hosting a sleek dark-mode dashboard at `http://localhost:8000`).
 
 ---
 
-## 3. Результати Фази 3 (Baseline V1 та Walk-Forward Бектестинг) — ЗАВЕРШЕНО ✅
+## 👥 User Feedback Incorporated
 
-Було проведено повний Walk-Forward бектестинг на тестових періодах 2026 року:
+> [!IMPORTANT]
+> **API Rate Limiting & Zero Credentials:**
+> - Ubilling API enforces a strict limit of 2 requests/second. We implement a thread-safe client cache with 5s TTL to guarantee rate compliance.
+> - Completely removed bot tokens and `.env` requirements. All Telegram data is sourced from public previews, making the pipeline 100% zero-config.
+> - Probabilities are formatted as intuitive percentages (e.g. `24.5%`) with visual meters across all interfaces.
+> - The Trifecta (CLI, Notebook, Web) will be prominently documented in `README.md`.
 
-| Модель | Fold 1 (2026 Q1) ROC-AUC / PR-AUC | Fold 2 (2026 Q2) ROC-AUC / PR-AUC | Fold 3 (2026 Q3) ROC-AUC / PR-AUC | Середній ROC-AUC | Середній PR-AUC | Brier Score |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Heuristic Baseline** | 0.7935 / 0.2243 | 0.7663 / 0.1733 | 0.7391 / 0.2647 | 0.7663 | 0.2208 | 0.1792 |
-| **Logistic Regression** | 0.9082 / 0.8103 | 0.8817 / 0.7523 | 0.9078 / 0.8491 | 0.8992 | 0.8039 | 0.0847 |
-| **LightGBM V1** | **0.9110 / 0.8178** | **0.8901 / 0.7618** | **0.9052 / 0.8203** | **0.9021** | **0.8000** | **0.0339** |
-
----
-
-## 4. Результати Фази 4 (V2 Мультимодальне збагачення текстами Telegram) — ЗАВЕРШЕНО ✅
-
-Було опрацьовано два реальні архіви повідомлень Telegram каналів **«Monitor»** (47 070 повідомлень) та **«Повітряні Сили ЗС України»** (84 587 повідомлень) за період з 2023 по 2026 рік:
-* **Загальний масив текстів:** **124 046 реальних повідомлень** за 2023–2026 роки.
-* **Контекстна обробка:**
-  * Реалізовано детекцію напрямку руху цілі: *(«курсом на Київ», «у напрямку Броварів/Василькова»)*.
-  * Реалізовано придушення хибних тривог на фразах типу *«Київ чисто»*, *«Васильків збиття»*, *«відбій»*, *«локаційно втрачено»*, *«дорозвідка»* (12 826 нейтралізуючих повідомлень відфільтровано).
-* **Співставлення в часі:** Повідомлення агреговані у півгодинні вікна строго до моменту прогнозу ($t_{\text{msg}} < t$). Згенеровано 11 текстових ознак, матриця збільшилася до **64 561 рядків $\times$ 88 колонок** (`data/processed/features_multimodal_30m.parquet`).
-* **Результати порівняння (Ablation Study: V1 проти V2):**
-
-| Спліт | LightGBM V1 (TS-only) ROC-AUC / PR-AUC | LightGBM V2 (Multimodal) ROC-AUC / PR-AUC | Дельта ($\Delta \text{AUC} / \Delta \text{PR}$) |
-| :--- | :---: | :---: | :---: |
-| **Fold 1 (2026 Q1: Зима)** | 0.9110 / 0.8178 | **0.9167 / 0.8255** | **+0.0057 / +0.0078** |
-| **Fold 2 (2026 Q2: Весна)** | 0.8901 / 0.7618 | **0.8905 / 0.7597** | **+0.0004 / -0.0021** |
-| **Fold 3 (2026 Q3: Літо)** | 0.9052 / 0.8203 | **0.9038 / 0.8192** | -0.0014 / -0.0010 |
-
-* **Приріст для задачі початку тривоги (Onset Prediction):**
-  На зимовому періоді масованих обстрілів (Fold 1) для таргету старту тривоги тексти дали стрибок PR-AUC з **0.1282 до 0.1557 (+21.4% відносного приросту!)**, підтвердивши, що попередження про пуски та зльоти авіації надають моделі завчасний сигнал, якого немає у фізичних сиренах.
-* **Згенеровані артефакти:** У `reports/figures/`:
-  - `v1_vs_v2_comparison.png` — порівняльна стовпчикова діаграма бектестингу V1 vs V2.
-  - Оновлені графіки `roc_curve_walkforward.png`, `pr_curve_walkforward.png`, `feature_importance_ranking.png`.
-
-* **Ключові висновки:**
-  1. **Цільову планку перевищено:** Середній ROC-AUC для LightGBM склав **0.9021** (бажаний рівень $\sim 0.90$), а PR-AUC склав **0.8000** при фоновому рівні позитивного класу лише $\approx 8\%$.
-  2. **Калібрація ймовірностей:** Brier Score склав **0.0339** (відмінна узгодженість передбачених ймовірностей з реальною частотою сирен).
-  3. **Топ-фактори важливості:**
-     - `kyiv_is_active` та `kyiv_minutes_active` (тривалість поточної тривоги).
-     - `national_wave_speed_30m` та `national_wave_speed_60m` (швидкість розповсюдження тривог по країні).
-     - Райони Київської області (Бровари, Вишгород, Бориспіль) та прилеглі області (Чернігівська, Полтавська).
-     - Добові цикли (`hour_cos`, `hour_sin`).
-* **Згенеровані артефакти:** У директорії `reports/figures/`:
-  - `roc_curve_walkforward.png`: криві ROC для всіх моделей.
-  - `pr_curve_walkforward.png`: криві Precision-Recall проти наївного бейзлайну.
-  - `calibration_reliability_curve.png`: діаграми надійності калібрації.
-  - `feature_importance_ranking.png`: рейтинг топ-20 ознак за LightGBM gain.
+> [!NOTE]
+> **GitHub Pages vs Local Web Dashboard:**
+> GitHub Pages only hosts static client-side files (HTML/JS) and cannot run Python/LightGBM or fetch Telegram due to browser CORS policies. A local dashboard served via `python run_experiment.py --serve` (built entirely with Python's built-in `http.server` — zero new dependencies!) provides a responsive local web UI at `http://localhost:8000` with direct access to model inference.
 
 ---
 
-## 3. Постановка задачі: Імовірнісне прогнозування (Probabilistic Forecasting)
-
-* **Цільовий регіон (Target):** `Kyiv City` (Київ).
-* **Дискретизація часу ($\Delta t$):** **30 хвилин**. Таймлайн розбивається на регулярні півгодинні біни ($t_0, t_1, t_2, \dots$).
-* **Цільова змінна ($y_t \in \{0, 1\}$):**
-  * *Постановка Onset Prediction:* Якщо в момент $t$ у Києві **немає активної тривоги**, чи розпочнеться нова тривога в інтервалі $[t, t + 30\text{min}]$?
-  * *Постановка Active State:* Чи буде в інтервалі $[t, t + 30\text{min}]$ активна або розпочнеться тривога в Києві?
-  * *Основний фокус:* **Onset Prediction** (завчасне попередження про початок небезпеки), оскільки це становить найбільшу цінність для цивільної безпеки та оперативного реагування.
-* **Вихід моделі (Probabilistic Output):**
-  $$\hat{p}_t = P(y_t = 1 \mid X_t) \in [0, 1]$$
-  Модель повертає калібровану ймовірність початку тривоги в найближчі 30 хвилин.
-* **Вхідні дані на момент $t$ ($X_t$):** Виключно стан сирен та подій строго до моменту $t$ ($t_{\text{event}} < t$).
-
----
-
-## 3. Просторова структура ознак: Багаторівневий радар підльоту
-
-Враховуючи реальні траєкторії атак (пуски стратегічної авіації з Каспійського моря / Енгельса, балістика з Бєлгорода/Курська, пуски "Калібрів" з Чорного моря та "Шахедів" з Приморсько-Ахтарська/Криму), ми формуємо **4-рівневий просторовий радар**:
+## 📐 Architecture & Flow
 
 ```mermaid
 flowchart TD
-    subgraph Macro [Рівень 4: Загальнонаціональна динаміка]
-        N_all["Загальна кількість областей під тривогою (0..25)"]
-        Speed["Швидкість хвилі тривог: dN за останні 30 та 60 хв"]
+    subgraph LiveSources["Live Ingestion (Zero-Token Default)"]
+        S1["Ubilling Open Aerial Alerts API<br/>(25 Oblasts live state)"] --> F1["Spatial Radar Mapper"]
+        T1["Telegram Public Web Stream<br/>(@war_monitor & @kpszsu)"] --> F2["NLP Regex Threat Extractor"]
     end
 
-    subgraph DeepFlanks [Рівень 3: Дальній радар підльоту 45-90 хв]
-        East["Східний сектор (Каспій / Бєлгород): Харків, Дніпро, Запоріжжя, Донбас"]
-        South["Південний сектор (Чорне море / Крим): Одеса, Миколаїв, Херсон"]
+    subgraph FeatureEng["Real-Time Feature Vector"]
+        F1 --> FV["Current 88-Feature Vector<br/>(Tier 0-4 + Telegram Signals)"]
+        F2 --> FV
+        HIST["Historical Lags from features_multimodal_30m"] --> FV
     end
 
-    subgraph MidRing [Рівень 2: Суміжні області 15-45 хв]
-        Adj["Чернігівська, Сумська, Полтавська, Черкаська, Житомирська"]
+    subgraph Inference["Model Inference"]
+        FV --> LBM["Trained LightGBM Multimodal Model"]
+        LBM --> OUT["Forecast Output:<br/>Probability p, Risk Level, Drivers"]
     end
 
-    subgraph CloseRing [Рівень 1: Внутрішній рубіж 0-15 хв]
-        Raions["7 районів Київської області (Вишгород, Бровари, Бориспіль, Обухів, Біла Церква, Фастів, Буча)"]
+    subgraph Interfaces["User Interfaces"]
+        OUT --> CLI["1. CLI Live Dashboard<br/>(python run_experiment.py --live)"]
+        OUT --> NB["2. Jupyter Notebook Demo<br/>(demo.ipynb)"]
+        OUT --> WEB["3. Local Web Dashboard<br/>(python run_experiment.py --serve)"]
     end
-
-    subgraph Target [Рівень 0: Цільовий регіон]
-        Kyiv["м. Київ (Kyiv City)"]
-    end
-
-    Macro --> DeepFlanks --> MidRing --> CloseRing --> Target
 ```
 
 ---
 
-## 4. Детальний опис наступних фаз проєкту
+## 🛠️ Proposed Changes
 
-```mermaid
-flowchart LR
-    F1["Фаза 1: Очищення (ГОТОВО ✅)"] --> F2["Фаза 2: 30m Сітка & Feature Store"]
-    F2 --> F3["Фаза 3: Baseline V1 + Walk-Forward"]
-    F3 --> F4["Фаза 4: V2 Мультимодальні Тексти"]
-    F4 --> F5["Фаза 5: Репозиторій & Сабміт KSE"]
-```
+### Core Live Engine (`src/`)
 
----
+#### [NEW] `src/live_data.py`
+* `fetch_live_aerial_alerts() -> dict`: Queries `https://ubilling.net.ua/aerialalerts/` to get current boolean alert states for all regions.
+* `fetch_live_telegram_messages(limit: int = 20) -> list[dict]`: Scrapes latest messages with timestamps and channels from `https://t.me/s/war_monitor` and `https://t.me/s/kpszsu` without API keys.
+* Robust error handling and fallback to synthetic simulation if internet is unavailable.
 
-### ФАЗА 2: Побудова 30-хвилинної сітки та Feature Store (Наступний крок)
+#### [NEW] `src/live_forecast.py`
+* `build_live_feature_vector()`: Combines live alerts + live telegram with recent historical feature lags.
+* `predict_live_risk()`: Loads trained LightGBM model, computes calibrated probability $\hat{p}$, risk band, and feature attribution.
+* Formatted terminal output for CLI mode.
 
-#### 2.1. Генерація часової сітки (Timeline Discretization)
-1. Створюємо регулярний часовий ряд `pd.date_range(start='2023-01-01 00:00:00+00:00', end='2026-09-07 00:00:00+00:00', freq='30min')`.
-2. Для кожного півгодинного слота $[t, t + 30\text{min}]$:
-   * Визначаємо, чи була активна тривога в Києві в момент $t$ (`kyiv_active_now`).
-   * Розраховуємо таргет $y_t$: чи розпочалася нова тривога в Києві в інтервалі $[t, t + 30\text{min}]$.
+#### [NEW] `src/web.py`
+* Standard library `http.server` backend with a JSON endpoint (`/api/forecast`).
+* Zero external web framework dependencies (no Flask/FastAPI required).
+* Serves `web/index.html`.
 
-#### 2.2. Розрахунок ознак за рівнями просторового радара (Strictly Causal):
-* **Рівень 0 (Київ — локальна історія):**
-  * `kyiv_time_since_last_alert_hours`: скільки годин минуло від закінчення останньої тривоги.
-  * `kyiv_alert_count_last_6h`, `12h`, `24h`, `48h`: кількість тривог за попередні вікна.
-  * `kyiv_alert_duration_last_6h`, `12h`, `24h`: сумарна тривалість сирен за вікна.
-* **Рівень 1 (Внутрішній рубіж — 7 районів Київщини):**
-  * 7 бінарних прапорців: чи активна тривога в кожному з районів у момент $t$ (`vyshhorod_active`, `brovary_active`, `boryspil_active`, `obukhiv_active`, `bila_tserkva_active`, `fastiv_active`, `bucha_active`).
-  * Лаги на $t-30\text{m}$ та $t-60\text{m}$.
-  * `inner_ring_active_count`: сума районів під тривогою прямо зараз ($0 \dots 7$).
-  * `inner_ring_new_alerts_last_30m`: скільки районів увімкнули сирену за останні 30 хвилин.
-* **Рівень 2 (Суміжний рубіж — 5 сусідніх областей):**
-  * Бінарні статуси для Чернігівської, Сумської, Полтавської, Черкаської, Житомирської областей на $t, t-30\text{m}, t-60\text{m}$.
-  * `adjacent_active_count`: кількість сусідніх областей під тривогою ($0 \dots 5$).
-* **Рівень 3 (Дальній радар — Східний та Південний сектори):**
-  * Східний вектор (Харківська, Дніпропетровська, Запорізька, Донецька): пуски крилатих ракет з Каспію або східні групи дронів. Лаги: $t, t-30\text{m}, t-60\text{m}, t-90\text{m}$.
-  * Південний вектор (Одеська, Миколаївська, Херсонська): морські пуски та південні дрони. Лаги: $t, t-30\text{m}, t-60\text{m}, t-90\text{m}$.
-* **Рівень 4 (Макро-хвиля по всій Україні):**
-  * $N_{\text{active}}(t)$: загальна кількість областей під тривогою прямо зараз ($0 \dots 25$).
-  * Швидкість наростання хвилі: $\Delta N_{30\text{m}} = N_{\text{active}}(t) - N_{\text{active}}(t-30\text{m})$, $\Delta N_{60\text{m}} = N_{\text{active}}(t) - N_{\text{active}}(t-60\text{m})$.
-* **Календарні фактори:**
-  * Циклічний час: $\sin(2\pi \cdot \text{hour} / 24)$, $\cos(2\pi \cdot \text{hour} / 24)$.
-  * Циклічний день тижня: $\sin(2\pi \cdot \text{dow} / 7)$, $\cos(2\pi \cdot \text{dow} / 7)$.
-
-#### 2.3. Збереження та контроль якості:
-* Модуль `src/features_ts.py` генерує та зберігає `data/processed/features_30m.parquet`.
-* Тест на відсутність витоку даних: `tests/test_features_causality.py` програмно перевіряє, що жодна ознака в рядку $t$ не використовує дані з міткою $\ge t$.
+#### [NEW] `web/index.html`
+* Clean, standalone dark-mode dashboard (HTML/CSS/JS).
+* Real-time radial probability gauge (SVG).
+* 4-Tier Spatial Radar status grid.
+* Recent live Telegram threat ticker.
 
 ---
 
-### ФАЗА 3: Baseline V1 Моделювання та Walk-Forward бектестинг
+### Interactive Notebook & CLI
 
-#### 3.1. Модельний стек (`src/models.py`):
-1. **Heuristic Baseline (Евристика ППО):**
-   * Правило: якщо $\ge 2$ райони Київської області або Чернігівська/Сумська область під тривогою, і тривога наростає $\to \hat{p} = 0.85$, інакше базовий рівень.
-2. **Logistic Regression (L2-Regularized):**
-   * Нормалізація ознак (`StandardScaler`), ваги класів (`class_weight='balanced'`).
-3. **LightGBM Classifier (Основна модель V1):**
-   * Цільова функція: `binary_logloss`.
-   * Налаштування параметрів: `num_leaves=31`, `learning_rate=0.03`, `n_estimators=300`, `min_child_samples=50`, `scale_pos_weight` для компенсації дисбалансу класів.
-   * Отримання каліброваних ймовірностей через `predict_proba`.
+#### [NEW] `demo.ipynb`
+* Clean, well-commented Jupyter Notebook for demonstration and grading.
+* Step 1: Model loading & baseline inspection.
+* Step 2: One-click live forecasting (`predict_live_risk()`).
+* Step 3: Interactive **What-If Simulation** (e.g. inject simulated Shahed swarm on Chernihiv / missile takeoff to see probability spike).
 
-#### 3.2. Динамічний Walk-Forward бектестинг (`src/evaluate.py`):
-Щоб врахувати еволюцію тактик обстрілів за сезонами:
-* **Фолд 1:** Навчання: 2023-01 — 2025-12. Тест: **2026 Q1 (Січень — Березень 2026)**.
-* **Фолд 2:** Навчання: 2023-01 — 2026-03. Тест: **2026 Q2 (Квітень — Червень 2026)**.
-* **Фолд 3:** Навчання: 2023-01 — 2026-06. Тест: **2026 Q3 (Липень — Вересень 2026)** (Фінальний найсвіжіший період).
-
-#### 3.3. Метрики та артефакти:
-* **PR-AUC (Precision-Recall Area Under Curve):** ключова метрика для незбалансованих рідкісних подій.
-* **ROC-AUC:** загальна здатність ранжування ризику.
-* **Brier Score:** точність самих передбачених ймовірностей ($MSE$ між $\hat{p}_t$ та $y_t$).
-* **Precision / Recall / F1** при практичних порогах відсікання ($p > 0.20, 0.35, 0.50$).
-* **Візуалізація:** Генерація графіків у `.agents/artifacts/`:
-  * `pr_curve_comparison.png`
-  * `reliability_calibration_curve.png`
-  * `feature_importance_ranking.png` (оцінка реального внеску Каспійського, Східного та Внутрішнього рубежів).
+#### [MODIFY] `run_experiment.py`
+* Add `--live` flag to launch the live polling CLI dashboard.
+* Add `--serve` flag to launch the local web server at `http://localhost:8000`.
 
 ---
 
-### ФАЗА 4: V2 Мультимодальне покращення (Текстові дані)
+## 🧪 Verification Plan
 
-#### 4.1. Джерело та препроцесинг текстів:
-* Використання публічних офіційних повідомлень Повітряних Сил ЗСУ / моніторингових зведень із фіксованими часовими мітками публікації $t_{\text{msg}}$.
-* **Суворий бар'єр проти Data Leakage:** У півгодинний бін $t$ потрапляють ТІЛЬКИ повідомлення, де $t_{\text{msg}} < t$. Повідомлення, опубліковані під час прогнозованого вікна, суворо відкидаються.
+### Automated Tests
+* Create `tests/test_live_data.py`:
+  - Unit test alert parser against mocked response.
+  - Unit test telegram message scraper against sample HTML.
+  - Test live feature vector assembly and model inference shape.
+* Command: `python run_experiment.py --test`
 
-#### 4.2. Векторизація тексту (`src/features_text.py`):
-1. **Rule-based NLP тригери:**
-   * Детекція типів загроз за ключовими категоріями:
-     * `threat_shahed`: "шахед", "бпла", "дрон", "мопед".
-     * `threat_strategic_aviation`: "ту-95", "ту-22", "каспій", "енгельс", "пуск крилатих".
-     * `threat_mig_kinzhal`: "міг-31к", "кинджал", "саваслейка".
-     * `threat_ballistic`: "балістика", "іскандер", "бєлгород".
-     * `direction_kyiv`: "у напрямку києва", "на білу церкву", "на васильків", "через чернігівщину".
-2. **Dense Semantic Embeddings:**
-   * Кодування тексту легким трансформером (наприклад, `paraphrase-multilingual-MiniLM-L12-v2`) або TF-IDF N-грам.
-
-#### 4.3. Late Fusion без ризику Integration Hell:
-* Конкатенація ознак: $X_{\text{multimodal}}(t) = [X_{\text{ts}}(t), X_{\text{text}}(t)]$.
-* Порівняння результатів на одному й тому самому Walk-Forward тестовому сеті:
-  $$\Delta \text{PR-AUC} = \text{PR-AUC}_{\text{V2}} - \text{PR-AUC}_{\text{V1}}$$
-  $$\Delta \text{Brier} = \text{Brier}_{\text{V2}} - \text{Brier}_{\text{V1}}$$
-
----
-
-### ФАЗА 5: Фіналізація, документація та сабміт до KSE
-
-#### 5.1. Структура репозиторію та код:
-* Очищений репозиторій з чіткою структурою у `src/`.
-* `run_experiment.py` — головний скрипт, який запускає повний цикл (завантаження даних, генерацію фіч, навчання бейзлайнів, валідацію, генерацію звітів та графіків) за одну команду.
-* `README.md` з інструкцією швидкого запуску (Quickstart), таблицею метрик та описом архітектури.
-
-#### 5.2. Вимоги KSE:
-1. **Працюючий GitHub репозиторій** з відтворюваним кодом.
-2. **AI interaction log:** `ai_usage.md` (автоматично оновлюється під час роботи).
-3. **Reflection (~100 слів):** фактологічний опис трьох запитань (What went wrong? How did you adjust? Why is final version better?) на основі реальних отриманих експериментальних метрик.
+### Manual Verification
+1. Run `python run_experiment.py --live`: verify live terminal dashboard prints active regions and calibrated probability.
+2. Run `python run_experiment.py --serve`: open `http://localhost:8000` in browser, verify radial gauge and radar view.
+3. Open `demo.ipynb`: execute all cells sequentially, verify visual outputs and what-if simulation.

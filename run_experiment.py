@@ -105,11 +105,56 @@ def main():
         action="store_true",
         help="Run unit test suite",
     )
+    parser.add_argument(
+        "--live",
+        action="store_true",
+        help="Run real-time Kyiv risk prediction from live siren map and Telegram defense channels",
+    )
+    parser.add_argument(
+        "--watch",
+        action="store_true",
+        help="When used with --live, poll and update live predictions continuously every 30 seconds",
+    )
+    parser.add_argument(
+        "--serve",
+        action="store_true",
+        help="Launch the local interactive web dashboard",
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Port for local web dashboard (default: 8000)",
+    )
 
     args = parser.parse_args()
 
     if args.test:
         run_tests()
+        return
+
+    if args.live:
+        from src.live_forecast import format_cli_dashboard
+        import time
+
+        if args.watch:
+            print("Starting SirenCast UA Live Monitor (Ctrl+C to exit)...")
+            try:
+                while True:
+                    # Clear screen on Windows/Unix
+                    os_cls = "cls" if sys.platform == "win32" else "clear"
+                    # We just print without forced clear or with simple clear
+                    print("\n" + format_cli_dashboard())
+                    time.sleep(30)
+            except KeyboardInterrupt:
+                print("\nMonitoring stopped.")
+        else:
+            print(format_cli_dashboard())
+        return
+
+    if args.serve:
+        from src.web import start_server
+        start_server(port=args.port)
         return
 
     if args.phase == "1":

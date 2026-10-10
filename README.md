@@ -3,7 +3,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![KSE AI School](https://img.shields.io/badge/KSE-Agentic%20AI%20School-red.svg)](https://kse.ua/)
-[![Tests: 21 Passing](https://img.shields.io/badge/tests-21%20passing-brightgreen.svg)](tests/)
+[![Tests: 25 Passing](https://img.shields.io/badge/tests-25%20passing-brightgreen.svg)](tests/)
 
 **SirenCast UA** is an end-to-end machine learning pipeline that forecasts air raid alert probabilities for **Kyiv City** on a 30-minute horizon ($[t, t + 30\text{min}]$).
 
@@ -102,7 +102,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run Comprehensive Test Suite (21 Tests)
+### 2. Run Comprehensive Test Suite (25 Tests)
 ```bash
 python run_experiment.py --test
 ```
@@ -118,6 +118,67 @@ python run_experiment.py --phase 2    # 30-minute grid & spatial radar features
 python run_experiment.py --phase 3    # Baseline models & Walk-Forward evaluation
 python run_experiment.py --phase 4    # Multimodal Telegram NLP fusion
 ```
+
+---
+
+## ⚡ Live Airspace Forecasting Suite (The Trifecta)
+
+SirenCast UA extends beyond retrospective backtesting into **real-time probabilistic early warning** ($[t, t+30\text{min}]$) through three interactive interfaces ("The Trifecta"):
+
+```
++-------------------------------------------------------------------------------+
+|                           SIRENCAST UA TRIFECTA                               |
++-----------------------+-----------------------+-------------------------------+
+|   1. CLI Dashboard    |  2. Jupyter Notebook  |     3. Local Web Server       |
+|  python run_experiment|      demo.ipynb       |    python run_experiment.py   |
+|      .py --live       |                       |           --serve             |
+|   (Terminal Monitor)  |   (What-If Sandbox)   |    (http://localhost:8000)    |
++-----------------------+-----------------------+-------------------------------+
+```
+
+### 1. CLI Live Dashboard
+Runs an immediate terminal evaluation or continuous polling monitor:
+```bash
+# Single-shot prediction
+python run_experiment.py --live
+
+# Continuous live polling monitor (updates every 30 seconds)
+python run_experiment.py --live --watch
+```
+Displays forecasted threat percentage (e.g. `24.5%`), risk classification (`LOW`, `ELEVATED`, `HIGH`, `CRITICAL`), active status across all 4 concentric spatial radar tiers, and real-time Telegram threat counters.
+
+### 2. Interactive Jupyter Notebook (`demo.ipynb`)
+Open and run `demo.ipynb`:
+```bash
+jupyter lab demo.ipynb
+```
+Features:
+* Live data ingestion inspection (Ubilling siren map + Telegram previews).
+* Real-time LightGBM inference for Kyiv.
+* **What-If Scenario Sandbox**: Simulates escalation events (approaching Shahed swarms, ballistic launch warnings, active Kyiv sirens) to demonstrate how spatial-textual vectors shift forecasted threat probabilities.
+
+### 3. Zero-Dependency Web Dashboard
+Launches a responsive dark-mode cyber defense UI powered by Python's built-in `http.server`:
+```bash
+python run_experiment.py --serve
+# Dashboard accessible at: http://localhost:8000
+```
+Features:
+* **SVG Radial Risk Gauge**: Dynamically animates threat probabilities from 0.0% to 100.0% with color-coded severity bands.
+* **4-Tier Spatial Radar Monitor**: Live status lights for Kyiv City, the 7 Inner Ring raions, bordering oblasts, and national alert counts.
+* **Live Telegram Threat Ticker**: Direct stream of analyzed defence messages with extracted threat indicators.
+* **Auto-Refresh Engine**: Polls `/api/forecast` every 30 seconds with countdown timer and manual instant refresh.
+
+### 🌐 Real-Time Data Sources & Rate Limiting
+1. **Public Siren Telemetry (Ubilling API):**
+   * Endpoint: `https://ubilling.net.ua/aerialalerts/?raw`
+   * Open access: zero registration or private API keys required.
+   * **Strict Rate Limiting:** Enforces client-side thread-safe caching (`CACHE_TTL_SECONDS = 6.0`) to strictly respect the 2 requests/second API rate limit.
+   * Region Mapping: Handles historical Unix Epoch timestamps (`1970-01-01` returned for inactive regions) and maps all 7 Kyivska oblast raions inside `districts`.
+2. **Zero-Token Telegram Threat Scraper:**
+   * Channels: `@war_monitor` and `@kpszsu` via public channel web previews (`https://t.me/s/...`).
+   * **Zero Credentials Required:** Evaluates live defense announcements out-of-the-box without Telegram Bot API tokens or Telethon credentials.
+
 ---
 
 ## 📜 License

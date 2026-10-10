@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Post-interaction hook for logging AI usage into ai_usage.md.
-Captures user prompts, model responses, and artifact annotations with snippets.
+Captures user prompts, model responses, and artifact annotations with contextual excerpts.
 - Clean hierarchy without emojis; blockquoted user prompts.
 - Single-line interaction headers with branch and timestamp.
-- Resistant to branch changes and multi-chat switching.
-- Preserves manual user edits/deletions in ai_usage.md.
-- Full backup archive maintained in .git/ai_usage_archive.md.
-- Supports --restore and --rebuild CLI flags.
+- Contextual multi-line excerpts for artifact annotations with line indicators.
+- Artifact snapshots reconstructed at prompt time from transcript tool calls.
+- Strictly preserves manual user edits/deletions in ai_usage.md (no unprompted restorations).
+- Master archive maintained in .git/ai_usage_archive.md.
+- Explicit restore and rebuild via CLI flags (--restore, --rebuild).
 """
 
 import os
@@ -102,45 +103,78 @@ def extract_clean_prompt(raw_text: str) -> str:
     return c.strip()
 
 
-def parse_artifact_remarks(prompt_text: str, artifact_dirs: list[Path]):
-    """Extract user remarks on artifacts with corresponding line snippets."""
+def generate_excerpt(lines: list[str] | None, l1: int, l2: int, context: int = 2) -> str:
+    """
+    Generate a clean contextual excerpt around the targeted line(s) with line numbers
+    and a '>' marker pointing to the annotated line(s).
+    """
+    if lines is None:
+        return "(Artifact file not found for excerpt)"
+    if not (1 <= l1 <= len(lines)):
+        return f"(Line L{l1} is out of bounds for artifact with {len(lines)} lines)"
+
+    start_idx = max(1, l1 - context)
+    end_idx = min(len(lines), l2 + context)
+
+    res = []
+    for i in range(start_idx, end_idx + 1):
+        marker = ">" if l1 <= i <= l2 else " "
+        line_content = lines[i - 1]
+        res.append(f"{marker} {i:4d} | {line_content}")
+    return "\n".join(res)
+
+
+def parse_artifact_remarks(prompt_text: str, artifacts_snapshot: dict[str, list[str]], artifact_dirs: list[Path]):
+    """
+    Extract user remarks on artifacts with contextual excerpts around the referenced lines.
+    Uses the artifact snapshot at prompt time or falls back to disk.
+    """
     remarks = []
 
-    artifact_block_pattern = re.compile(
-        r'\[([a-zA-Z0-9_\-\.\/\\]+\.md)\](?:\s*\n|\s+)((?:(?:L|Line\s*)\d+:.*(?:\n|$))+)',
+    header_pattern = re.compile(
+        r'(?:^|\n)\s*\[([a-zA-Z0-9_\-\.\/\\]+\.(?:md|markdown|py|txt|json|ya?ml))\]',
         re.IGNORECASE
     )
-    for match in artifact_block_pattern.finditer(prompt_text):
+    matches = list(header_pattern.finditer(prompt_text))
+
+    for idx, match in enumerate(matches):
         filename = Path(match.group(1)).name
-        lines_block = match.group(2)
+        start_pos = match.end()
+        end_pos = matches[idx + 1].start() if idx + 1 < len(matches) else len(prompt_text)
+        block_text = prompt_text[start_pos:end_pos]
+
+        # Resolve artifact lines
+        lines = artifacts_snapshot.get(filename)
+        if lines is None:
+            for adir in artifact_dirs:
+                if not adir.exists():
+                    continue
+                art_file = adir / filename
+                if art_file.exists():
+                    try:
+                        lines = art_file.read_text(encoding="utf-8", errors="replace").splitlines()
+                        artifacts_snapshot[filename] = lines
+                        break
+                    except Exception:
+                        pass
+
         line_pattern = re.compile(
-            r'(?:L|Line\s*)(\d+):\s*(.*?)(?=\n(?:L|Line\s*)\d+:|$)',
+            r'(?:L|Line\s*)(\d+)(?:\s*(?:-|–|to)\s*(?:L|Line\s*)?(\d+))?:\s*(.*?)(?=(?:\n\s*(?:L|Line\s*)\d+)|\Z)',
             re.DOTALL | re.IGNORECASE
         )
 
-        artifact_content = None
-        for adir in artifact_dirs:
-            if not adir.exists():
-                continue
-            art_file = adir / filename
-            if art_file.exists():
-                try:
-                    artifact_content = art_file.read_text(encoding="utf-8", errors="replace").splitlines()
-                    break
-                except Exception:
-                    pass
-
         item_remarks = []
-        for lm in line_pattern.finditer(lines_block):
-            line_no = int(lm.group(1))
-            comment = lm.group(2).strip()
-            snippet = None
-            if artifact_content and 1 <= line_no <= len(artifact_content):
-                snippet = artifact_content[line_no - 1].strip()
+        for lm in line_pattern.finditer(block_text):
+            l1 = int(lm.group(1))
+            l2 = int(lm.group(2)) if lm.group(2) else l1
+            comment = lm.group(3).strip()
+            excerpt = generate_excerpt(lines, l1, l2, context=2)
+
             item_remarks.append({
-                "line": line_no,
+                "line_start": l1,
+                "line_end": l2,
                 "comment": comment,
-                "snippet": snippet
+                "excerpt": excerpt
             })
 
         if item_remarks:
@@ -149,16 +183,21 @@ def parse_artifact_remarks(prompt_text: str, artifact_dirs: list[Path]):
                 "remarks": item_remarks
             })
 
-    approved_pattern = re.compile(r'\[Approved\]\s*([a-zA-Z0-9_\-\.\/\\]+\.md)', re.IGNORECASE)
+    approved_pattern = re.compile(
+        r'(?:^|\n)\s*\[Approved\]\s*([a-zA-Z0-9_\-\.\/\\]+\.(?:md|markdown|py|txt|json|ya?ml))(?:\s+(.*?))?(?=\n\s*\[|\Z)',
+        re.IGNORECASE | re.DOTALL
+    )
     for match in approved_pattern.finditer(prompt_text):
         filename = Path(match.group(1)).name
+        note = match.group(2).strip() if match.group(2) else "Approved without additional inline remarks"
         if not any(r["artifact"] == filename for r in remarks):
             remarks.append({
                 "artifact": filename,
                 "remarks": [{
-                    "line": 0,
-                    "comment": "Approved without additional inline remarks",
-                    "snippet": None
+                    "line_start": 0,
+                    "line_end": 0,
+                    "comment": note,
+                    "excerpt": None
                 }]
             })
 
@@ -192,9 +231,13 @@ def load_transcript_records(transcript_path: Path):
 
 
 def parse_completed_turns(records, artifact_dirs: list[Path]):
-    """Parse complete user-model turns from transcript records."""
+    """
+    Parse complete user-model turns from transcript records, maintaining an active
+    artifacts snapshot at the exact moment of each user turn.
+    """
     turns = []
     current_turn = None
+    artifacts_tracker: dict[str, list[str]] = {}
 
     for r in records:
         source = r.get("source")
@@ -202,6 +245,29 @@ def parse_completed_turns(records, artifact_dirs: list[Path]):
         step = r.get("step_index")
         content = r.get("content", "")
         created_at = r.get("created_at", "")
+
+        # Track artifact modifications across model tool calls
+        if source == "MODEL":
+            for tc in r.get("tool_calls", []):
+                name = tc.get("name", "")
+                args = tc.get("args", {})
+                if name == "write_to_file":
+                    tgt = args.get("TargetFile", "")
+                    code_content = args.get("CodeContent")
+                    if tgt and code_content is not None:
+                        fn = Path(tgt).name
+                        artifacts_tracker[fn] = code_content.splitlines()
+                elif name == "replace_file_content":
+                    tgt = args.get("TargetFile", "")
+                    target_content = args.get("TargetContent", "")
+                    replacement = args.get("ReplacementContent", "")
+                    if tgt:
+                        fn = Path(tgt).name
+                        if fn in artifacts_tracker and target_content:
+                            joined = "\n".join(artifacts_tracker[fn])
+                            if target_content in joined:
+                                joined = joined.replace(target_content, replacement, 1)
+                                artifacts_tracker[fn] = joined.splitlines()
 
         is_user = (
             (source == "USER_EXPLICIT" or stype == "USER_INPUT")
@@ -216,7 +282,9 @@ def parse_completed_turns(records, artifact_dirs: list[Path]):
                 turns.append(current_turn)
 
             clean_prompt = extract_clean_prompt(content)
-            art_remarks = parse_artifact_remarks(content, artifact_dirs)
+            # Freeze snapshot of artifacts as they existed when user submitted prompt
+            snapshot = {k: list(v) for k, v in artifacts_tracker.items()}
+            art_remarks = parse_artifact_remarks(clean_prompt, snapshot, artifact_dirs)
 
             current_turn = {
                 "user_step": step,
@@ -256,8 +324,8 @@ def wrap_in_code_block(text: str, lang: str = "text") -> str:
 def format_turn_markdown(turn: dict, turn_num: int, branch: str) -> str:
     """
     Format a turn into clean Markdown.
-    Single-line metadata header. Prompts and responses wrapped in fenced code blocks
-    so they don't break markdown layout.
+    Single-line metadata header. Prompts and responses wrapped in fenced code blocks.
+    Artifact annotations include contextual multi-line excerpts with line indicators.
     """
     created_at = turn.get("created_at", "")
     if created_at:
@@ -275,37 +343,36 @@ def format_turn_markdown(turn: dict, turn_num: int, branch: str) -> str:
     art_remarks = turn.get("artifact_remarks", [])
 
     lines = []
-    # Single-line compact header with turn number, timestamp, branch, and step in brackets
     lines.append(f"### [Interaction #{turn_num}] · {time_str} · branch: [{branch}] · step: [{user_step}]")
     lines.append("")
 
-    # Raw fenced text block for user prompt
     lines.append("#### [User Prompt]")
     lines.append(wrap_in_code_block(prompt if prompt else "(Empty prompt)", lang="text"))
     lines.append("")
 
-    # Artifact annotations if present
     if art_remarks:
         lines.append("#### [Artifact Annotations]")
         for ar in art_remarks:
             art_name = ar["artifact"]
             lines.append(f"- **Artifact:** `[{art_name}]`")
             for rem in ar["remarks"]:
-                line_no = rem["line"]
+                line_start = rem["line_start"]
+                line_end = rem["line_end"]
                 comment = rem["comment"]
-                snippet = rem["snippet"]
+                excerpt = rem["excerpt"]
 
-                if line_no > 0:
-                    lines.append(f"  - **[Line L{line_no}]:** {comment}")
-                    if snippet:
+                if line_start > 0:
+                    line_tag = f"Line L{line_start}" if line_start == line_end else f"Lines L{line_start}-L{line_end}"
+                    lines.append(f"  - **[{line_tag}]:** {comment}")
+                    if excerpt:
                         lines.append("    ```text")
-                        lines.append(f"    {snippet}")
+                        for eline in excerpt.splitlines():
+                            lines.append(f"    {eline}")
                         lines.append("    ```")
                 else:
                     lines.append(f"  - {comment}")
         lines.append("")
 
-    # Raw fenced text block for model response
     lines.append("#### [Model Response]")
     lines.append(wrap_in_code_block(model_response if model_response else "(No response text)", lang="text"))
     lines.append("")
@@ -364,17 +431,14 @@ def get_paths(stdin_payload: dict):
     artifact_dirs.append(brain_base / conv_id)
     artifact_dirs.append(workspace_dir)
 
-    # Persistence files inside .git to survive branch changes
     if git_dir.exists():
         state_file = git_dir / "ai_usage_state.json"
         archive_file = git_dir / "ai_usage_archive.md"
-        active_copy_file = git_dir / "ai_usage_active.md"
     else:
         state_dir = workspace_dir / ".agents"
         state_dir.mkdir(parents=True, exist_ok=True)
         state_file = state_dir / "ai_usage_state.json"
         archive_file = state_dir / "ai_usage_archive.md"
-        active_copy_file = state_dir / "ai_usage_active.md"
 
     workspace_log_file = workspace_dir / "ai_usage.md"
 
@@ -388,28 +452,64 @@ def get_paths(stdin_payload: dict):
         "artifact_dirs": artifact_dirs,
         "state_file": state_file,
         "archive_file": archive_file,
-        "active_copy_file": active_copy_file,
         "workspace_log_file": workspace_log_file
     }
 
 
+def extract_session_steps_from_markdown(md_text: str) -> dict[str, set[int]]:
+    """Extract which steps are currently present in markdown grouped by session ID."""
+    session_blocks = re.split(r'(?=\n##\s*\[Chat Session\s*#[^\]]+\])', md_text)
+    mapping = {}
+    for block in session_blocks:
+        conv_m = re.search(r'\*\*Session ID:\*\*\s*`([^`]+)`', block)
+        if conv_m:
+            cid = conv_m.group(1).strip()
+            steps = set(int(m) for m in re.findall(r'step:\s*\[(\d+)\]', block))
+            mapping[cid] = steps
+    return mapping
+
+
+def update_turn_response_in_markdown(md_text: str, user_step: int, new_model_response: str) -> str:
+    """Update #### [Model Response] for an existing interaction with the given user_step."""
+    pattern = re.compile(
+        rf'(###\s*\[Interaction\s*#\d+\][^\n]*step:\s*\[{user_step}\].*?####\s*\[Model Response\]\s*\n)(.*?)(?=\n---|\Z)',
+        re.DOTALL
+    )
+    m = pattern.search(md_text)
+    if not m:
+        return md_text
+    new_wrapped = wrap_in_code_block(new_model_response, lang="text")
+    if m.group(2).strip() == new_wrapped.strip():
+        return md_text
+    return md_text[:m.start(2)] + new_wrapped + "\n" + md_text[m.end(2):]
+
+
 def handle_restore(paths: dict):
-    """Restore ai_usage.md from the full unedited archive."""
+    """Restore ai_usage.md from the full unedited archive upon explicit user command."""
     archive_file = paths["archive_file"]
     workspace_log = paths["workspace_log_file"]
     if not archive_file.exists():
         print(f"Archive file {archive_file} does not exist. Cannot restore.")
         return
 
-    # Create a quick safety backup of current workspace log if it exists
+    # Create safety backup of current workspace log
     if workspace_log.exists():
         bak = paths["workspace_dir"] / f"ai_usage.backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
         shutil.copy2(workspace_log, bak)
         print(f"Safety backup created at {bak.name}")
 
     shutil.copy2(archive_file, workspace_log)
-    if paths["active_copy_file"]:
-        shutil.copy2(archive_file, paths["active_copy_file"])
+
+    # Reset deleted_turns in state since user explicitly asked for full restore
+    state_file = paths["state_file"]
+    if state_file.exists():
+        try:
+            state = json.loads(state_file.read_text(encoding="utf-8"))
+            state["deleted_turns"] = {}
+            state_file.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+        except Exception:
+            pass
+
     print("ai_usage.md successfully restored from master archive.")
 
 
@@ -453,14 +553,14 @@ def handle_rebuild(paths: dict):
 
     full_text = "".join(chunks)
 
-    # Write to workspace log, archive, and active copy
+    # Write to workspace log and master archive
     paths["workspace_log_file"].write_text(full_text, encoding="utf-8")
     paths["archive_file"].write_text(full_text, encoding="utf-8")
-    paths["active_copy_file"].write_text(full_text, encoding="utf-8")
 
     state = {
         "last_conversation_id": paths["conv_id"],
         "logged_turns": {paths["conv_id"]: logged_steps},
+        "deleted_turns": {},
         "turn_counter": len(turns)
     }
     paths["state_file"].write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -493,13 +593,13 @@ def main():
     current_branch = paths["current_branch"]
     state_file = paths["state_file"]
     archive_file = paths["archive_file"]
-    active_copy_file = paths["active_copy_file"]
     workspace_log_file = paths["workspace_log_file"]
 
     # Load state
     state = {
         "last_conversation_id": None,
         "logged_turns": {},
+        "deleted_turns": {},
         "turn_counter": 0
     }
     if state_file.exists():
@@ -518,27 +618,75 @@ def main():
     if not archive_file.exists() or archive_file.stat().st_size == 0:
         archive_file.write_text(header_content, encoding="utf-8")
 
-    # If workspace log does not exist at all, initialize it from active_copy or archive
+    # If workspace log does not exist or is empty, write header ONLY.
+    # NEVER automatically restore deleted prompts from archive without explicit user command!
     if not workspace_log_file.exists() or workspace_log_file.stat().st_size == 0:
-        if active_copy_file.exists() and active_copy_file.stat().st_size > 0:
-            workspace_log_file.write_text(active_copy_file.read_text(encoding="utf-8"), encoding="utf-8")
-        else:
-            workspace_log_file.write_text(archive_file.read_text(encoding="utf-8"), encoding="utf-8")
+        workspace_log_file.write_text(header_content, encoding="utf-8")
 
-    # Parse turns from transcript
+    current_workspace_content = workspace_log_file.read_text(encoding="utf-8")
+
+    # Detect turns manually removed by the user in ai_usage.md across all known sessions
+    existing_session_steps = extract_session_steps_from_markdown(current_workspace_content)
+    if "deleted_turns" not in state:
+        state["deleted_turns"] = {}
+
+    for cid, steps in list(state.get("logged_turns", {}).items()):
+        present_in_file = existing_session_steps.get(cid, set())
+        for st in steps:
+            if st not in present_in_file:
+                if cid not in state["deleted_turns"]:
+                    state["deleted_turns"][cid] = []
+                if st not in state["deleted_turns"][cid]:
+                    state["deleted_turns"][cid].append(st)
+
+    logged_steps_for_conv = set(state.get("logged_turns", {}).get(conv_id, []))
+    deleted_steps_for_conv = set(state.get("deleted_turns", {}).get(conv_id, []))
+    present_steps_in_this_conv = existing_session_steps.get(conv_id, set())
+
+    # Parse completed turns from transcript
     records = load_transcript_records(paths["transcript_path"])
     completed_turns = parse_completed_turns(records, paths["artifact_dirs"])
 
-    logged_steps_for_conv = set(state.get("logged_turns", {}).get(conv_id, []))
-    new_turns = [t for t in completed_turns if t["user_step"] not in logged_steps_for_conv]
+    # Update any existing turns in workspace_log_file whose model_response has completed/changed
+    updated_workspace_content = current_workspace_content
+    for turn in completed_turns:
+        u_step = turn["user_step"]
+        if u_step in present_steps_in_this_conv:
+            new_resp = turn.get("model_response", "").strip()
+            if new_resp:
+                updated_workspace_content = update_turn_response_in_markdown(
+                    updated_workspace_content, u_step, new_resp
+                )
+
+    if updated_workspace_content != current_workspace_content:
+        workspace_log_file.write_text(updated_workspace_content, encoding="utf-8")
+        current_workspace_content = updated_workspace_content
+        if archive_file.exists():
+            arc_content = archive_file.read_text(encoding="utf-8")
+            for turn in completed_turns:
+                u_step = turn["user_step"]
+                new_resp = turn.get("model_response", "").strip()
+                if new_resp:
+                    arc_content = update_turn_response_in_markdown(arc_content, u_step, new_resp)
+            archive_file.write_text(arc_content, encoding="utf-8")
+
+    # New turns exclude already logged turns AND manually deleted turns
+    all_seen_steps = logged_steps_for_conv | deleted_steps_for_conv
+    new_turns = [t for t in completed_turns if t["user_step"] not in all_seen_steps]
 
     if new_turns:
+        # Number interactions following the file's current numbering
+        existing_turn_nums = [
+            int(m) for m in re.findall(r'###\s*\[Interaction\s*#(\d+)\]', current_workspace_content)
+        ]
+        current_turn_counter = max(existing_turn_nums) if existing_turn_nums else 0
+
         new_text_chunks = []
         last_logged_conv = state.get("last_conversation_id")
+        has_session_header = f"## [Chat Session #{chat_hash}]" in current_workspace_content
 
         for turn in new_turns:
-            # Check if chat changed or first turn under this session
-            if conv_id != last_logged_conv:
+            if conv_id != last_logged_conv or not has_session_header:
                 first_time = turn.get("created_at", "")
                 if first_time:
                     try:
@@ -557,68 +705,39 @@ def main():
                 )
                 new_text_chunks.append(chat_header)
                 last_logged_conv = conv_id
+                has_session_header = True
 
-            state["turn_counter"] = state.get("turn_counter", 0) + 1
-            turn_md = format_turn_markdown(turn, state["turn_counter"], current_branch)
+            current_turn_counter += 1
+            turn_md = format_turn_markdown(turn, current_turn_counter, current_branch)
             new_text_chunks.append(turn_md)
 
             logged_steps_for_conv.add(turn["user_step"])
 
         combined_new_text = "".join(new_text_chunks)
 
-        # 1. Always append to full master archive (safety net)
+        # 1. Append to master archive (safety backup)
         with open(archive_file, "a", encoding="utf-8") as f:
             f.write(combined_new_text)
 
-        # 2. Append to workspace log (respects whatever user edited before this point)
+        # 2. Append to workspace log (respecting manual user edits)
         with open(workspace_log_file, "a", encoding="utf-8") as f:
             f.write(combined_new_text)
 
-        # 3. Save a copy of user's active state in .git to restore on checkout
-        try:
-            active_copy_file.write_text(workspace_log_file.read_text(encoding="utf-8"), encoding="utf-8")
-        except Exception:
-            pass
-
-        # 4. Update state
-        if "logged_turns" not in state:
-            state["logged_turns"] = {}
-        state["logged_turns"][conv_id] = sorted(list(logged_steps_for_conv))
+        state["turn_counter"] = current_turn_counter
         state["last_conversation_id"] = last_logged_conv
 
-        try:
-            state_file.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
-        except Exception:
-            pass
-    else:
-        # If no new turns, but user edited workspace_log_file, sync active_copy_file
-        try:
-            if workspace_log_file.exists():
-                active_copy_file.write_text(workspace_log_file.read_text(encoding="utf-8"), encoding="utf-8")
-        except Exception:
-            pass
+    if "logged_turns" not in state:
+        state["logged_turns"] = {}
+    state["logged_turns"][conv_id] = sorted(list(logged_steps_for_conv))
 
-    # Ensure git post-checkout hook restores active_copy_file on branch switches
-    if paths["git_dir"].exists():
-        try:
-            hooks_dir = paths["git_dir"] / "hooks"
-            hooks_dir.mkdir(parents=True, exist_ok=True)
-            post_checkout = hooks_dir / "post-checkout"
-            hook_script = (
-                "#!/bin/sh\n"
-                "# Restore user active ai_usage.md upon checkout\n"
-                "GIT_DIR=\"$(git rev-parse --git-dir)\"\n"
-                "WORK_TREE=\"$(git rev-parse --show-toplevel)\"\n"
-                "if [ -f \"$GIT_DIR/ai_usage_active.md\" ]; then\n"
-                "  cp \"$GIT_DIR/ai_usage_active.md\" \"$WORK_TREE/ai_usage.md\"\n"
-                "elif [ -f \"$GIT_DIR/ai_usage_archive.md\" ]; then\n"
-                "  cp \"$GIT_DIR/ai_usage_archive.md\" \"$WORK_TREE/ai_usage.md\"\n"
-                "fi\n"
-                "exit 0\n"
-            )
-            post_checkout.write_text(hook_script, encoding="utf-8")
-        except Exception:
-            pass
+    if "deleted_turns" not in state:
+        state["deleted_turns"] = {}
+    state["deleted_turns"][conv_id] = sorted(list(deleted_steps_for_conv))
+
+    try:
+        state_file.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
 
     safe_print_json({"decision": "allow", "terminationBehavior": ""})
 

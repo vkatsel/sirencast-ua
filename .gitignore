@@ -82,3 +82,6 @@ desktop.ini
 
 # Logs and runtime artifacts
 *.log
+
+# Generated processed datasets
+data/processed/

@@ -5,12 +5,6 @@
         "type": "command",
         "command": "python log_ai_usage.py"
       }
-    ],
-    "PostInvocation": [
-      {
-        "type": "command",
-        "command": "python log_ai_usage.py"
-      }
     ]
   }
 }

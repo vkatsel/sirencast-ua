@@ -10,6 +10,7 @@ RAW_OFFICIAL_DATA = DATA_DIR / "official_data_en.csv"
 RAW_VOLUNTEER_DATA = DATA_DIR / "volunteer_data_en.csv"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 PROCESSED_ALERTS_PARQUET = PROCESSED_DATA_DIR / "clean_alerts.parquet"
+PROCESSED_FEATURES_PARQUET = PROCESSED_DATA_DIR / "features_30m.parquet"
 ARTIFACTS_DIR = BASE_DIR / ".agents" / "artifacts"
 
 # Time Series Settings

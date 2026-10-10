@@ -85,3 +85,6 @@ desktop.ini
 
 # Generated processed datasets
 data/processed/
+
+# Scratch files
+scratch/

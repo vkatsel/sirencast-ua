@@ -1,0 +1,12 @@
+# Core Data & Numerical Processing
+numpy>=2.0.0
+pandas>=3.0.0
+pyarrow>=20.0.0
+scipy>=1.15.0
+
+# Machine Learning & Metrics
+scikit-learn>=1.5.0
+lightgbm>=4.5.0
+
+# Visualization
+matplotlib>=3.10.0

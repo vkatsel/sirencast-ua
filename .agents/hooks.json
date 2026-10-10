@@ -3,7 +3,7 @@
     "Stop": [
       {
         "type": "command",
-        "command": "python log_ai_usage.py"
+        "command": "python .agents/log_ai_usage.py"
       }
     ]
   }

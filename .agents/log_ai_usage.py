@@ -8,6 +8,7 @@ Captures user prompts, model responses, and artifact annotations with contextual
 - Contextual multi-line excerpts for artifact annotations with line indicators.
 - Artifact snapshots reconstructed at prompt time from transcript tool calls.
 - Strictly preserves manual user edits/deletions in ai_usage.md (no unprompted restorations).
+- Zero duplicate appending: each turn is logged exactly once upon completion at Stop event.
 - Master archive maintained in .git/ai_usage_archive.md.
 - Explicit restore and rebuild via CLI flags (--restore, --rebuild).
 """
@@ -233,7 +234,7 @@ def load_transcript_records(transcript_path: Path):
 def parse_completed_turns(records, artifact_dirs: list[Path]):
     """
     Parse complete user-model turns from transcript records, maintaining an active
-    artifacts snapshot at the exact moment of each user turn.
+    artifacts snapshot at the exact moment of each user turn and capturing the final model response.
     """
     turns = []
     current_turn = None
@@ -276,9 +277,8 @@ def parse_completed_turns(records, artifact_dirs: list[Path]):
         )
 
         if is_user:
-            if current_turn and (current_turn.get("model_response") or current_turn.get("interim_response")):
-                if not current_turn.get("model_response"):
-                    current_turn["model_response"] = current_turn.get("interim_response")
+            if current_turn and (current_turn.get("final_response") or current_turn.get("last_content")):
+                current_turn["model_response"] = current_turn.get("final_response") or current_turn.get("last_content")
                 turns.append(current_turn)
 
             clean_prompt = extract_clean_prompt(content)
@@ -292,20 +292,21 @@ def parse_completed_turns(records, artifact_dirs: list[Path]):
                 "prompt": clean_prompt,
                 "artifact_remarks": art_remarks,
                 "model_response": None,
-                "interim_response": None,
+                "final_response": None,
+                "last_content": None,
                 "model_step": None
             }
         elif current_turn is not None and source == "MODEL" and stype == "PLANNER_RESPONSE":
-            if content:
+            if content and content.strip():
+                clean_c = content.strip()
                 if not r.get("tool_calls"):
-                    current_turn["model_response"] = content
+                    current_turn["final_response"] = clean_c
                     current_turn["model_step"] = step
                 else:
-                    current_turn["interim_response"] = content
+                    current_turn["last_content"] = clean_c
 
-    if current_turn and (current_turn.get("model_response") or current_turn.get("interim_response")):
-        if not current_turn.get("model_response"):
-            current_turn["model_response"] = current_turn.get("interim_response")
+    if current_turn and (current_turn.get("final_response") or current_turn.get("last_content")):
+        current_turn["model_response"] = current_turn.get("final_response") or current_turn.get("last_content")
         turns.append(current_turn)
 
     return turns
@@ -469,21 +470,6 @@ def extract_session_steps_from_markdown(md_text: str) -> dict[str, set[int]]:
     return mapping
 
 
-def update_turn_response_in_markdown(md_text: str, user_step: int, new_model_response: str) -> str:
-    """Update #### [Model Response] for an existing interaction with the given user_step."""
-    pattern = re.compile(
-        rf'(###\s*\[Interaction\s*#\d+\][^\n]*step:\s*\[{user_step}\].*?####\s*\[Model Response\]\s*\n)(.*?)(?=\n---|\Z)',
-        re.DOTALL
-    )
-    m = pattern.search(md_text)
-    if not m:
-        return md_text
-    new_wrapped = wrap_in_code_block(new_model_response, lang="text")
-    if m.group(2).strip() == new_wrapped.strip():
-        return md_text
-    return md_text[:m.start(2)] + new_wrapped + "\n" + md_text[m.end(2):]
-
-
 def handle_restore(paths: dict):
     """Restore ai_usage.md from the full unedited archive upon explicit user command."""
     archive_file = paths["archive_file"]
@@ -500,7 +486,6 @@ def handle_restore(paths: dict):
 
     shutil.copy2(archive_file, workspace_log)
 
-    # Reset deleted_turns in state since user explicitly asked for full restore
     state_file = paths["state_file"]
     if state_file.exists():
         try:
@@ -578,7 +563,7 @@ def main():
         handle_rebuild(paths)
         return
 
-    # Normal hook execution
+    # Normal hook execution (only triggered at Stop event)
     raw_input = read_stdin_safely()
     stdin_payload = {}
     if raw_input.strip():
@@ -619,7 +604,6 @@ def main():
         archive_file.write_text(header_content, encoding="utf-8")
 
     # If workspace log does not exist or is empty, write header ONLY.
-    # NEVER automatically restore deleted prompts from archive without explicit user command!
     if not workspace_log_file.exists() or workspace_log_file.stat().st_size == 0:
         workspace_log_file.write_text(header_content, encoding="utf-8")
 
@@ -647,31 +631,8 @@ def main():
     records = load_transcript_records(paths["transcript_path"])
     completed_turns = parse_completed_turns(records, paths["artifact_dirs"])
 
-    # Update any existing turns in workspace_log_file whose model_response has completed/changed
-    updated_workspace_content = current_workspace_content
-    for turn in completed_turns:
-        u_step = turn["user_step"]
-        if u_step in present_steps_in_this_conv:
-            new_resp = turn.get("model_response", "").strip()
-            if new_resp:
-                updated_workspace_content = update_turn_response_in_markdown(
-                    updated_workspace_content, u_step, new_resp
-                )
-
-    if updated_workspace_content != current_workspace_content:
-        workspace_log_file.write_text(updated_workspace_content, encoding="utf-8")
-        current_workspace_content = updated_workspace_content
-        if archive_file.exists():
-            arc_content = archive_file.read_text(encoding="utf-8")
-            for turn in completed_turns:
-                u_step = turn["user_step"]
-                new_resp = turn.get("model_response", "").strip()
-                if new_resp:
-                    arc_content = update_turn_response_in_markdown(arc_content, u_step, new_resp)
-            archive_file.write_text(arc_content, encoding="utf-8")
-
-    # New turns exclude already logged turns AND manually deleted turns
-    all_seen_steps = logged_steps_for_conv | deleted_steps_for_conv
+    # New turns exclude already logged turns AND manually deleted turns AND already present turns
+    all_seen_steps = logged_steps_for_conv | deleted_steps_for_conv | present_steps_in_this_conv
     new_turns = [t for t in completed_turns if t["user_step"] not in all_seen_steps]
 
     if new_turns:

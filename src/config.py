@@ -15,6 +15,7 @@ PROCESSED_MULTIMODAL_PARQUET = PROCESSED_DATA_DIR / "features_multimodal_30m.par
 TELEGRAM_DATA_DIR = DATA_DIR / "telegram"
 MONITOR_JSON = TELEGRAM_DATA_DIR / "monitor.json"
 PSZSU_JSON = TELEGRAM_DATA_DIR / "pszsu.json"
+CLEAN_TELEGRAM_PARQUET = DATA_DIR / "clean_telegram.parquet"
 ARTIFACTS_DIR = BASE_DIR / ".agents" / "artifacts"
 
 # Time Series Settings

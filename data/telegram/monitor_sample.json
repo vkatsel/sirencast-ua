@@ -1,0 +1,1973 @@
+{
+  "name": "monitor",
+  "type": "public_channel",
+  "id": 1641260594,
+  "sample_note": "Representative 50-message sample of raw Telegram Desktop export schema. Full pruned dataset is in data/clean_telegram.parquet.",
+  "messages": [
+    {
+      "id": 10,
+      "type": "message",
+      "date": "2022-04-29T14:24:57",
+      "date_unixtime": "1651231497",
+      "edited": "2022-06-24T17:23:22",
+      "edited_unixtime": "1656080602",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 100869,
+      "width": 720,
+      "height": 826,
+      "text": [
+        "Снимок от 27 апреля, база ВМФ РФ Гаджиево. 5 субмарин, ПЛАРБ/РПКСН имеющие возможность нести ядерные боеголовки, находятся на своих привычных местах. Никаких изменений на объекте не наблюдается.\n\n",
+        {
+          "type": "hashtag",
+          "text": "#ЯО"
+        },
+        " ",
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Снимок от 27 апреля, база ВМФ РФ Гаджиево. 5 субмарин, ПЛАРБ/РПКСН имеющие возможность нести ядерные боеголовки, находятся на своих привычных местах. Никаких изменений на объекте не наблюдается.\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#ЯО"
+        },
+        {
+          "type": "plain",
+          "text": " "
+        },
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 141,
+          "emoji": "🤯"
+        },
+        {
+          "type": "emoji",
+          "count": 37,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 31,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 10,
+          "emoji": "👀"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👎"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "message",
+      "date": "2022-04-29T20:14:53",
+      "date_unixtime": "1651252493",
+      "edited": "2022-05-24T07:54:15",
+      "edited_unixtime": "1653368055",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 145615,
+      "width": 1280,
+      "height": 745,
+      "text": [
+        "Спутниковый снимок от 29 апреля, база ЧФ РФ в Севастополе, подлодка проекта 636 Варшавянка. Происходит процесс погрузки, предположительно ракетами \"Калибр\"\n\n",
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Спутниковый снимок от 29 апреля, база ЧФ РФ в Севастополе, подлодка проекта 636 Варшавянка. Происходит процесс погрузки, предположительно ракетами \"Калибр\"\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 85,
+          "emoji": "🤯"
+        },
+        {
+          "type": "emoji",
+          "count": 54,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 15,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "😢"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "type": "message",
+      "date": "2022-04-30T11:13:45",
+      "date_unixtime": "1651306425",
+      "edited": "2022-08-11T02:59:02",
+      "edited_unixtime": "1660175942",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 136153,
+      "width": 1280,
+      "height": 776,
+      "text": [
+        "Разведывательная деятельность авиации США в Черноморском регионе\nRQ-4B Global Hawk (FORTE-10/11-2046) и CL-60 (BRIO-68) сейчас в воздухе\n\n",
+        {
+          "type": "hashtag",
+          "text": "#авіація"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Разведывательная деятельность авиации США в Черноморском регионе\nRQ-4B Global Hawk (FORTE-10/11-2046) и CL-60 (BRIO-68) сейчас в воздухе\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#авіація"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 61,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 10,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "type": "message",
+      "date": "2022-04-30T19:51:35",
+      "date_unixtime": "1651337495",
+      "edited": "2022-08-14T00:08:18",
+      "edited_unixtime": "1660424898",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 122734,
+      "width": 979,
+      "height": 762,
+      "text": [
+        "Координаты места, откуда был произведён запуск ракет Оникс берегового комплекса Бастион-П по аэропорту в Одессе.\n45.39011174000645, 32.49325550950899\n\n",
+        {
+          "type": "hashtag",
+          "text": "#СРЗО"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Координаты места, откуда был произведён запуск ракет Оникс берегового комплекса Бастион-П по аэропорту в Одессе.\n45.39011174000645, 32.49325550950899\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#СРЗО"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 75,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "type": "message",
+      "date": "2022-05-01T21:47:53",
+      "date_unixtime": "1651430873",
+      "edited": "2022-05-20T13:38:13",
+      "edited_unixtime": "1653043093",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "reply_to_message_id": 20,
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 27491,
+      "width": 992,
+      "height": 651,
+      "text": [
+        "UPD. \n- Два БДК находятся у западного берега Крыма.\n- 3х артиллерийских катера в заливе Донузлав.\n- 4х десантных катера в заливе Донузлав.\n\nТакое скопление десантных кораблей может свидетельствовать о подготовке экипажей к подобным операциям.\n\n",
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "UPD. \n- Два БДК находятся у западного берега Крыма.\n- 3х артиллерийских катера в заливе Донузлав.\n- 4х десантных катера в заливе Донузлав.\n\nТакое скопление десантных кораблей может свидетельствовать о подготовке экипажей к подобным операциям.\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 22,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "😭"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "type": "message",
+      "date": "2022-05-02T10:02:30",
+      "date_unixtime": "1651474950",
+      "edited": "2022-05-08T02:15:23",
+      "edited_unixtime": "1651965323",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "279725371_413106733574985_7004916311056119918_n.mp4",
+      "file_size": 2380714,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 7364,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 17,
+      "width": 1280,
+      "height": 720,
+      "text": [
+        "Два катера \"Раптор\" уничтожены у берегов острова Змеиный при помощи Байрактаров — ",
+        {
+          "type": "text_link",
+          "text": "Суспільне\n\n",
+          "href": "https://t.me/suspilneodesa/12692"
+        },
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Два катера \"Раптор\" уничтожены у берегов острова Змеиный при помощи Байрактаров — "
+        },
+        {
+          "type": "text_link",
+          "text": "Суспільне\n\n",
+          "href": "https://t.me/suspilneodesa/12692"
+        },
+        {
+          "type": "hashtag",
+          "text": "#флот"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 95,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 28,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 15,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "type": "message",
+      "date": "2022-05-02T11:12:12",
+      "date_unixtime": "1651479132",
+      "edited": "2022-09-16T23:07:21",
+      "edited_unixtime": "1663358841",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "reply_to_message_id": 22,
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 10747,
+      "width": 1106,
+      "height": 773,
+      "text": "UPD.\nМестоположение подбитых катеров",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "UPD.\nМестоположение подбитых катеров"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 51,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "type": "message",
+      "date": "2022-05-03T18:27:03",
+      "date_unixtime": "1651591623",
+      "edited": "2022-05-03T22:25:11",
+      "edited_unixtime": "1651605911",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️ Вылет стратегических бомбардировщиков ТУ-95мс. Есть вероятность запуска крылатых ракет со стороны Саратова / Каспийского моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️ Вылет стратегических бомбардировщиков ТУ-95мс. Есть вероятность запуска крылатых ракет со стороны Саратова / Каспийского моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 36,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👎"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👏"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "type": "message",
+      "date": "2022-05-04T21:19:25",
+      "date_unixtime": "1651688365",
+      "edited": "2022-12-27T12:19:01",
+      "edited_unixtime": "1672136341",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️ Сообщают о вылетах в сторону Николаева.\n\nUPD. Обстреливают из РСЗО",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️ Сообщают о вылетах в сторону Николаева.\n\nUPD. Обстреливают из РСЗО"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 23,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👎"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "type": "message",
+      "date": "2022-05-04T22:35:36",
+      "date_unixtime": "1651692936",
+      "edited": "2022-05-04T23:34:40",
+      "edited_unixtime": "1651696480",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚡️ 21:26 Подлодка проекта 636 \"Варшавянка\" вышла из бухты Севастополя.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚡️ 21:26 Подлодка проекта 636 \"Варшавянка\" вышла из бухты Севастополя."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "👎"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "type": "message",
+      "date": "2022-05-05T03:43:40",
+      "date_unixtime": "1651711420",
+      "edited": "2022-07-23T05:41:10",
+      "edited_unixtime": "1658544070",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️3:23 Запуск крылатых ракет х-101 над Каспийским морем.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️3:23 Запуск крылатых ракет х-101 над Каспийским морем."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 22,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😢"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "type": "message",
+      "date": "2022-05-05T04:08:50",
+      "date_unixtime": "1651712930",
+      "edited": "2022-10-10T19:10:53",
+      "edited_unixtime": "1665418253",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Вероятно цели на западе Украины. Львов, Закарпатье - не игнорируйте тревогу.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Вероятно цели на западе Украины. Львов, Закарпатье - не игнорируйте тревогу."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "type": "message",
+      "date": "2022-05-06T11:11:24",
+      "date_unixtime": "1651824684",
+      "edited": "2022-12-27T12:19:22",
+      "edited_unixtime": "1672136362",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Запуск ракет. Возможны тревоги по областям.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Запуск ракет. Возможны тревоги по областям."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "type": "message",
+      "date": "2022-05-06T14:37:10",
+      "date_unixtime": "1651837030",
+      "edited": "2022-12-27T12:19:25",
+      "edited_unixtime": "1672136365",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": [
+        "⚠️ Запуск ракет \"Калибр\" из акватории Черного моря.\n\n",
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Запуск ракет \"Калибр\" из акватории Черного моря.\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "type": "message",
+      "date": "2022-05-06T15:10:17",
+      "date_unixtime": "1651839017",
+      "edited": "2022-08-17T15:20:06",
+      "edited_unixtime": "1660738806",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": [
+        "❗️Запуск ракет Х-22 двумя Ту-22М3 над Черным морем вблизи Крымского полуострова.\n\n",
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет Х-22 двумя Ту-22М3 над Черным морем вблизи Крымского полуострова.\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "type": "message",
+      "date": "2022-05-07T19:19:28",
+      "date_unixtime": "1651940368",
+      "edited": "2022-08-11T02:58:54",
+      "edited_unixtime": "1660175934",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 110203,
+      "width": 946,
+      "height": 670,
+      "text": [
+        "📌 Грузовой Ил-76МД сейчас над акваторией Черного моря. Может лететь в направлении Крыма или Приднестровья.\n\n",
+        {
+          "type": "hashtag",
+          "text": "#авіація"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "📌 Грузовой Ил-76МД сейчас над акваторией Черного моря. Может лететь в направлении Крыма или Приднестровья.\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#авіація"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 34,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "type": "message",
+      "date": "2022-05-07T19:49:05",
+      "date_unixtime": "1651942145",
+      "edited": "2022-05-07T19:49:24",
+      "edited_unixtime": "1651942164",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "reply_to_message_id": 36,
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 49049,
+      "width": 1032,
+      "height": 595,
+      "text": "UPD. На подлёте к Крыму выключил транспондер.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "UPD. На подлёте к Крыму выключил транспондер."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 25,
+          "emoji": "🤔"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "😱"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "type": "message",
+      "date": "2022-05-07T23:30:47",
+      "date_unixtime": "1651955447",
+      "edited": "2022-05-07T23:32:12",
+      "edited_unixtime": "1651955532",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 147864,
+      "width": 1014,
+      "height": 706,
+      "text": [
+        "Со слов Минобороны рф 8-го мая\n«подразделения ВСУ нанесут удары ОТР «Точка-У» по местам скопления людей в населенных пунктах Львовской и Волынской областей, как это уже было на железнодорожном вокзале в Краматорске». \n\nБеларускі Гаюн",
+        {
+          "type": "text_link",
+          "text": " сообщает",
+          "href": "https://t.me/Hajun_BY/4442"
+        },
+        ", что 6‑го мая «по трассе М-1 недалеко от Баранович в сторону Бреста стояла колонна техники. Среди техники были возможно 2 Точки У, также несколько грузовых автомобилей. Также ЗИЛ и легковой автомобиль двигались со стороны Бреста в сторону этой колонны»\n\nУ ОТРК Точка-У максимальная дальность - 120 км. У усовершенствованной версии Искандер может достигать - 500 км. На карте обозначены примерные зоны, куда могут доставать снаряды как Точки-У, так и Искандера.\n\nПри любых обстоятельствах лучше не игнорировать воздушную тревогу и не находиться возле инфраструктурных объектов.\n\n",
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Со слов Минобороны рф 8-го мая\n«подразделения ВСУ нанесут удары ОТР «Точка-У» по местам скопления людей в населенных пунктах Львовской и Волынской областей, как это уже было на железнодорожном вокзале в Краматорске». \n\nБеларускі Гаюн"
+        },
+        {
+          "type": "text_link",
+          "text": " сообщает",
+          "href": "https://t.me/Hajun_BY/4442"
+        },
+        {
+          "type": "plain",
+          "text": ", что 6‑го мая «по трассе М-1 недалеко от Баранович в сторону Бреста стояла колонна техники. Среди техники были возможно 2 Точки У, также несколько грузовых автомобилей. Также ЗИЛ и легковой автомобиль двигались со стороны Бреста в сторону этой колонны»\n\nУ ОТРК Точка-У максимальная дальность - 120 км. У усовершенствованной версии Искандер может достигать - 500 км. На карте обозначены примерные зоны, куда могут доставать снаряды как Точки-У, так и Искандера.\n\nПри любых обстоятельствах лучше не игнорировать воздушную тревогу и не находиться возле инфраструктурных объектов.\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "@war_monitor",
+          "href": "https://t.me/+Qw4NCe60M8xlZDNi"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 23,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "😱"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👎"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🤝"
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "type": "message",
+      "date": "2022-05-08T00:10:45",
+      "date_unixtime": "1651957845",
+      "edited": "2023-06-28T12:24:18",
+      "edited_unixtime": "1687944258",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Активность стратегической авиации РФ в радио-эфире. Вероятен скорый вылет Ту-95мс и запуск крылатых ракет над акваторией Каспийского моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ в радио-эфире. Вероятен скорый вылет Ту-95мс и запуск крылатых ракет над акваторией Каспийского моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 26,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "type": "message",
+      "date": "2022-05-08T01:46:04",
+      "date_unixtime": "1651963564",
+      "edited": "2022-05-08T02:43:41",
+      "edited_unixtime": "1651967021",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "245.mp3",
+      "file_size": 978378,
+      "media_type": "audio_file",
+      "mime_type": "audio/mpeg",
+      "duration_seconds": 57,
+      "text": "У стратегической авиации проблемы со связью сейчас.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "У стратегической авиации проблемы со связью сейчас."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 85,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 40,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "type": "message",
+      "date": "2022-05-08T01:55:50",
+      "date_unixtime": "1651964150",
+      "edited": "2022-05-08T02:14:29",
+      "edited_unixtime": "1651965269",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет с Ту-95мс, над акваторией Каспийского моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет с Ту-95мс, над акваторией Каспийского моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 42,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "😱"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "😨"
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "type": "message",
+      "date": "2022-05-08T06:43:52",
+      "date_unixtime": "1651981432",
+      "edited": "2023-03-15T21:32:39",
+      "edited_unixtime": "1678908759",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Повышенная активность стратегической авиации РФ в радио-эфире. Вероятен скорый вылет Ту-95мс и запуск крылатых ракет над акваторией Каспийского моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Повышенная активность стратегической авиации РФ в радио-эфире. Вероятен скорый вылет Ту-95мс и запуск крылатых ракет над акваторией Каспийского моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "😢"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "type": "message",
+      "date": "2022-05-08T07:54:15",
+      "date_unixtime": "1651985655",
+      "edited": "2022-05-08T07:55:17",
+      "edited_unixtime": "1651985717",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет с Ту-95мс, над акваторией Каспийского моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет с Ту-95мс, над акваторией Каспийского моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 26,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "type": "message",
+      "date": "2022-05-08T12:31:06",
+      "date_unixtime": "1652002266",
+      "edited": "2022-05-08T18:27:40",
+      "edited_unixtime": "1652023660",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет Калибр из акватории Черного моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет Калибр из акватории Черного моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 20,
+          "emoji": "😢"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "type": "message",
+      "date": "2022-05-08T21:53:37",
+      "date_unixtime": "1652036017",
+      "edited": "2022-05-08T21:54:20",
+      "edited_unixtime": "1652036060",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Вероятный запуск ракет авиацией со стороны Беларуси.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Вероятный запуск ракет авиацией со стороны Беларуси."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 27,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👎"
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "type": "message",
+      "date": "2022-05-09T11:29:48",
+      "date_unixtime": "1652084988",
+      "edited": "2022-05-09T11:37:46",
+      "edited_unixtime": "1652085466",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "Сегодня в 21:45 Байден подпишет закон о Ленд-лизе.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Сегодня в 21:45 Байден подпишет закон о Ленд-лизе."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 28,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "😢"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🙈"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "type": "message",
+      "date": "2022-05-09T19:16:40",
+      "date_unixtime": "1652113000",
+      "edited": "2022-05-09T19:31:22",
+      "edited_unixtime": "1652113882",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет из акватории Черного моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет из акватории Черного моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "type": "message",
+      "date": "2022-05-09T19:43:59",
+      "date_unixtime": "1652114639",
+      "edited": "2022-05-09T20:17:51",
+      "edited_unixtime": "1652116671",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️19:38 запуск ракеты с Ту-95мс над акваторией Каспия.\n\n- Это могут быть Х-101, Х-55 и модификации.\n- Вероятно цели на западе Украины.\n- Стоит ждать продолжительных тревог, если не будет сбития.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️19:38 запуск ракеты с Ту-95мс над акваторией Каспия.\n\n- Это могут быть Х-101, Х-55 и модификации.\n- Вероятно цели на западе Украины.\n- Стоит ждать продолжительных тревог, если не будет сбития."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🙏"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "type": "message",
+      "date": "2022-05-09T21:25:57",
+      "date_unixtime": "1652120757",
+      "edited": "2022-05-09T21:39:22",
+      "edited_unixtime": "1652121562",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "reply_to_message_id": 48,
+      "text": "сейчас пролетает над территорией.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "сейчас пролетает над территорией."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "type": "message",
+      "date": "2022-05-09T22:01:35",
+      "date_unixtime": "1652122895",
+      "edited": "2023-06-13T15:09:24",
+      "edited_unixtime": "1686658164",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет из акватории Черного моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет из акватории Черного моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 11,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "type": "message",
+      "date": "2022-05-09T22:42:13",
+      "date_unixtime": "1652125333",
+      "edited": "2022-05-09T22:44:55",
+      "edited_unixtime": "1652125495",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️ Іде ракетна атака по Одесі – ОК \"Південь\"",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️ Іде ракетна атака по Одесі – ОК \"Південь\""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 18,
+          "emoji": "👎"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "type": "message",
+      "date": "2022-05-10T00:42:27",
+      "date_unixtime": "1652132547",
+      "edited": "2022-05-10T00:47:21",
+      "edited_unixtime": "1652132841",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "0040.m4a",
+      "file_size": 894756,
+      "media_type": "audio_file",
+      "title": "0040",
+      "mime_type": "audio/mp4",
+      "duration_seconds": 40,
+      "text": "⚠️ Активность стратегической авиации РФ в радио-эфире.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ в радио-эфире."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 20,
+          "emoji": "😢"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "type": "message",
+      "date": "2022-05-10T16:00:39",
+      "date_unixtime": "1652187639",
+      "edited": "2022-07-23T05:41:06",
+      "edited_unixtime": "1658544066",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "📌 Один из фрегатов проекта \"Буревестник\" вернулся в порт Севастополя.\n\nUPD. \"Адмирал Макаров\"",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "📌 Один из фрегатов проекта \"Буревестник\" вернулся в порт Севастополя.\n\nUPD. \"Адмирал Макаров\""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "type": "message",
+      "date": "2022-05-10T17:03:34",
+      "date_unixtime": "1652191414",
+      "edited": "2022-05-10T17:26:45",
+      "edited_unixtime": "1652192805",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "reply_to_message_id": 38,
+      "text": "Остаётся высокая вероятность нанесения ударов по Северо-Западным областям Украины из Беларуси с помощью Точек-У/Искандеров, а также РСЗО Смерч.\nНе игнорируйте сигналы тревоги.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Остаётся высокая вероятность нанесения ударов по Северо-Западным областям Украины из Беларуси с помощью Точек-У/Искандеров, а также РСЗО Смерч.\nНе игнорируйте сигналы тревоги."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 18,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "type": "message",
+      "date": "2022-05-10T19:12:52",
+      "date_unixtime": "1652199172",
+      "edited": "2022-05-10T19:19:17",
+      "edited_unixtime": "1652199557",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 81247,
+      "width": 1188,
+      "height": 812,
+      "text": "Предположу, что векторы запуска ракет такие.\n\nupd. взрывы в Сумской области.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Предположу, что векторы запуска ракет такие.\n\nupd. взрывы в Сумской области."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤔"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "type": "message",
+      "date": "2022-05-11T01:16:10",
+      "date_unixtime": "1652220970",
+      "edited": "2022-05-11T01:16:44",
+      "edited_unixtime": "1652221004",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Активность стратегической авиации РФ в радио-эфире. Вероятен вылет бомбардировщиков Ту-95мс или Ту-22м3 этой ночью.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ в радио-эфире. Вероятен вылет бомбардировщиков Ту-95мс или Ту-22м3 этой ночью."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 16,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "type": "message",
+      "date": "2022-05-11T01:51:57",
+      "date_unixtime": "1652223117",
+      "edited": "2022-05-11T01:52:59",
+      "edited_unixtime": "1652223179",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет, вероятно Х-101/Х-55",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет, вероятно Х-101/Х-55"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 10,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "😢"
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "type": "message",
+      "date": "2022-05-11T09:53:09",
+      "date_unixtime": "1652251989",
+      "edited": "2023-03-22T15:35:21",
+      "edited_unixtime": "1679492121",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет из акватории Черного моря.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет из акватории Черного моря."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "🤬"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "type": "message",
+      "date": "2022-05-11T11:43:32",
+      "date_unixtime": "1652258612",
+      "edited": "2022-05-11T11:54:43",
+      "edited_unixtime": "1652259283",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуск ракет из акватории Черного моря.\nUPD. Ложное срабатывание.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуск ракет из акватории Черного моря.\nUPD. Ложное срабатывание."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "type": "message",
+      "date": "2022-05-11T23:21:32",
+      "date_unixtime": "1652300492",
+      "edited": "2022-05-11T23:24:29",
+      "edited_unixtime": "1652300669",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Активность стратегической авиации РФ. Вероятны тревоги по стране в течение следующих 1,5 часов.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ. Вероятны тревоги по стране в течение следующих 1,5 часов."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 11,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "😢"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "type": "message",
+      "date": "2022-05-12T00:35:27",
+      "date_unixtime": "1652304927",
+      "edited": "2022-05-12T13:53:46",
+      "edited_unixtime": "1652352826",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️00:34 запуск ракет группой Ту-22м3\n\nUPD. Прилёт в Черниговской области.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️00:34 запуск ракет группой Ту-22м3\n\nUPD. Прилёт в Черниговской области."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 15,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🤯"
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "type": "message",
+      "date": "2022-05-12T15:38:39",
+      "date_unixtime": "1652359119",
+      "edited": "2022-05-12T15:41:42",
+      "edited_unixtime": "1652359302",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "1524326248092164096.mp4",
+      "file_size": 779843,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 4196,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 78,
+      "width": 480,
+      "height": 264,
+      "text": "Видео, предположительно от 9-го мая, на котором с Ту-22м запускают старые советские ракеты Х-22 над территорией Украины.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Видео, предположительно от 9-го мая, на котором с Ту-22м запускают старые советские ракеты Х-22 над территорией Украины."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 28,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "type": "message",
+      "date": "2022-05-12T16:03:30",
+      "date_unixtime": "1652360610",
+      "edited": "2022-08-17T15:20:41",
+      "edited_unixtime": "1660738841",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 31091,
+      "width": 680,
+      "height": 510,
+      "text": "📌 Фрегат проекта \"Буревестник\", вероятно Адмирал Макаров, возвращается в порт Севастополя для пополнения боеприпасов сегодня утром.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "📌 Фрегат проекта \"Буревестник\", вероятно Адмирал Макаров, возвращается в порт Севастополя для пополнения боеприпасов сегодня утром."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 25,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "type": "message",
+      "date": "2022-05-12T17:08:45",
+      "date_unixtime": "1652364525",
+      "edited": "2022-05-12T19:13:54",
+      "edited_unixtime": "1652372034",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Активность стратегической авиации РФ. Вероятны тревоги по стране в течение следующих 1,5 часов.\n\nUPD. Взрывы в Полтавской области.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ. Вероятны тревоги по стране в течение следующих 1,5 часов.\n\nUPD. Взрывы в Полтавской области."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤯"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "type": "message",
+      "date": "2022-05-12T19:30:34",
+      "date_unixtime": "1652373034",
+      "edited": "2022-05-12T19:32:06",
+      "edited_unixtime": "1652373126",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️Запуски РСЗО в сторону Николаева.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️Запуски РСЗО в сторону Николаева."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😱"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😢"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "type": "message",
+      "date": "2022-05-12T21:44:09",
+      "date_unixtime": "1652381049",
+      "edited": "2022-05-12T22:17:52",
+      "edited_unixtime": "1652383072",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️ 21:23 запуск ракет стратегической авиацией РФ над акваторией Каспийского моря. Предположительно с Ту-95мс. Ракеты Х-101/Х-55",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️ 21:23 запуск ракет стратегической авиацией РФ над акваторией Каспийского моря. Предположительно с Ту-95мс. Ракеты Х-101/Х-55"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 10,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "type": "message",
+      "date": "2022-05-12T23:02:53",
+      "date_unixtime": "1652385773",
+      "edited": "2022-05-12T23:03:20",
+      "edited_unixtime": "1652385800",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚡️ Взрывы в Запорожье.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚡️ Взрывы в Запорожье."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 15,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "type": "message",
+      "date": "2022-05-13T03:00:02",
+      "date_unixtime": "1652400002",
+      "edited": "2022-05-13T03:08:52",
+      "edited_unixtime": "1652400532",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "❗️ Запуск ракет стратегической авиацией РФ с Ту-95мс.\nРакеты Х-101/Х-55",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️ Запуск ракет стратегической авиацией РФ с Ту-95мс.\nРакеты Х-101/Х-55"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 15,
+          "emoji": "🤬"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🤯"
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "type": "message",
+      "date": "2022-05-13T21:00:53",
+      "date_unixtime": "1652464853",
+      "edited": "2022-05-13T21:06:21",
+      "edited_unixtime": "1652465181",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 85055,
+      "width": 1219,
+      "height": 792,
+      "text": "⚠️ Тревоги в большинстве областей. Про запуски ракет информации нет.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Тревоги в большинстве областей. Про запуски ракет информации нет."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 7,
+          "emoji": "🤔"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "😱"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "type": "message",
+      "date": "2022-05-14T00:24:24",
+      "date_unixtime": "1652477064",
+      "edited": "2022-05-14T00:25:57",
+      "edited_unixtime": "1652477157",
+      "from": "monitor",
+      "from_id": "channel1641260594",
+      "text": "⚠️ Активность стратегической авиации РФ в районе Каспия. Вероятны тревоги по стране в течение следующих 1,5 часов.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚠️ Активность стратегической авиации РФ в районе Каспия. Вероятны тревоги по стране в течение следующих 1,5 часов."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "🤬"
+        }
+      ]
+    }
+  ]
+}

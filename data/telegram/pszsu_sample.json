@@ -1,0 +1,2605 @@
+{
+  "name": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+  "type": "public_channel",
+  "id": 1223955273,
+  "sample_note": "Representative 50-message sample of raw Telegram Desktop export schema. Full pruned dataset is in data/clean_telegram.parquet.",
+  "messages": [
+    {
+      "id": 55,
+      "type": "message",
+      "date": "2022-02-24T23:17:22",
+      "date_unixtime": "1645737442",
+      "edited": "2025-08-29T14:05:41",
+      "edited_unixtime": "1756465541",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": "ВАЖЛИВО ТА ТЕРМІНОВО! \n\nВ соцмережах та деяких ЗМІ поширюються ФЕЙКИ про те, що у 23.30 треба вимкнути всі прилади та до нуля знизити споживання в оселях. Начебто через підключення нашої енергомережі до європейської системи.\n\nСАМЕ ТАК ПРАЦЮЄ ВОРОГ! ТАКІ ЗАКЛИКИ СПРЯМОВАНІ ВИКЛЮЧНО НА ТЕ, ЩОБ ЗАВДАТИ УДАРУ ПО УКРАЇНСЬКІЙ ЕНЕРГОСИСТЕМІ. УКРЕНЕРГО ОФІЦІЙНО ТА  СПРОСТОВУЄ ЦЮ ІНФОРМАЦІЮ ТА ЗАЯВЛЯЄ, ЩО ЕНЕРГОСИСТЕМА ПРАЦЮЄ В НОРМАЛЬНОМУ РЕЖИМІ І БУДЕ ПРАЦЮВАТИ. НІЧОГО ВИМИКАТИ НЕ ПОТРІБНО І НІХТО НІКУДИ НЕ ПІДКЛЮЧАЄТЬСЯ ВНОЧІ!\n\nСПОЖИВАЙТЕ ВІДПОВІДАЛЬНО ТА НЕ ВЕДІТЬСЯ НА ПРОВОКАЦІЇ ВОРОГА. Репост вітається. СЛАВА УКРАЇНІ!",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "ВАЖЛИВО ТА ТЕРМІНОВО! \n\nВ соцмережах та деяких ЗМІ поширюються ФЕЙКИ про те, що у 23.30 треба вимкнути всі прилади та до нуля знизити споживання в оселях. Начебто через підключення нашої енергомережі до європейської системи.\n\nСАМЕ ТАК ПРАЦЮЄ ВОРОГ! ТАКІ ЗАКЛИКИ СПРЯМОВАНІ ВИКЛЮЧНО НА ТЕ, ЩОБ ЗАВДАТИ УДАРУ ПО УКРАЇНСЬКІЙ ЕНЕРГОСИСТЕМІ. УКРЕНЕРГО ОФІЦІЙНО ТА  СПРОСТОВУЄ ЦЮ ІНФОРМАЦІЮ ТА ЗАЯВЛЯЄ, ЩО ЕНЕРГОСИСТЕМА ПРАЦЮЄ В НОРМАЛЬНОМУ РЕЖИМІ І БУДЕ ПРАЦЮВАТИ. НІЧОГО ВИМИКАТИ НЕ ПОТРІБНО І НІХТО НІКУДИ НЕ ПІДКЛЮЧАЄТЬСЯ ВНОЧІ!\n\nСПОЖИВАЙТЕ ВІДПОВІДАЛЬНО ТА НЕ ВЕДІТЬСЯ НА ПРОВОКАЦІЇ ВОРОГА. Репост вітається. СЛАВА УКРАЇНІ!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "paid",
+          "count": 2
+        },
+        {
+          "type": "emoji",
+          "count": 99,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🙏"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "type": "message",
+      "date": "2022-02-25T00:43:23",
+      "date_unixtime": "1645742603",
+      "edited": "2022-09-07T11:19:34",
+      "edited_unixtime": "1662538774",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        {
+          "type": "link",
+          "text": "https://fb.watch/bnMUkUvwfp/"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "link",
+          "text": "https://fb.watch/bnMUkUvwfp/"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 29,
+          "emoji": "🤔"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "type": "message",
+      "date": "2022-02-25T00:43:47",
+      "date_unixtime": "1645742627",
+      "edited": "2022-12-24T23:19:49",
+      "edited_unixtime": "1671916789",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        "ПОВІТРЯНІ СИЛИ ЗАВДАЛИ ВОРОГУ СУТТЄВИХ ВТРАТ\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        "\n------------------------------------------------\nСьогодні о 5 ранку окупаційні війська завдали масованих ракетних ударів по українських містах та військових об’єктах Збройних Сил України.\n\nПершими ці удари прийняли на себе Повітряні Сили.\n\nСистема протиповітряної оборони держави стійко витримала перші удари противника. Головними цілями окупантів стали бойові пункти управління, радіолокаційні підрозділи Повітряних Сил, зенітних ракетних військ та військові аеродроми.\n\nАвіація Повітряних Сил успішно вийшла з-під удару противника і протягом доби нанесла нищівних втрат ворогу.\n\nТак, у повітряному бою із українськими Су-27, противник втратив два винищувачі Су-30 СМ, а бомбардувальники Су-24М, розвідники Су24МР та штурмовики Су-25 кілька разів завдавали потужних ракетно-бомбових ударів в районі аеродрому Гостомель і повернулись без втрат.\n\nСаме там, під Києвом, противник висадив із кількох десятків бойових вертольотів російський десант, аби захопити плацдарм на околицях столиці України.\n\nУкраїнські Сили оборони, включаючи авіацію, танки та артилерію не дозволяють ворогу здійснити свій задум і успішно знищують окупантів.\nПротягом нинішньої доби системою протиповітряної оборони держави знищено більше 10 літальних апаратів противника (інформація уточнюється), десятки крилатих ракет «Калібр», а також ракети оперативно-тактичних  комплексів «Іскандер».\n\nНа жаль, Повітряні Сили зазнали болючих втрат. Висловлюємо співчуття рідним та близьким Українських захисників, які віддали найдорожче – своє життя у боротьбі із підступним російським окупантом. Але ми вистояли і продовжуємо боротьбу за нашу свободу, за нашу землю, за наш народ!\n\nСлава Україні! Слава полеглим героям! Смерть окупантам!\n==============================\nToday at 5 am, Russian occupying forces launched massive missile strikes on Ukrainian cities and military facilities of the Armed Forces of Ukraine.\nThe Air Force was the first who took these strikes.\n\nThe air defense system of the state withstood the first enemy strikes. The main targets of the adversary were command and control facilities, electronic warfare units of the Air Force, anti-aircraft missile forces and military airfields.\n\nAir Force aircraft successfully escaped the enemy's attack and inflicted devastating damages on the enemy during the day.\n\nTherefore, during the air battle Ukrainian Su-27 shot-down two enemy Su-30 CM fighters, however Ukrainian Su-24M bombers, Su-24MR reconnaissance and Su-25 assault aircraft launched several powerful rocket and bomb attacks near Gostomel airfield and get back without loss.\n\nThus, near Kyiv, the enemy landed airborne units from several dozen combat helicopters to capture a bridgehead on the outskirts of the Ukrainian capital.\n\nThe Ukrainian Defense Forces, including aircraft, tanks and artillery, disabled enemy to carry out their plan and successfully destroyed the occupiers.\n\nDuring the day, the state's air defense system destroyed more than 15 enemy aircraft (information is being clarified), dozens of Caliber cruise missiles, as well as Iskander operational-tactical missiles.\n\nUnfortunately, the Air Force suffered heavy losses. We express our condolences to the family and friends of the Ukrainian defenders who gave their lives in the fight against the insidious russian occupy forces. But we have persevered and continue to fight for our freedom, for our land, for our people!\n\nGlory to Ukraine! Glory to the fallen heroes! Death to the occupiers!"
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "ПОВІТРЯНІ СИЛИ ЗАВДАЛИ ВОРОГУ СУТТЄВИХ ВТРАТ\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": "\n------------------------------------------------\nСьогодні о 5 ранку окупаційні війська завдали масованих ракетних ударів по українських містах та військових об’єктах Збройних Сил України.\n\nПершими ці удари прийняли на себе Повітряні Сили.\n\nСистема протиповітряної оборони держави стійко витримала перші удари противника. Головними цілями окупантів стали бойові пункти управління, радіолокаційні підрозділи Повітряних Сил, зенітних ракетних військ та військові аеродроми.\n\nАвіація Повітряних Сил успішно вийшла з-під удару противника і протягом доби нанесла нищівних втрат ворогу.\n\nТак, у повітряному бою із українськими Су-27, противник втратив два винищувачі Су-30 СМ, а бомбардувальники Су-24М, розвідники Су24МР та штурмовики Су-25 кілька разів завдавали потужних ракетно-бомбових ударів в районі аеродрому Гостомель і повернулись без втрат.\n\nСаме там, під Києвом, противник висадив із кількох десятків бойових вертольотів російський десант, аби захопити плацдарм на околицях столиці України.\n\nУкраїнські Сили оборони, включаючи авіацію, танки та артилерію не дозволяють ворогу здійснити свій задум і успішно знищують окупантів.\nПротягом нинішньої доби системою протиповітряної оборони держави знищено більше 10 літальних апаратів противника (інформація уточнюється), десятки крилатих ракет «Калібр», а також ракети оперативно-тактичних  комплексів «Іскандер».\n\nНа жаль, Повітряні Сили зазнали болючих втрат. Висловлюємо співчуття рідним та близьким Українських захисників, які віддали найдорожче – своє життя у боротьбі із підступним російським окупантом. Але ми вистояли і продовжуємо боротьбу за нашу свободу, за нашу землю, за наш народ!\n\nСлава Україні! Слава полеглим героям! Смерть окупантам!\n==============================\nToday at 5 am, Russian occupying forces launched massive missile strikes on Ukrainian cities and military facilities of the Armed Forces of Ukraine.\nThe Air Force was the first who took these strikes.\n\nThe air defense system of the state withstood the first enemy strikes. The main targets of the adversary were command and control facilities, electronic warfare units of the Air Force, anti-aircraft missile forces and military airfields.\n\nAir Force aircraft successfully escaped the enemy's attack and inflicted devastating damages on the enemy during the day.\n\nTherefore, during the air battle Ukrainian Su-27 shot-down two enemy Su-30 CM fighters, however Ukrainian Su-24M bombers, Su-24MR reconnaissance and Su-25 assault aircraft launched several powerful rocket and bomb attacks near Gostomel airfield and get back without loss.\n\nThus, near Kyiv, the enemy landed airborne units from several dozen combat helicopters to capture a bridgehead on the outskirts of the Ukrainian capital.\n\nThe Ukrainian Defense Forces, including aircraft, tanks and artillery, disabled enemy to carry out their plan and successfully destroyed the occupiers.\n\nDuring the day, the state's air defense system destroyed more than 15 enemy aircraft (information is being clarified), dozens of Caliber cruise missiles, as well as Iskander operational-tactical missiles.\n\nUnfortunately, the Air Force suffered heavy losses. We express our condolences to the family and friends of the Ukrainian defenders who gave their lives in the fight against the insidious russian occupy forces. But we have persevered and continue to fight for our freedom, for our land, for our people!\n\nGlory to Ukraine! Glory to the fallen heroes! Death to the occupiers!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 43,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "😎"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "🙏"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤝"
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "type": "message",
+      "date": "2022-02-25T09:43:53",
+      "date_unixtime": "1645775033",
+      "edited": "2022-08-13T18:31:02",
+      "edited_unixtime": "1660404662",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 40569,
+      "width": 1080,
+      "height": 690,
+      "text": [
+        "🛩🛩🛩🛩\nДо строю авіації Повітряних Сил Збройних Сил України повертаються десятки досвідчених військових льотчиків від капітана – до генерала, які раніше були звільнені з війська в запас.\n\nХтозна може один із них і є той повітряний месник на МіГ-29, якого так часто бачать кияни!\n\n🇺🇦 Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "🛩🛩🛩🛩\nДо строю авіації Повітряних Сил Збройних Сил України повертаються десятки досвідчених військових льотчиків від капітана – до генерала, які раніше були звільнені з війська в запас.\n\nХтозна може один із них і є той повітряний месник на МіГ-29, якого так часто бачать кияни!\n\n🇺🇦 Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 78,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "type": "message",
+      "date": "2022-02-25T09:45:10",
+      "date_unixtime": "1645775110",
+      "edited": "2023-01-18T13:43:44",
+      "edited_unixtime": "1674042224",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": "Вибухи на аеродромі Міллєрово в Ростовській області (базуються Су-30СМ, Су-25 та гелікоптери).",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Вибухи на аеродромі Міллєрово в Ростовській області (базуються Су-30СМ, Су-25 та гелікоптери)."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 120,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 27,
+          "emoji": "😎"
+        },
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "🎉"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "type": "message",
+      "date": "2022-02-25T11:22:41",
+      "date_unixtime": "1645780961",
+      "edited": "2023-01-15T02:19:29",
+      "edited_unixtime": "1673741969",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 99092,
+      "width": 753,
+      "height": 800,
+      "text": "СБУ попереджує: \nУ Telegram та інших месенджерах  розповсюджують фейк від імені Служби безпеки України. Нібито СБУ вимагає від українців перейти за посиланням, аби «пройти перевірку». Це посилання, схоже на адресу сайту СБУ, але воно фейкове і не веде на онлайн ресурс Служби!\nНасправді за посиланням вам запропонують додати новий пристрій до вашого акаунта. Після цього ворог отримує доступ до всієї вашої історії переписки (крім секретних чатів), а також зможе писати від вашого імені. \n‼️В жодному разі НЕ ПЕРЕХОДЬТЕ ЗА ПОСИЛАННЯМ та не скануйте QR-код!‼️",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "СБУ попереджує: \nУ Telegram та інших месенджерах  розповсюджують фейк від імені Служби безпеки України. Нібито СБУ вимагає від українців перейти за посиланням, аби «пройти перевірку». Це посилання, схоже на адресу сайту СБУ, але воно фейкове і не веде на онлайн ресурс Служби!\nНасправді за посиланням вам запропонують додати новий пристрій до вашого акаунта. Після цього ворог отримує доступ до всієї вашої історії переписки (крім секретних чатів), а також зможе писати від вашого імені. \n‼️В жодному разі НЕ ПЕРЕХОДЬТЕ ЗА ПОСИЛАННЯМ та не скануйте QR-код!‼️"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "😢"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "type": "message",
+      "date": "2022-02-25T11:52:55",
+      "date_unixtime": "1645782775",
+      "edited": "2024-02-19T22:29:29",
+      "edited_unixtime": "1708374569",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "Національна поліція України 🇺🇦",
+      "forwarded_from_id": "channel1473001998",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 89632,
+      "width": 1920,
+      "height": 1080,
+      "text": [
+        "Терміново! Кіберполіція створила спеціальний бот для повідомлень про виявлені мітки, які окупанти лишають на дорогах \n\nШановні громадяни!\n\nКіберполіція створила спеціальний бот для повідомлень про виявлені мітки, які окупанти лишають на дорогах. \n\nМожна сфотографувати точки та вони потраплять до єдиної бази на Google Maps. \n\n👉 ",
+        {
+          "type": "mention",
+          "text": "@ukraine_avanger_bot"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Терміново! Кіберполіція створила спеціальний бот для повідомлень про виявлені мітки, які окупанти лишають на дорогах \n\nШановні громадяни!\n\nКіберполіція створила спеціальний бот для повідомлень про виявлені мітки, які окупанти лишають на дорогах. \n\nМожна сфотографувати точки та вони потраплять до єдиної бази на Google Maps. \n\n👉 "
+        },
+        {
+          "type": "mention",
+          "text": "@ukraine_avanger_bot"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 6,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "type": "message",
+      "date": "2022-02-25T12:05:45",
+      "date_unixtime": "1645783545",
+      "edited": "2023-06-16T10:56:32",
+      "edited_unixtime": "1686902192",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 22076,
+      "width": 488,
+      "height": 247,
+      "text": [
+        "🇺🇦 Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "🇺🇦 Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 39,
+          "emoji": "😎"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🙏"
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "type": "message",
+      "date": "2022-02-25T12:12:57",
+      "date_unixtime": "1645783977",
+      "edited": "2023-01-15T03:17:48",
+      "edited_unixtime": "1673745468",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 277134,
+      "width": 960,
+      "height": 1280,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        "\nЩе один свіжий приклад злочинів рашизму в Харкові!"
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": "\nЩе один свіжий приклад злочинів рашизму в Харкові!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 80,
+          "emoji": "🤯"
+        },
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "type": "message",
+      "date": "2022-02-25T12:26:11",
+      "date_unixtime": "1645784771",
+      "edited": "2023-02-10T14:30:09",
+      "edited_unixtime": "1676032209",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "УНИАН - новости Украины | война с Россией | новини України | війна з Росією | УНІАН",
+      "forwarded_from_id": "channel1105313000",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "1.mp4",
+      "file_size": 919118,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 5318,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 22,
+      "width": 394,
+      "height": 720,
+      "text": "🔥Просто сумасшедшие кадры, на которых МиГ-29 ВВС Украины сбивает истребитель Су-35 ВКС орков.\nСлава Україні! Смерть ворогам!🇺🇦",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "🔥Просто сумасшедшие кадры, на которых МиГ-29 ВВС Украины сбивает истребитель Су-35 ВКС орков.\nСлава Україні! Смерть ворогам!🇺🇦"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 115,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "type": "message",
+      "date": "2022-02-25T12:37:45",
+      "date_unixtime": "1645785465",
+      "edited": "2025-11-24T20:36:04",
+      "edited_unixtime": "1764009364",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        {
+          "type": "link",
+          "text": "https://www.facebook.com/kpszsu/videos/3132245783714045"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "link",
+          "text": "https://www.facebook.com/kpszsu/videos/3132245783714045"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "type": "message",
+      "date": "2022-02-25T12:40:23",
+      "date_unixtime": "1645785623",
+      "edited": "2023-04-20T06:44:53",
+      "edited_unixtime": "1681962293",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "Video 3132245783714045.mp4",
+      "file_size": 1151462,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 20294,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 29,
+      "width": 426,
+      "height": 426,
+      "text": [
+        "Мешканці Вінниччини фіксують на відео збиття українською ППО крилатої ракети російських окупантів! ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Мешканці Вінниччини фіксують на відео збиття українською ППО крилатої ракети російських окупантів! "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 33,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "type": "message",
+      "date": "2022-02-25T12:42:29",
+      "date_unixtime": "1645785749",
+      "edited": "2023-09-01T09:59:28",
+      "edited_unixtime": "1693551568",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 25808,
+      "width": 680,
+      "height": 232,
+      "text": [
+        "🇺🇦 Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "🇺🇦 Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🙏"
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "type": "message",
+      "date": "2022-02-25T12:46:06",
+      "date_unixtime": "1645785966",
+      "edited": "2023-06-27T22:15:38",
+      "edited_unixtime": "1687893338",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 132902,
+      "width": 631,
+      "height": 800,
+      "text": "Тут зібрали на одній картинці всі кроки, зброю та гроші міжнародної коаліції, які вже вдалося мобілізувати МЗС.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Тут зібрали на одній картинці всі кроки, зброю та гроші міжнародної коаліції, які вже вдалося мобілізувати МЗС."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "type": "message",
+      "date": "2022-02-25T12:51:19",
+      "date_unixtime": "1645786279",
+      "edited": "2023-06-28T04:15:30",
+      "edited_unixtime": "1687914930",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 73353,
+      "width": 800,
+      "height": 800,
+      "text": [
+        "Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 13,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 8,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🤝"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "type": "message",
+      "date": "2022-02-25T12:54:20",
+      "date_unixtime": "1645786460",
+      "edited": "2022-12-31T22:27:19",
+      "edited_unixtime": "1672518439",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 43376,
+      "width": 958,
+      "height": 720,
+      "text": [
+        "Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 20,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "type": "message",
+      "date": "2022-02-25T14:36:43",
+      "date_unixtime": "1645792603",
+      "edited": "2023-07-19T12:21:01",
+      "edited_unixtime": "1689758461",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 24472,
+      "width": 940,
+      "height": 788,
+      "text": "Ворог продовжує нести втрати!\n\nВже 3 100 загиблих російських окупантів! Такі дані надає Генеральний штаб України! \n\nОдин льотчик за 30 годин війни , збив 6 російських літаків, включно з славнозвістним СУ -35!\n\n🙏Дякуємо Збройним Сила України!\nСлава Україні!",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Ворог продовжує нести втрати!\n\nВже 3 100 загиблих російських окупантів! Такі дані надає Генеральний штаб України! \n\nОдин льотчик за 30 годин війни , збив 6 російських літаків, включно з славнозвістним СУ -35!\n\n🙏Дякуємо Збройним Сила України!\nСлава Україні!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 21,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🔥"
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "type": "message",
+      "date": "2022-02-25T14:53:49",
+      "date_unixtime": "1645793629",
+      "edited": "2023-08-02T22:09:15",
+      "edited_unixtime": "1691003355",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 46592,
+      "width": 907,
+      "height": 460,
+      "text": [
+        "Все буде Україна!\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Все буде Україна!\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 10,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "type": "message",
+      "date": "2022-02-25T19:57:40",
+      "date_unixtime": "1645811860",
+      "edited": "2022-10-20T11:30:36",
+      "edited_unixtime": "1666254636",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_2046.MP4",
+      "file_size": 3249718,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 13227,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 22,
+      "width": 384,
+      "height": 848,
+      "text": [
+        "\"Коли тато та мама думають, що їхній син ще на навчаннях\": спалена колона Росгвардії в Ірпені. Смерть ворогам. ВІДЕО 18+ ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "\"Коли тато та мама думають, що їхній син ще на навчаннях\": спалена колона Росгвардії в Ірпені. Смерть ворогам. ВІДЕО 18+ "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 50,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "type": "message",
+      "date": "2022-02-26T00:30:15",
+      "date_unixtime": "1645828215",
+      "edited": "2023-06-16T13:30:40",
+      "edited_unixtime": "1686911440",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 168996,
+      "width": 1280,
+      "height": 960,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        "\nЩе один Су-25 російських окупантів, що летів у напрямку Вінниці, знищений українським пілотом літака Су-27.\nВорожого пілота шукають.\nСлава Україні!"
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": "\nЩе один Су-25 російських окупантів, що летів у напрямку Вінниці, знищений українським пілотом літака Су-27.\nВорожого пілота шукають.\nСлава Україні!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 40,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "type": "message",
+      "date": "2022-02-26T01:00:18",
+      "date_unixtime": "1645830018",
+      "edited": "2023-05-19T16:37:12",
+      "edited_unixtime": "1684503432",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 90453,
+      "width": 1242,
+      "height": 1163,
+      "text": [
+        "Слава Україні\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Слава Україні\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 43,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "type": "message",
+      "date": "2022-02-26T01:04:50",
+      "date_unixtime": "1645830290",
+      "edited": "2023-06-19T21:18:28",
+      "edited_unixtime": "1687198708",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 61961,
+      "width": 1080,
+      "height": 720,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        "\nБлизько опівночі в районі проведення операції Об’єднаних сил зенітним ракетним комплексом С-300 Повітряних Сил ЗС України збито дві ворожі цілі – вертоліт та штурмовик Су-25 російських окупаційних військ.\n\nСлава українським зеніткам!"
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": "\nБлизько опівночі в районі проведення операції Об’єднаних сил зенітним ракетним комплексом С-300 Повітряних Сил ЗС України збито дві ворожі цілі – вертоліт та штурмовик Су-25 російських окупаційних військ.\n\nСлава українським зеніткам!"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 17,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "type": "message",
+      "date": "2022-02-26T01:28:18",
+      "date_unixtime": "1645831698",
+      "edited": "2023-06-30T00:17:37",
+      "edited_unixtime": "1688073457",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 28677,
+      "width": 672,
+      "height": 378,
+      "text": [
+        "О пів на першу ночі, 26 лютого, винищувач Су-27 Повітряних Сил ЗС України успішно атакував військово-транспортний літак Іл-76 МД російських окупаційних військ і знищив ворога!!! \nНаразі тривають важкі бої у місті Васильків на Київщині, де окупанти намагаються висадити десант з повітря! \nСлава українським пілотам! \n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "О пів на першу ночі, 26 лютого, винищувач Су-27 Повітряних Сил ЗС України успішно атакував військово-транспортний літак Іл-76 МД російських окупаційних військ і знищив ворога!!! \nНаразі тривають важкі бої у місті Васильків на Київщині, де окупанти намагаються висадити десант з повітря! \nСлава українським пілотам! \n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 20,
+          "emoji": "🫡"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "type": "message",
+      "date": "2022-02-26T06:35:02",
+      "date_unixtime": "1645850102",
+      "edited": "2023-10-30T18:01:52",
+      "edited_unixtime": "1698681712",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 125040,
+      "width": 988,
+      "height": 686,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "type": "message",
+      "date": "2022-02-26T06:35:41",
+      "date_unixtime": "1645850141",
+      "edited": "2025-11-24T20:37:18",
+      "edited_unixtime": "1764009438",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 144412,
+      "width": 1076,
+      "height": 806,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "type": "message",
+      "date": "2022-02-26T07:00:36",
+      "date_unixtime": "1645851636",
+      "edited": "2023-09-21T14:18:12",
+      "edited_unixtime": "1695295092",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "ЦЕНТР ПРОТИДІЇ ДЕЗІНФОРМАЦІЇ",
+      "forwarded_from_id": "channel1663231580",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 29517,
+      "width": 724,
+      "height": 268,
+      "text": [
+        {
+          "type": "bold",
+          "text": "Увага! Просимо подбати про  інформаційну безпеку під час спілкування в месенджерах!\n\n"
+        },
+        "До уваги користувачів месенджерів! Будьте завбачливими і обережними при спілкуванні! Так, Центр отримав інформацію з авторитетних джерел, що месенджер WhatsApp прослуховується ворожими військами. \nЗакликаємо:\n• не поширювати при спілкуванні  стратегічно важливу інформацію, особливо щодо переміщення військ та техніки ЗСУ;\n• не обговорювати з незнайомими особами (особливо з незаповненими профілями) та не розкривати ваші особисті дані.\n\n",
+        {
+          "type": "bold",
+          "text": "Зупинимо "
+        },
+        {
+          "type": "hashtag",
+          "text": "#інфотерор"
+        },
+        {
+          "type": "bold",
+          "text": " разом!"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "bold",
+          "text": "Увага! Просимо подбати про  інформаційну безпеку під час спілкування в месенджерах!\n\n"
+        },
+        {
+          "type": "plain",
+          "text": "До уваги користувачів месенджерів! Будьте завбачливими і обережними при спілкуванні! Так, Центр отримав інформацію з авторитетних джерел, що месенджер WhatsApp прослуховується ворожими військами. \nЗакликаємо:\n• не поширювати при спілкуванні  стратегічно важливу інформацію, особливо щодо переміщення військ та техніки ЗСУ;\n• не обговорювати з незнайомими особами (особливо з незаповненими профілями) та не розкривати ваші особисті дані.\n\n"
+        },
+        {
+          "type": "bold",
+          "text": "Зупинимо "
+        },
+        {
+          "type": "hashtag",
+          "text": "#інфотерор"
+        },
+        {
+          "type": "bold",
+          "text": " разом!"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "type": "message",
+      "date": "2022-02-26T07:23:47",
+      "date_unixtime": "1645853027",
+      "edited": "2023-06-25T11:26:45",
+      "edited_unixtime": "1687681605",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "274781565_487396732965753_3329061345492578937_n.mp4",
+      "file_size": 2268074,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 7640,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 59,
+      "width": 426,
+      "height": 234,
+      "text": [
+        "Ефективність коктейлів молотова підтверджено на практиці силами територіальної оборони міста Києва ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Ефективність коктейлів молотова підтверджено на практиці силами територіальної оборони міста Києва "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 25,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "type": "message",
+      "date": "2022-02-26T07:32:49",
+      "date_unixtime": "1645853569",
+      "edited": "2023-06-27T22:16:04",
+      "edited_unixtime": "1687893364",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 136075,
+      "width": 739,
+      "height": 1280,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 5,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "type": "message",
+      "date": "2022-02-26T07:33:37",
+      "date_unixtime": "1645853617",
+      "edited": "2025-11-24T20:37:36",
+      "edited_unixtime": "1764009456",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        "⚡️⚡️⚡️  Зведення станом на 7:17 від Генштабу ЗСУ\n\nРосійський окупант продовжує наступальну операцію проти України. \n\nВорог розпочав передислокацію резервних підрозділів у прикордонні з Україною райони та продовжує наносити авіаційні удари по аеродромах, угрупованням військ ЗС України на Сході України та у північній частині Київської області. Здійснено поодинокі авіаційні удари в районах СУМИ, ПОЛТАВА, МАРІУПОЛЬ. З Чорного моря ворог здійснив пуск крилатих ракет морського базування Калібр по території України.\n\nУправління діями тактичної авіації РФ відбувається з території Білорусі та ТОТ Крим. У районі МОЗИРЯ перебувають батальйонні тактичні групи 35 загальновійськової армії Східного ВО, що можуть бути застосовані для нанесення ударів по об’єктам на території України.\n\nВстановлене тимчасове місце перебування десятків одиниць танків у районі ШУМСЬКЕ та ракетних систем залпового вогню БМ-21 “Град” у районі КОСІВЩИНА.\n\nВорог неодноразово застосовував оперативно-тактичну авіацію у районах ЮЖНИЙ та ОДЕСА, по аеродрому ОЗЕРНЕ, по об’єктах цивільної інфраструктури у Київській області.\n\nНа Слобожанському напрямку оперативне угруповання військ ЗС України зупинило наступ противника та продовжує ведення оборонних боїв в Харківської області. Ведуться міські бої в ОХТИРЦІ.\n\nНа приморському напрямку в районі КОБЛЕВО в результаті вогню механізованих підрозділів 28 омбр знищено катер та до 20 чоловік особового складу ДРГ противника.\nГрупою інженерних загороджень Військово-Морських Сил ЗС України здійснено мінування десантно-доступних ділянок.\n\nУгруповання Повітряних Сил ЗС України здійснює відбиття повітряних ударів противника, знищено військово-транспортний літак ІЛ-76МД з десантом російських окупаційних військ. Продовжує ведення систематичних бойових дій. Нанесення вогневого ураження по скупченню живої сили та військової техніки ворога в Київській, Чернігівській та Херсонській областях.\nУгруповання об’єднаних сил веде оборонну операцію та утримує зайняті позиції вздовж всієї лінії розмежування.\n\nОрієнтовні втрати противника складають: літаки – 14 од., гелікоптери – 8 од., танки ‒ 102 од., ББМ ‒ 536 од., гармат – 15 од., ЗРК БУК-1 од. ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "⚡️⚡️⚡️  Зведення станом на 7:17 від Генштабу ЗСУ\n\nРосійський окупант продовжує наступальну операцію проти України. \n\nВорог розпочав передислокацію резервних підрозділів у прикордонні з Україною райони та продовжує наносити авіаційні удари по аеродромах, угрупованням військ ЗС України на Сході України та у північній частині Київської області. Здійснено поодинокі авіаційні удари в районах СУМИ, ПОЛТАВА, МАРІУПОЛЬ. З Чорного моря ворог здійснив пуск крилатих ракет морського базування Калібр по території України.\n\nУправління діями тактичної авіації РФ відбувається з території Білорусі та ТОТ Крим. У районі МОЗИРЯ перебувають батальйонні тактичні групи 35 загальновійськової армії Східного ВО, що можуть бути застосовані для нанесення ударів по об’єктам на території України.\n\nВстановлене тимчасове місце перебування десятків одиниць танків у районі ШУМСЬКЕ та ракетних систем залпового вогню БМ-21 “Град” у районі КОСІВЩИНА.\n\nВорог неодноразово застосовував оперативно-тактичну авіацію у районах ЮЖНИЙ та ОДЕСА, по аеродрому ОЗЕРНЕ, по об’єктах цивільної інфраструктури у Київській області.\n\nНа Слобожанському напрямку оперативне угруповання військ ЗС України зупинило наступ противника та продовжує ведення оборонних боїв в Харківської області. Ведуться міські бої в ОХТИРЦІ.\n\nНа приморському напрямку в районі КОБЛЕВО в результаті вогню механізованих підрозділів 28 омбр знищено катер та до 20 чоловік особового складу ДРГ противника.\nГрупою інженерних загороджень Військово-Морських Сил ЗС України здійснено мінування десантно-доступних ділянок.\n\nУгруповання Повітряних Сил ЗС України здійснює відбиття повітряних ударів противника, знищено військово-транспортний літак ІЛ-76МД з десантом російських окупаційних військ. Продовжує ведення систематичних бойових дій. Нанесення вогневого ураження по скупченню живої сили та військової техніки ворога в Київській, Чернігівській та Херсонській областях.\nУгруповання об’єднаних сил веде оборонну операцію та утримує зайняті позиції вздовж всієї лінії розмежування.\n\nОрієнтовні втрати противника складають: літаки – 14 од., гелікоптери – 8 од., танки ‒ 102 од., ББМ ‒ 536 од., гармат – 15 од., ЗРК БУК-1 од. "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "type": "message",
+      "date": "2022-02-26T07:39:11",
+      "date_unixtime": "1645853951",
+      "edited": "2023-10-04T19:28:34",
+      "edited_unixtime": "1696436914",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "УНИАН - новости Украины | война с Россией | новини України | війна з Росією | УНІАН",
+      "forwarded_from_id": "channel1105313000",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 20608,
+      "width": 836,
+      "height": 173,
+      "text": "Вот что рассылают украинцам якобы от имени канала Зеленского. Друзья, это фейк",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Вот что рассылают украинцам якобы от имени канала Зеленского. Друзья, это фейк"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 9,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "type": "message",
+      "date": "2022-02-26T07:49:51",
+      "date_unixtime": "1645854591",
+      "edited": "2025-11-24T20:37:47",
+      "edited_unixtime": "1764009467",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        "✊Ситуація щодо російського вторгнення: українські захисники взяли у полон понад 200 російських загарбників - Подоляк\n\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "✊Ситуація щодо російського вторгнення: українські захисники взяли у полон понад 200 російських загарбників - Подоляк\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "type": "message",
+      "date": "2022-02-26T07:51:23",
+      "date_unixtime": "1645854683",
+      "edited": "2025-11-24T20:37:49",
+      "edited_unixtime": "1764009469",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "InformNapalm",
+      "forwarded_from_id": "channel1146075551",
+      "text": [
+        "Добірка відео для росіян, які будуть шукати в ютубчику \"война на Украине\". Відео зробили друзі, просимо поширити посилання в соцмережах :) ",
+        {
+          "type": "link",
+          "text": "https://www.youtube.com/watch?v=J_IWfSh1GPM"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Добірка відео для росіян, які будуть шукати в ютубчику \"война на Украине\". Відео зробили друзі, просимо поширити посилання в соцмережах :) "
+        },
+        {
+          "type": "link",
+          "text": "https://www.youtube.com/watch?v=J_IWfSh1GPM"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "type": "message",
+      "date": "2022-02-26T07:56:27",
+      "date_unixtime": "1645854987",
+      "edited": "2024-03-11T09:41:50",
+      "edited_unixtime": "1710142910",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "ЦЕНТР ПРОТИДІЇ ДЕЗІНФОРМАЦІЇ",
+      "forwarded_from_id": "channel1663231580",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 116145,
+      "width": 1080,
+      "height": 1177,
+      "text": [
+        "Розробники навігаційної системи Waze попереджають про оновлення в зв'язку з військовим вторгненням РФ в Україну.\n\nА Центр протидії дезінформації просить громадян мінімізувати пересування у місцях, де ведуться бої, щоб не заважати ЗСУ та іншим захисникам України боронити нашу державу.\n\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Розробники навігаційної системи Waze попереджають про оновлення в зв'язку з військовим вторгненням РФ в Україну.\n\nА Центр протидії дезінформації просить громадян мінімізувати пересування у місцях, де ведуться бої, щоб не заважати ЗСУ та іншим захисникам України боронити нашу державу.\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "type": "message",
+      "date": "2022-02-26T08:04:45",
+      "date_unixtime": "1645855485",
+      "edited": "2023-06-26T04:31:58",
+      "edited_unixtime": "1687743118",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_2877.mp4",
+      "file_size": 8329381,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 13631,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 39,
+      "width": 848,
+      "height": 480,
+      "text": [
+        "«Я тут, ніяку зброю ми не здаємо» - відповідь Зеленського на розповсюджений в мережі фейк ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "«Я тут, ніяку зброю ми не здаємо» - відповідь Зеленського на розповсюджений в мережі фейк "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 24,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "type": "message",
+      "date": "2022-02-26T08:16:58",
+      "date_unixtime": "1645856218",
+      "edited": "2023-06-23T03:06:34",
+      "edited_unixtime": "1687478794",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "Obozrevatel.ua",
+      "forwarded_from_id": "channel1283178270",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_2355 (1).mp4",
+      "file_size": 10458081,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 10952,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 82,
+      "width": 720,
+      "height": 1280,
+      "text": [
+        {
+          "type": "bold",
+          "text": "Російські окупанти стоять на колінах в столиці України\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        "\n\n",
+        {
+          "type": "text_link",
+          "text": "ObozЧат",
+          "href": "https://t.me/oboz_chat"
+        },
+        " | ",
+        {
+          "type": "text_link",
+          "text": "Fb",
+          "href": "https://www.facebook.com/obozrevatel"
+        },
+        " | ",
+        {
+          "type": "text_link",
+          "text": "Insta",
+          "href": "https://www.instagram.com/obozrevatel.ua"
+        },
+        " | ",
+        {
+          "type": "text_link",
+          "text": "ObozБот",
+          "href": "https://t.me/writetoobozbot"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "bold",
+          "text": "Російські окупанти стоять на колінах в столиці України\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": "\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "ObozЧат",
+          "href": "https://t.me/oboz_chat"
+        },
+        {
+          "type": "plain",
+          "text": " | "
+        },
+        {
+          "type": "text_link",
+          "text": "Fb",
+          "href": "https://www.facebook.com/obozrevatel"
+        },
+        {
+          "type": "plain",
+          "text": " | "
+        },
+        {
+          "type": "text_link",
+          "text": "Insta",
+          "href": "https://www.instagram.com/obozrevatel.ua"
+        },
+        {
+          "type": "plain",
+          "text": " | "
+        },
+        {
+          "type": "text_link",
+          "text": "ObozБот",
+          "href": "https://t.me/writetoobozbot"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 27,
+          "emoji": "😍"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "type": "message",
+      "date": "2022-02-26T08:55:47",
+      "date_unixtime": "1645858547",
+      "edited": "2023-06-16T10:57:43",
+      "edited_unixtime": "1686902263",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "АНОНІМ",
+      "forwarded_from_id": "channel1336932928",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_1572.MP4",
+      "file_size": 4075106,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 30105,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 44,
+      "width": 320,
+      "height": 416,
+      "text": [
+        "❗️",
+        {
+          "type": "bold",
+          "text": "Хлопці знімають цей шмат лайна у Чаплинці на Херсонщині"
+        },
+        "\n\nСлава Україні🇺🇦\n\n",
+        {
+          "type": "text_link",
+          "text": "InfoFakt Україна |👉 Підписатись",
+          "href": "https://t.me/+n4_zrSz2B6M1Yjcy"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "❗️"
+        },
+        {
+          "type": "bold",
+          "text": "Хлопці знімають цей шмат лайна у Чаплинці на Херсонщині"
+        },
+        {
+          "type": "plain",
+          "text": "\n\nСлава Україні🇺🇦\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "InfoFakt Україна |👉 Підписатись",
+          "href": "https://t.me/+n4_zrSz2B6M1Yjcy"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 25,
+          "emoji": "😎"
+        },
+        {
+          "type": "emoji",
+          "count": 11,
+          "emoji": "❤"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "🫡"
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "type": "message",
+      "date": "2022-02-26T09:07:10",
+      "date_unixtime": "1645859230",
+      "edited": "2024-05-23T18:21:07",
+      "edited_unixtime": "1716477667",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "УНИАН - новости Украины | война с Россией | новини України | війна з Росією | УНІАН",
+      "forwarded_from_id": "channel1105313000",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 38040,
+      "width": 537,
+      "height": 847,
+      "text": [
+        {
+          "type": "bold",
+          "text": "‼️Росийские дрг используют такие фейковые, но качественно сделанные документы. \n\n"
+        },
+        "Перешлите всем знакомым военным и полиции."
+      ],
+      "text_entities": [
+        {
+          "type": "bold",
+          "text": "‼️Росийские дрг используют такие фейковые, но качественно сделанные документы. \n\n"
+        },
+        {
+          "type": "plain",
+          "text": "Перешлите всем знакомым военным и полиции."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "type": "message",
+      "date": "2022-02-26T09:23:19",
+      "date_unixtime": "1645860199",
+      "edited": "2024-10-06T16:48:50",
+      "edited_unixtime": "1728222530",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stopcrussia"
+        },
+        "\nРускій мір вбиває киян"
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stopcrussia"
+        },
+        {
+          "type": "plain",
+          "text": "\nРускій мір вбиває киян"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "type": "message",
+      "date": "2022-02-26T09:23:19",
+      "date_unixtime": "1645860199",
+      "edited": "2023-07-09T12:55:41",
+      "edited_unixtime": "1688896541",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "УС: Україна, новини, політика, війна",
+      "forwarded_from_id": "channel1197363285",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_1585.MP4",
+      "file_size": 1648540,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 5882,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 20,
+      "width": 432,
+      "height": 224,
+      "text": [
+        "Видео попадания снаряда в жилой дом в столице.\n\n",
+        {
+          "type": "text_link",
+          "text": "УС > Подписаться",
+          "href": "https://t.me/+npAhFWRrdGdhYTdi"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Видео попадания снаряда в жилой дом в столице.\n\n"
+        },
+        {
+          "type": "text_link",
+          "text": "УС > Подписаться",
+          "href": "https://t.me/+npAhFWRrdGdhYTdi"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 22,
+          "emoji": "🙏"
+        },
+        {
+          "type": "emoji",
+          "count": 4,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "type": "message",
+      "date": "2022-02-26T09:46:46",
+      "date_unixtime": "1645861606",
+      "edited": "2023-07-25T18:49:25",
+      "edited_unixtime": "1690300165",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 88990,
+      "width": 719,
+      "height": 1280,
+      "text": [
+        "Рецепт приготування горючої суміші, яка надійно зупиняє ворожу техніку ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Рецепт приготування горючої суміші, яка надійно зупиняє ворожу техніку "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 19,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "🤯"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "type": "message",
+      "date": "2022-02-26T10:13:25",
+      "date_unixtime": "1645863205",
+      "edited": "2025-11-24T20:39:21",
+      "edited_unixtime": "1764009561",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 56137,
+      "width": 945,
+      "height": 630,
+      "text": "Оперативна інформація станом на 06:00 26.02.2022 щодо російського вторгнення\n\nРосійський окупант продовжує наступальну операцію проти України. \n\nВорог розпочав передислокацію резервних підрозділів у прикордонні з Україною райони та продовжує наносити авіаційні удари по аеродромах, угрупованням військ ЗС України на Сході України та у північній частині Київської області. Здійснено поодинокі авіаційні удари в районах СУМИ, ПОЛТАВА, МАРІУПОЛЬ. З Чорного моря ворог здійснив пуск крилатих ракет морського базування Калібр по території України.\n\nУправління діями тактичної авіації РФ відбувається з території Білорусі та ТОТ Крим. У районі МОЗИРЯ перебувають батальйонні тактичні групи 35 загальновійськової армії Східного ВО, що можуть бути застосовані для нанесення ударів по об’єктам на території України.\n\nВстановлене тимчасове місце перебування десятків одиниць танків у районі ШУМСЬКЕ та ракетних систем залпового вогню БМ-21 “Град” у районі КОСІВЩИНА.",
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Оперативна інформація станом на 06:00 26.02.2022 щодо російського вторгнення\n\nРосійський окупант продовжує наступальну операцію проти України. \n\nВорог розпочав передислокацію резервних підрозділів у прикордонні з Україною райони та продовжує наносити авіаційні удари по аеродромах, угрупованням військ ЗС України на Сході України та у північній частині Київської області. Здійснено поодинокі авіаційні удари в районах СУМИ, ПОЛТАВА, МАРІУПОЛЬ. З Чорного моря ворог здійснив пуск крилатих ракет морського базування Калібр по території України.\n\nУправління діями тактичної авіації РФ відбувається з території Білорусі та ТОТ Крим. У районі МОЗИРЯ перебувають батальйонні тактичні групи 35 загальновійськової армії Східного ВО, що можуть бути застосовані для нанесення ударів по об’єктам на території України.\n\nВстановлене тимчасове місце перебування десятків одиниць танків у районі ШУМСЬКЕ та ракетних систем залпового вогню БМ-21 “Град” у районі КОСІВЩИНА."
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "type": "message",
+      "date": "2022-02-26T10:17:01",
+      "date_unixtime": "1645863421",
+      "edited": "2024-05-09T14:15:14",
+      "edited_unixtime": "1715253314",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 56137,
+      "width": 945,
+      "height": 630,
+      "text": [
+        "Ворог неодноразово застосовував оперативно-тактичну авіацію у районах ЮЖНИЙ та ОДЕСА, по аеродрому ОЗЕРНЕ, по об’єктах цивільної інфраструктури у Київській області.\n\nНа Слобожанському напрямку оперативне угруповання військ ЗС України зупинило наступ противника та продовжує ведення оборонних боїв в Харківської області. Ведуться міські бої в ОХТИРЦІ.\n\nНа приморському напрямку в районі КОБЛЕВО в результаті вогню механізованих підрозділів 28 омбр знищено катер та до 20 чоловік особового складу ДРГ противника.\nГрупою інженерних загороджень Військово-Морських Сил ЗС України здійснено мінування десантно-доступних ділянок.\n\n .....\n\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Ворог неодноразово застосовував оперативно-тактичну авіацію у районах ЮЖНИЙ та ОДЕСА, по аеродрому ОЗЕРНЕ, по об’єктах цивільної інфраструктури у Київській області.\n\nНа Слобожанському напрямку оперативне угруповання військ ЗС України зупинило наступ противника та продовжує ведення оборонних боїв в Харківської області. Ведуться міські бої в ОХТИРЦІ.\n\nНа приморському напрямку в районі КОБЛЕВО в результаті вогню механізованих підрозділів 28 омбр знищено катер та до 20 чоловік особового складу ДРГ противника.\nГрупою інженерних загороджень Військово-Морських Сил ЗС України здійснено мінування десантно-доступних ділянок.\n\n .....\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "type": "message",
+      "date": "2022-02-26T10:18:18",
+      "date_unixtime": "1645863498",
+      "edited": "2025-11-24T20:39:30",
+      "edited_unixtime": "1764009570",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 56137,
+      "width": 945,
+      "height": 630,
+      "text": [
+        ".....\n\nУгруповання Повітряних Сил ЗС України здійснює відбиття повітряних ударів противника, знищено військово-транспортний літак ІЛ-76МД з десантом російських окупаційних військ. Продовжує ведення систематичних бойових дій. Нанесення вогневого ураження по скупченню живої сили та військової техніки ворога в Київській, Чернігівській та Херсонській областях.\nУгруповання об’єднаних сил веде оборонну операцію та утримує зайняті позиції вздовж всієї лінії розмежування.\n\nОрієнтовні втрати противника складають: літаки – 14 од., гелікоптери – 8 од., танки ‒ 102 од., ББМ ‒ 536 од., гармат – 15 од., ЗРК БУК-1 од.\n\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": ".....\n\nУгруповання Повітряних Сил ЗС України здійснює відбиття повітряних ударів противника, знищено військово-транспортний літак ІЛ-76МД з десантом російських окупаційних військ. Продовжує ведення систематичних бойових дій. Нанесення вогневого ураження по скупченню живої сили та військової техніки ворога в Київській, Чернігівській та Херсонській областях.\nУгруповання об’єднаних сил веде оборонну операцію та утримує зайняті позиції вздовж всієї лінії розмежування.\n\nОрієнтовні втрати противника складають: літаки – 14 од., гелікоптери – 8 од., танки ‒ 102 од., ББМ ‒ 536 од., гармат – 15 од., ЗРК БУК-1 од.\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "type": "message",
+      "date": "2022-02-26T11:19:25",
+      "date_unixtime": "1645867165",
+      "edited": "2023-12-16T17:21:40",
+      "edited_unixtime": "1702740100",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 91674,
+      "width": 1080,
+      "height": 782,
+      "text": [
+        "ЗВЕРНЕННЯ\nКомандувача Повітряних Сил Збройних Сил України\nгенерал-лейтенанта Миколи Олещука\n==========================\n",
+        {
+          "type": "link",
+          "text": "https://www.facebook.com/100064738717463/posts/322544429913512/"
+        },
+        "\n\n",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "ЗВЕРНЕННЯ\nКомандувача Повітряних Сил Збройних Сил України\nгенерал-лейтенанта Миколи Олещука\n==========================\n"
+        },
+        {
+          "type": "link",
+          "text": "https://www.facebook.com/100064738717463/posts/322544429913512/"
+        },
+        {
+          "type": "plain",
+          "text": "\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "type": "message",
+      "date": "2022-02-26T11:59:48",
+      "date_unixtime": "1645869588",
+      "edited": "2023-07-09T00:06:19",
+      "edited_unixtime": "1688850379",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 71972,
+      "width": 1080,
+      "height": 710,
+      "text": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "text_entities": [
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "type": "message",
+      "date": "2022-02-26T12:01:30",
+      "date_unixtime": "1645869690",
+      "edited": "2025-11-24T20:39:52",
+      "edited_unixtime": "1764009592",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "МВС України",
+      "forwarded_from_id": "channel1386375324",
+      "text": [
+        "Увага‼️ \n\n",
+        {
+          "type": "bold",
+          "text": "Відбуваються фейкові дзвінки з номерів військовослужбовців близьким та рідним з недостовірною інформацією про їх стан та місце перебування.\n"
+        },
+        "\n",
+        {
+          "type": "italic",
+          "text": "Прохання проінформувати близьких та рідних щодо дій в таких ситуаціях.\n\nІнформація наразі перевіряється на достовірність. Але якщо такі дзвінки дійсно будуть, то задавайте питання на яке знаєте лише ви двоє відповідь, наприклад:\n"
+        },
+        "\n▫️Назва дитячого садочку в який ходив\n▫️Номер школи в якій навчався\n▫️День народження матері"
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Увага‼️ \n\n"
+        },
+        {
+          "type": "bold",
+          "text": "Відбуваються фейкові дзвінки з номерів військовослужбовців близьким та рідним з недостовірною інформацією про їх стан та місце перебування.\n"
+        },
+        {
+          "type": "plain",
+          "text": "\n"
+        },
+        {
+          "type": "italic",
+          "text": "Прохання проінформувати близьких та рідних щодо дій в таких ситуаціях.\n\nІнформація наразі перевіряється на достовірність. Але якщо такі дзвінки дійсно будуть, то задавайте питання на яке знаєте лише ви двоє відповідь, наприклад:\n"
+        },
+        {
+          "type": "plain",
+          "text": "\n▫️Назва дитячого садочку в який ходив\n▫️Номер школи в якій навчався\n▫️День народження матері"
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "type": "message",
+      "date": "2022-02-26T13:02:43",
+      "date_unixtime": "1645873363",
+      "edited": "2025-11-24T20:39:57",
+      "edited_unixtime": "1764009597",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_3463.MP4",
+      "file_size": 2921145,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 15722,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 32,
+      "width": 640,
+      "height": 352,
+      "text": [
+        "Просто до уваги. Ну щоб не було ілюзій про «найпотужнішу армію» ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Просто до уваги. Ну щоб не було ілюзій про «найпотужнішу армію» "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "👍"
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "type": "message",
+      "date": "2022-02-26T13:16:58",
+      "date_unixtime": "1645874218",
+      "edited": "2023-09-21T02:52:02",
+      "edited_unixtime": "1695253922",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "file": "(File not included. Change data exporting settings to download.)",
+      "file_name": "IMG_7968.MP4",
+      "file_size": 2762173,
+      "thumbnail": "(File not included. Change data exporting settings to download.)",
+      "thumbnail_file_size": 12445,
+      "media_type": "video_file",
+      "mime_type": "video/mp4",
+      "duration_seconds": 18,
+      "width": 464,
+      "height": 848,
+      "text": [
+        "Територіальна оборона взяла у полон росіян, що ховалися по підвалах ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "Територіальна оборона взяла у полон росіян, що ховалися по підвалах "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 14,
+          "emoji": "🔥"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "⚡"
+        },
+        {
+          "type": "emoji",
+          "count": 1,
+          "emoji": "❤"
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "type": "message",
+      "date": "2022-02-26T14:10:34",
+      "date_unixtime": "1645877434",
+      "edited": "2024-03-11T09:45:19",
+      "edited_unixtime": "1710143119",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "text": [
+        "В утреннем отчете президенту России Владимиру Путину  безвозвратные военно-оперативные потери живой силы личного состава ВС РФ- 3471 человек. Данные на 6:00 по московскому времени сегодня. Невесело начинается война. ",
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "plain",
+          "text": "В утреннем отчете президенту России Владимиру Путину  безвозвратные военно-оперативные потери живой силы личного состава ВС РФ- 3471 человек. Данные на 6:00 по московскому времени сегодня. Невесело начинается война. "
+        },
+        {
+          "type": "hashtag",
+          "text": "#stoprussia"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 3,
+          "emoji": "😨"
+        },
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "type": "message",
+      "date": "2022-02-26T14:16:16",
+      "date_unixtime": "1645877776",
+      "edited": "2024-10-07T11:17:42",
+      "edited_unixtime": "1728289062",
+      "from": "Повітряні Сили ЗС України / Air Force of the Armed Forces of Ukraine",
+      "from_id": "channel1223955273",
+      "forwarded_from": "Оперативний ЗСУ",
+      "forwarded_from_id": "channel1296487842",
+      "photo": "(File not included. Change data exporting settings to download.)",
+      "photo_file_size": 240690,
+      "width": 960,
+      "height": 1280,
+      "text": [
+        {
+          "type": "bold",
+          "text": "м. Миколаїв. Затримано диверсантів Московії, що були переодягнені у форму ЗСУ.\n\n"
+        },
+        "Нагадуємо! Здавайтеся! Врятуєте свое життя!!\n\n",
+        {
+          "type": "hashtag",
+          "text": "#StopRussia"
+        },
+        " \n",
+        {
+          "type": "hashtag",
+          "text": "#StopRussianAggression"
+        },
+        " \n",
+        {
+          "type": "hashtag",
+          "text": "#RussiaInvadedUkraine"
+        },
+        " \n",
+        {
+          "type": "hashtag",
+          "text": "#RussiaInvadesUkraine"
+        },
+        "\n\n",
+        {
+          "type": "link",
+          "text": "https://t.me/operativnoZSU"
+        },
+        "\n",
+        {
+          "type": "mention",
+          "text": "@operativnoZSU"
+        },
+        ""
+      ],
+      "text_entities": [
+        {
+          "type": "bold",
+          "text": "м. Миколаїв. Затримано диверсантів Московії, що були переодягнені у форму ЗСУ.\n\n"
+        },
+        {
+          "type": "plain",
+          "text": "Нагадуємо! Здавайтеся! Врятуєте свое життя!!\n\n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#StopRussia"
+        },
+        {
+          "type": "plain",
+          "text": " \n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#StopRussianAggression"
+        },
+        {
+          "type": "plain",
+          "text": " \n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#RussiaInvadedUkraine"
+        },
+        {
+          "type": "plain",
+          "text": " \n"
+        },
+        {
+          "type": "hashtag",
+          "text": "#RussiaInvadesUkraine"
+        },
+        {
+          "type": "plain",
+          "text": "\n\n"
+        },
+        {
+          "type": "link",
+          "text": "https://t.me/operativnoZSU"
+        },
+        {
+          "type": "plain",
+          "text": "\n"
+        },
+        {
+          "type": "mention",
+          "text": "@operativnoZSU"
+        },
+        {
+          "type": "plain",
+          "text": ""
+        }
+      ],
+      "reactions": [
+        {
+          "type": "emoji",
+          "count": 2,
+          "emoji": "⚡"
+        }
+      ]
+    }
+  ]
+}

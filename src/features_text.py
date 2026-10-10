@@ -17,6 +17,7 @@ from src.config import (
     BASE_DIR,
     MONITOR_JSON,
     PSZSU_JSON,
+    CLEAN_TELEGRAM_PARQUET,
     PROCESSED_MULTIMODAL_PARQUET,
     PROCESSED_DATA_DIR,
 )
@@ -53,15 +54,23 @@ def extract_plain_text(raw_text) -> str:
 
 
 def load_raw_telegram_stream(
+    parquet_path: Path = CLEAN_TELEGRAM_PARQUET,
     monitor_path: Path = MONITOR_JSON,
     pszsu_path: Path = PSZSU_JSON,
     min_year: int = 2023,
 ) -> pd.DataFrame:
     """
-    Loads Monitor and PSZSU exports, parses UTC timestamps, filters to min_year+,
-    and merges into a single chronological message stream.
+    Loads Monitor and PSZSU messages. Prioritizes the lightweight clean Parquet (8MB).
+    Falls back to raw JSON exports if Parquet is not found.
     """
-    logger.info(f"Loading Telegram channel exports (min_year={min_year})...")
+    if parquet_path.exists():
+        logger.info(f"Loading pruned Telegram messages directly from {parquet_path}...")
+        df_msgs = pd.read_parquet(parquet_path, engine="pyarrow")
+        if "timestamp_utc" not in df_msgs.columns:
+            df_msgs["timestamp_utc"] = pd.to_datetime(df_msgs["unixtime"], unit="s", utc=True)
+        return df_msgs[df_msgs["timestamp_utc"].dt.year >= min_year].reset_index(drop=True)
+
+    logger.info(f"Clean parquet not found. Parsing raw Telegram exports (min_year={min_year})...")
     messages = []
 
     for path, channel_name in [(monitor_path, "monitor"), (pszsu_path, "pszsu")]:

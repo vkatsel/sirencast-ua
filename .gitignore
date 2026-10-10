@@ -86,8 +86,9 @@ desktop.ini
 # Generated processed datasets
 data/processed/
 
-# Raw Telegram dumps (>100MB)
-data/telegram/
+# Raw Telegram dumps (>100MB) - keep only lightweight schema samples
+data/telegram/*.json
+!data/telegram/*_sample.json
 
 # Scratch files
 scratch/

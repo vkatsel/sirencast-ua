@@ -120,19 +120,22 @@ def parse_live_siren_states() -> Dict[str, dict]:
         if not eng_name:
             continue
 
-        is_enabled = bool(val.get("enabled", False))
-        regions_status[eng_name] = is_enabled
+        is_top_enabled = bool(val.get("enabled", False))
+
+        # Check sub-districts (in modern Ukrainian alert system, alerts are often issued per raion)
+        districts = val.get("districts", {})
+        if isinstance(districts, dict):
+            dist_items = districts.items()
+        elif isinstance(districts, list):
+            dist_items = [(d.get("name", ""), d) for d in districts if isinstance(d, dict)]
+        else:
+            dist_items = []
+
+        any_district_enabled = any(bool(d_val.get("enabled", False)) for _, d_val in dist_items)
+        regions_status[eng_name] = is_top_enabled or any_district_enabled
 
         # Parse Kyivska oblast districts if available
-        if clean_ua == "Київська область" and "districts" in val:
-            districts = val["districts"]
-            if isinstance(districts, dict):
-                dist_items = districts.items()
-            elif isinstance(districts, list):
-                dist_items = [(d.get("name", ""), d) for d in districts if isinstance(d, dict)]
-            else:
-                dist_items = []
-
+        if clean_ua == "Київська область":
             for d_name, d_val in dist_items:
                 for ua_prefix, eng_raion in RAION_MAPPING.items():
                     if ua_prefix in d_name:

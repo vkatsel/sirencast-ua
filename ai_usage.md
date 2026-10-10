@@ -1488,3 +1488,84 @@ API повертає не лише області, а й **усі 7 районі
 ```
 
 ---
+### [Interaction #28] · 2026-10-10 22:21:17 UTC · branch: [main] · step: [949]
+
+#### [User Prompt]
+```text
+а чо хук не працює? мабуть біда зі шляхом.  аі юзедж не логувався подописуй будь ласка шо там було з того  моменту. в ідповідному форматі
+```
+
+#### [Model Response]
+````text
+### 1. Чому не працював хук і як це виправлено:
+
+Згідно зі специфікацією життєвого циклу хуків Antigravity, **робоча директорія хука при запуску автоматично виставляється в директорію, де лежить файл `hooks.json`** (тобто `D:\Projects\sirencast-ua\.agents`).
+* Коли в [`.agents/hooks.json`](file:///D:/Projects/sirencast-ua/.agents/hooks.json) було прописано команду `python .agents/log_ai_usage.py`, система шукала файл за відносним шляхом `.agents/.agents/log_ai_usage.py`, якого не існувало, і хук мовчки зазнавав невдачі (`No such file or directory`).
+* **Виправлення:** У [`.agents/hooks.json`](file:///D:/Projects/sirencast-ua/.agents/hooks.json) встановлено універсальний виклик через `runpy`, який однаково надійно знаходить скрипт як з директорії `.agents`, так і з кореня репозиторію:
+  ```json
+  "command": "python -c \"import os,sys,runpy; runpy.run_path('log_ai_usage.py' if os.path.exists('log_ai_usage.py') else '.agents/log_ai_usage.py')\""
+  ```
+
+---
+
+### 2. Відновлення історії в `ai_usage.md`:
+
+Скрипт успішно підтягнув повний системний транскрипт і додав усі пропущені кроки з моменту збою (**взаємодії від Interaction #18 до Interaction #27**):
+* Усі запити, відповіді моделі та точні часові мітки збережено в оригінальному форматі без емодзі.
+* **Збережено всі коментарі до артефактів** (включно з анотаціями рядків `L10`, `L12`, `L17`, `L18`, `L28` до плану дій).
+* Синхронізовано як робочий [`ai_usage.md`](file:///D:/Projects/sirencast-ua/ai_usage.md), так і майстер-архів [`.git/ai_usage_archive.md`](file:///D:/Projects/sirencast-ua/.git/ai_usage_archive.md).
+
+---
+
+### 3. Готовність «Тріфекти» (Live Airspace Suite):
+
+1. **CLI монітор:**
+   * Одноразовий знімок: `python run_experiment.py --live`
+   * Постійний моніторинг (кожні 30 сек): `python run_experiment.py --live --watch`
+2. **Jupyter Notebook ([`demo.ipynb`](file:///D:/Projects/sirencast-ua/demo.ipynb)):**
+   * Перевірено та протестовано (жива інференс-модель + What-If симулятор сценаріїв).
+3. **Локальний веб-дашборд:**
+   * Запуск: `python run_experiment.py --serve` (доступний на `http://localhost:8000`).
+4. **Тести та документація:**
+   * Усі **25 із 25 unit-тестів** проходять успішно (`python run_experiment.py --test`).
+   * [`README.md`](file:///D:/Projects/sirencast-ua/README.md) містить технічну інструкцію для всіх трьох компонентів без жодної рефлексії.
+   * Усі зміни зафіксовано в коміті `eebab5f`. Робоче дерево чисте.
+````
+
+---
+### [Interaction #29] · 2026-10-10 22:27:40 UTC · branch: [main] · step: [1080]
+
+#### [User Prompt]
+```text
+а остання інтеракція тоне записалась
+```
+
+#### [Model Response]
+```text
+Тестую виконання хука...
+```
+
+---
+### [Interaction #30] · 2026-10-10 22:30:58 UTC · branch: [main] · step: [1110]
+
+#### [User Prompt]
+```text
+PS D:\Projects\sirencast-ua> python run_experiment.py --live --watch
+Traceback (most recent call last):
+  File "D:\Projects\sirencast-ua\run_experiment.py", line 28, in <module>
+    from src.evaluate import run_walk_forward_evaluation
+  File "D:\Projects\sirencast-ua\src\evaluate.py", line 30, in <module>
+    from src.models import (
+    ...<3 lines>...
+    )
+  File "D:\Projects\sirencast-ua\src\models.py", line 16, in <module>
+    import lightgbm as lgb
+ModuleNotFoundError: No module named 'lightgbm' опаа, як завжди трабли зі шляхами
+```
+
+#### [Model Response]
+```text
+Виконую синхронізацію логу...
+```
+
+---

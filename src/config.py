@@ -1,6 +1,7 @@
 """
 Configuration settings for SirenCast UA.
 """
+import sys
 from pathlib import Path
 
 # Paths

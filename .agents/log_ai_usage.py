@@ -24,33 +24,13 @@ from pathlib import Path
 
 
 def read_stdin_safely() -> str:
-    """Read stdin if data is available, without blocking on Windows or Unix."""
+    """Read stdin if redirected/piped, without blocking if running interactively."""
     if sys.stdin.isatty():
         return ""
-
-    if sys.platform == "win32":
-        try:
-            import msvcrt
-            import ctypes
-            handle = msvcrt.get_osfhandle(sys.stdin.fileno())
-            avail = ctypes.c_ulong()
-            res = ctypes.windll.kernel32.PeekNamedPipe(
-                handle, None, 0, None, ctypes.byref(avail), None
-            )
-            if res and avail.value > 0:
-                return sys.stdin.read()
-            return ""
-        except Exception:
-            pass
-    else:
-        try:
-            import select
-            if select.select([sys.stdin], [], [], 0)[0]:
-                return sys.stdin.read()
-        except Exception:
-            pass
-
-    return ""
+    try:
+        return sys.stdin.read()
+    except Exception:
+        return ""
 
 
 def safe_print_json(data: dict):
@@ -406,15 +386,28 @@ def get_paths(stdin_payload: dict):
 
     if not conv_id:
         if brain_base.exists():
-            try:
-                subdirs = sorted(
-                    [d for d in brain_base.iterdir() if d.is_dir()],
-                    key=lambda d: d.stat().st_mtime,
-                    reverse=True
-                )
-                if subdirs:
-                    conv_id = subdirs[0].name
-            except Exception:
+            candidates = []
+            for d in brain_base.iterdir():
+                if not d.is_dir():
+                    continue
+                tf = d / ".system_generated" / "logs" / "transcript.jsonl"
+                tf_full = d / ".system_generated" / "logs" / "transcript_full.jsonl"
+                active_tf = tf_full if tf_full.exists() else tf
+                if active_tf.exists():
+                    try:
+                        mtime = active_tf.stat().st_mtime
+                        # Read first 10k bytes to check workspace match
+                        with open(active_tf, "r", encoding="utf-8", errors="ignore") as f:
+                            chunk = f.read(10240)
+                        matches_ws = str(workspace_dir).lower() in chunk.lower()
+                        candidates.append((d.name, mtime, matches_ws))
+                    except Exception:
+                        pass
+            if candidates:
+                # Prefer matching workspace candidates first, then latest mtime
+                candidates.sort(key=lambda x: (x[2], x[1]), reverse=True)
+                conv_id = candidates[0][0]
+            else:
                 conv_id = "default-chat"
         else:
             conv_id = "default-chat"

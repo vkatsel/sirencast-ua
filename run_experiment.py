@@ -17,10 +17,22 @@ import sys
 import unittest
 from pathlib import Path
 
-# Add project root to path
 BASE_DIR = Path(__file__).resolve().parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
+
+# If invoked with system python, automatically re-exec with local .venv python
+venv_python = BASE_DIR / ".venv" / ("Scripts/python.exe" if sys.platform == "win32" else "bin/python")
+if venv_python.exists():
+    try:
+        current_exe = Path(sys.executable).resolve()
+        target_exe = venv_python.resolve()
+        if current_exe != target_exe:
+            import subprocess
+            res = subprocess.run([str(target_exe)] + sys.argv, cwd=str(BASE_DIR))
+            sys.exit(res.returncode)
+    except Exception:
+        pass
 
 from src.data_loader import load_and_clean_official_data, get_clean_alerts
 from src.features_ts import build_30m_feature_store, get_feature_dataset

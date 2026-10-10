@@ -65,7 +65,19 @@ class SirenCastHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
     def send_json_response(self, data: dict, status_code: int = 200):
         try:
-            payload = json.dumps(data, ensure_ascii=False).encode("utf-8")
+            def json_default_serializer(obj):
+                import numpy as np
+                if isinstance(obj, (np.integer,)):
+                    return int(obj)
+                if isinstance(obj, (np.floating,)):
+                    return float(obj)
+                if isinstance(obj, (np.ndarray,)):
+                    return obj.tolist()
+                if hasattr(obj, "isoformat"):
+                    return obj.isoformat()
+                return str(obj)
+
+            payload = json.dumps(data, ensure_ascii=False, default=json_default_serializer).encode("utf-8")
             self.send_response(status_code)
             self.send_header("Content-Type", "application/json; charset=utf-8")
             self.send_header("Content-Length", str(len(payload)))

@@ -3,7 +3,7 @@
     "Stop": [
       {
         "type": "command",
-        "command": "python -c \"import os,sys,runpy; runpy.run_path('log_ai_usage.py' if os.path.exists('log_ai_usage.py') else '.agents/log_ai_usage.py')\""
+        "command": "python log_ai_usage.py"
       }
     ]
   }

@@ -62,6 +62,17 @@ def get_trained_live_model():
     return model, feat_cols
 
 
+_cached_last_row = None
+
+
+def get_cached_baseline_row():
+    global _cached_last_row
+    if _cached_last_row is None:
+        df_hist = get_multimodal_dataset()
+        _cached_last_row = df_hist.iloc[-1].copy()
+    return _cached_last_row
+
+
 def build_live_feature_vector(
     simulated_alerts: Optional[dict] = None,
     simulated_telegram_texts: Optional[List[str]] = None,
@@ -69,8 +80,7 @@ def build_live_feature_vector(
     """
     Constructs the real-time feature vector for moment t using live or simulated signals.
     """
-    df_hist = get_multimodal_dataset()
-    last_row = df_hist.iloc[-1].copy()
+    last_row = get_cached_baseline_row().copy()
 
     # 1. Physical Siren Telemetry
     if simulated_alerts is not None:

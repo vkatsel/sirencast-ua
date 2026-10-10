@@ -118,15 +118,6 @@ python run_experiment.py --phase 2    # 30-minute grid & spatial radar features
 python run_experiment.py --phase 3    # Baseline models & Walk-Forward evaluation
 python run_experiment.py --phase 4    # Multimodal Telegram NLP fusion
 ```
-
----
-
-## 📝 KSE Reflection (Reflective Summary)
-
-> **What went wrong & what we learned:**
-> During initial data auditing, we uncovered a critical concatenation defect in the official dataset: 113,845 exact duplicates (38.04% of raw records) caused by an unindexed historical dump merge. Training on raw data would have severely biased alert durations. Furthermore, in 2026, official records abruptly migrated from `oblast` to `raion` granularity, which would create extreme data drift if left unhandled.
-> Exploring text embeddings revealed an important lesson in applied ML: dense latent embeddings (TF-IDF + SVD / transformers) overfitted to regional chatter, whereas lightweight, directional rule-based NLP detectors proved superior for Kyiv, increasing Fold 1 ROC-AUC to 0.9167 while reducing storage footprint from 180MB to 8.29MB.
-
 ---
 
 ## 📜 License

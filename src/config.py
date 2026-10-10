@@ -11,6 +11,10 @@ RAW_VOLUNTEER_DATA = DATA_DIR / "volunteer_data_en.csv"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 PROCESSED_ALERTS_PARQUET = PROCESSED_DATA_DIR / "clean_alerts.parquet"
 PROCESSED_FEATURES_PARQUET = PROCESSED_DATA_DIR / "features_30m.parquet"
+PROCESSED_MULTIMODAL_PARQUET = PROCESSED_DATA_DIR / "features_multimodal_30m.parquet"
+TELEGRAM_DATA_DIR = DATA_DIR / "telegram"
+MONITOR_JSON = TELEGRAM_DATA_DIR / "monitor.json"
+PSZSU_JSON = TELEGRAM_DATA_DIR / "pszsu.json"
 ARTIFACTS_DIR = BASE_DIR / ".agents" / "artifacts"
 
 # Time Series Settings

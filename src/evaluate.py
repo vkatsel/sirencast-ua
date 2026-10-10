@@ -1,7 +1,11 @@
 """
 Evaluation and Walk-Forward Backtesting module for SirenCast UA.
-Executes temporal validation across 2026 folds, computes ROC-AUC, PR-AUC,
-Brier score, calibration curves, and exports diagnostic plots to reports/figures/.
+Executes temporal validation across 2026 folds, comparing:
+1. Heuristic Baseline
+2. Logistic Regression
+3. LightGBM V1 (Time Series Only)
+4. LightGBM V2 (Multimodal: TS + Telegram NLP Signals)
+Computes ROC-AUC, PR-AUC, Brier score, and exports diagnostic plots to reports/figures/.
 """
 import logging
 from pathlib import Path
@@ -22,7 +26,7 @@ from sklearn.metrics import (
 )
 
 from src.config import BASE_DIR
-from src.features_ts import get_feature_dataset
+from src.features_text import get_multimodal_dataset
 from src.models import (
     HeuristicCivilDefenseModel,
     create_lightgbm_model,
@@ -60,15 +64,17 @@ def run_walk_forward_evaluation(
     figures_dir: Path = FIGURES_DIR,
 ) -> Tuple[pd.DataFrame, Dict]:
     """
-    Runs Walk-Forward expanding-window cross validation across 2026.
+    Runs Walk-Forward expanding-window cross validation across 2026 folds.
     Folds:
     - Fold 1: Train 2023..2025, Test 2026 Q1 (Jan - Mar 2026)
     - Fold 2: Train 2023..2026-03, Test 2026 Q2 (Apr - Jun 2026)
     - Fold 3: Train 2023..2026-06, Test 2026 Q3 (Jul - Sep 2026)
     """
-    df = get_feature_dataset()
+    df = get_multimodal_dataset()
     ignore_cols = ["timestamp", "target_kyiv_start_30m", "target_kyiv_active_30m"]
-    feature_cols = [c for c in df.columns if c not in ignore_cols]
+    text_cols = [c for c in df.columns if c.startswith("tg_")]
+    ts_cols = [c for c in df.columns if c not in ignore_cols and not c.startswith("tg_")]
+    multimodal_cols = ts_cols + text_cols
 
     splits = [
         ("Fold 1 (2026 Q1: Jan-Mar)", "2026-01-01", "2026-04-01"),
@@ -77,13 +83,14 @@ def run_walk_forward_evaluation(
     ]
 
     records = []
-    models_to_test = {
-        "Heuristic Baseline": HeuristicCivilDefenseModel(),
-        "Logistic Regression": create_logistic_baseline(),
-        "LightGBM V1": create_lightgbm_model(),
+    models_config = {
+        "Heuristic Baseline": (HeuristicCivilDefenseModel(), ts_cols),
+        "Logistic Regression": (create_logistic_baseline(), ts_cols),
+        "LightGBM V1 (TS-only)": (create_lightgbm_model(), ts_cols),
+        "LightGBM V2 (Multimodal)": (create_lightgbm_model(), multimodal_cols),
     }
 
-    cached_predictions = {m: [] for m in models_to_test}
+    cached_predictions = {m: [] for m in models_config}
     cached_y_true = []
 
     for fold_name, t_start, t_end in splits:
@@ -91,17 +98,17 @@ def run_walk_forward_evaluation(
         train_mask = df["timestamp"] < t_start
         test_mask = (df["timestamp"] >= t_start) & (df["timestamp"] < t_end)
 
-        X_train = df.loc[train_mask, feature_cols]
         y_train = df.loc[train_mask, target_col]
-        X_test = df.loc[test_mask, feature_cols]
         y_test = df.loc[test_mask, target_col]
-
         cached_y_true.append(y_test.values)
 
-        logger.info(f"Train samples: {len(X_train):,} (positive: {y_train.sum():,})")
-        logger.info(f"Test samples:  {len(X_test):,} (positive: {y_test.sum():,})")
+        logger.info(f"Train samples: {len(y_train):,} (positive: {y_train.sum():,})")
+        logger.info(f"Test samples:  {len(y_test):,} (positive: {y_test.sum():,})")
 
-        for m_name, model in models_to_test.items():
+        for m_name, (model, feat_cols) in models_config.items():
+            X_train = df.loc[train_mask, feat_cols]
+            X_test = df.loc[test_mask, feat_cols]
+
             model.fit(X_train, y_train)
             probs = model.predict_proba(X_test)[:, 1]
             cached_predictions[m_name].append(probs)
@@ -127,14 +134,19 @@ def run_walk_forward_evaluation(
     if save_plots:
         figures_dir.mkdir(parents=True, exist_ok=True)
         logger.info(f"Generating diagnostic figures in {figures_dir}...")
-
-        # Plot 1: ROC Curves (Combined across all 2026 test folds)
         plt.style.use("seaborn-v0_8-whitegrid" if "seaborn-v0_8-whitegrid" in plt.style.available else "default")
-        fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
         y_all_test = np.concatenate(cached_y_true)
 
-        colors = {"Heuristic Baseline": "#888888", "Logistic Regression": "#2b5c8f", "LightGBM V1": "#d95f02"}
-        for m_name in models_to_test:
+        colors = {
+            "Heuristic Baseline": "#888888",
+            "Logistic Regression": "#2b5c8f",
+            "LightGBM V1 (TS-only)": "#d95f02",
+            "LightGBM V2 (Multimodal)": "#1b7837",
+        }
+
+        # Plot 1: ROC Curves
+        fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
+        for m_name in models_config:
             all_probs = np.concatenate(cached_predictions[m_name])
             fpr, tpr, _ = roc_curve(y_all_test, all_probs)
             auc_val = roc_auc_score(y_all_test, all_probs)
@@ -145,16 +157,14 @@ def run_walk_forward_evaluation(
         ax.set_xlabel("False Positive Rate", fontsize=10)
         ax.set_ylabel("True Positive Rate", fontsize=10)
         ax.legend(loc="lower right", frameon=True)
-        roc_path = figures_dir / "roc_curve_walkforward.png"
         fig.tight_layout()
-        fig.savefig(roc_path)
+        fig.savefig(figures_dir / "roc_curve_walkforward.png")
         plt.close(fig)
-        logger.info(f"Saved: {roc_path}")
 
         # Plot 2: Precision-Recall Curves
         fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
         baseline_pr = float(y_all_test.mean())
-        for m_name in models_to_test:
+        for m_name in models_config:
             all_probs = np.concatenate(cached_predictions[m_name])
             prec, rec, _ = precision_recall_curve(y_all_test, all_probs)
             pr_val = average_precision_score(y_all_test, all_probs)
@@ -165,16 +175,14 @@ def run_walk_forward_evaluation(
         ax.set_xlabel("Recall", fontsize=10)
         ax.set_ylabel("Precision", fontsize=10)
         ax.legend(loc="upper right", frameon=True)
-        pr_path = figures_dir / "pr_curve_walkforward.png"
         fig.tight_layout()
-        fig.savefig(pr_path)
+        fig.savefig(figures_dir / "pr_curve_walkforward.png")
         plt.close(fig)
-        logger.info(f"Saved: {pr_path}")
 
-        # Plot 3: Probability Calibration (Reliability Diagram)
+        # Plot 3: Probability Calibration
         fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
         ax.plot([0, 1], [0, 1], "k:", label="Perfect Calibration")
-        for m_name in ["Logistic Regression", "LightGBM V1"]:
+        for m_name in ["Logistic Regression", "LightGBM V1 (TS-only)", "LightGBM V2 (Multimodal)"]:
             all_probs = np.concatenate(cached_predictions[m_name])
             prob_true, prob_pred = calibration_curve(y_all_test, all_probs, n_bins=10)
             ax.plot(prob_pred, prob_true, marker="o", label=f"{m_name}", color=colors.get(m_name), linewidth=2)
@@ -183,28 +191,45 @@ def run_walk_forward_evaluation(
         ax.set_xlabel("Mean Predicted Probability", fontsize=10)
         ax.set_ylabel("Empirical Frequency", fontsize=10)
         ax.legend(loc="lower right", frameon=True)
-        cal_path = figures_dir / "calibration_reliability_curve.png"
         fig.tight_layout()
-        fig.savefig(cal_path)
+        fig.savefig(figures_dir / "calibration_reliability_curve.png")
         plt.close(fig)
-        logger.info(f"Saved: {cal_path}")
 
-        # Plot 4: Top 20 Feature Importances from final LightGBM model
-        final_lgb = models_to_test["LightGBM V1"]
-        imp_series = pd.Series(final_lgb.feature_importances_, index=feature_cols).sort_values(ascending=True)
+        # Plot 4: Feature Importance for Multimodal LightGBM
+        final_lgb_v2 = models_config["LightGBM V2 (Multimodal)"][0]
+        imp_series = pd.Series(final_lgb_v2.feature_importances_, index=multimodal_cols).sort_values(ascending=True)
         top20 = imp_series.tail(20)
 
         fig, ax = plt.subplots(figsize=(10, 8), dpi=150)
-        ax.barh(top20.index, top20.values, color="#1b7837", alpha=0.85)
-        ax.set_title("Top 20 Features Importance (LightGBM V1)", fontsize=12, fontweight="bold")
+        bar_colors = ["#2b5c8f" if col.startswith("tg_") else "#1b7837" for col in top20.index]
+        ax.barh(top20.index, top20.values, color=bar_colors, alpha=0.85)
+        ax.set_title("Top 20 Features Importance - LightGBM V2 Multimodal (Blue = Telegram NLP)", fontsize=12, fontweight="bold")
         ax.set_xlabel("Split Gain Importance", fontsize=10)
         fig.tight_layout()
-        imp_path = figures_dir / "feature_importance_ranking.png"
-        fig.savefig(imp_path)
+        fig.savefig(figures_dir / "feature_importance_ranking.png")
         plt.close(fig)
-        logger.info(f"Saved: {imp_path}")
 
-    return results_df, models_to_test
+        # Plot 5: V1 vs V2 Comparison Bar Chart
+        fig, ax = plt.subplots(figsize=(9, 5), dpi=150)
+        piv_auc = results_df[results_df["model"].isin(["LightGBM V1 (TS-only)", "LightGBM V2 (Multimodal)"])].pivot(
+            index="fold", columns="model", values="roc_auc"
+        )
+        x = np.arange(len(piv_auc))
+        width = 0.35
+        ax.bar(x - width/2, piv_auc["LightGBM V1 (TS-only)"], width, label="V1 (TS-only)", color="#d95f02", alpha=0.9)
+        ax.bar(x + width/2, piv_auc["LightGBM V2 (Multimodal)"], width, label="V2 (Multimodal: TS + Telegram)", color="#1b7837", alpha=0.9)
+        ax.set_ylim(0.85, 0.95)
+        ax.set_xticks(x)
+        ax.set_xticklabels([f"Fold {i+1}" for i in range(len(piv_auc))], fontsize=11)
+        ax.set_ylabel("ROC-AUC Score", fontsize=11)
+        ax.set_title("Ablation Study: LightGBM V1 vs Multimodal V2 across 2026 Folds", fontsize=12, fontweight="bold")
+        ax.legend(loc="lower right")
+        fig.tight_layout()
+        fig.savefig(figures_dir / "v1_vs_v2_comparison.png")
+        plt.close(fig)
+        logger.info(f"All figures saved to {figures_dir}")
+
+    return results_df, models_config
 
 
 if __name__ == "__main__":

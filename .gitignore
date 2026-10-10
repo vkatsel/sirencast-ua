@@ -86,5 +86,8 @@ desktop.ini
 # Generated processed datasets
 data/processed/
 
+# Raw Telegram dumps (>100MB)
+data/telegram/
+
 # Scratch files
 scratch/

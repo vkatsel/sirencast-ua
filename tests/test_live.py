@@ -67,9 +67,18 @@ class TestLiveModule(unittest.TestCase):
         )
 
         self.assertEqual(len(df_vec), 1)
+        self.assertEqual(df_vec.shape[1], 85)
+        self.assertEqual(df_vec.isna().sum().sum(), 0)
         self.assertEqual(meta["is_kyiv_active"], 0)
         self.assertEqual(meta["telegram_threats"]["shahed"], 2)
         self.assertEqual(meta["telegram_threats"]["kyiv_targeted"], 1)
+
+        # Assert correct spatial features mapped from inputs
+        self.assertEqual(df_vec["adj_chernihivska_active"].values[0], 1)
+        self.assertEqual(df_vec["raion_brovarskyi_active"].values[0], 1)
+        self.assertEqual(df_vec["raion_boryspilskyi_active"].values[0], 0)
+        self.assertEqual(df_vec["east_flank_active_count"].values[0], 0)
+        self.assertEqual(df_vec["tg_kyiv_targeted_30m"].values[0], 1)
 
     def test_predict_live_risk_contract(self):
         """Verify predict_live_risk returns valid percentage and categorical risk levels."""
@@ -89,6 +98,14 @@ class TestLiveModule(unittest.TestCase):
         self.assertIn("risk_level", res)
         self.assertIn("risk_color", res)
         self.assertIn("top_drivers", res)
+        self.assertIn("top_drivers_ua", res)
+        self.assertEqual(len(res["top_drivers"]), len(res["top_drivers_ua"]))
+
+        # Spatial telemetry dictionary integrity
+        self.assertIn("raions", res["metadata"])
+        self.assertIn("adjacent_regions", res["metadata"])
+        self.assertEqual(len(res["metadata"]["raions"]), 7)
+        self.assertEqual(len(res["metadata"]["adjacent_regions"]), 5)
 
         pct = res["probability_pct"]
         self.assertGreaterEqual(pct, 0.0)
@@ -123,6 +140,13 @@ class TestLiveModule(unittest.TestCase):
         p_w5 = calibrate_odds(0.10, weight=5.0)
         self.assertAlmostEqual(p_w1, 0.10, places=4)
         self.assertGreater(p_w5, p_w1)
+
+    def test_live_features_exact_match_model(self):
+        """Verify that live feature vector contains all features expected by the trained model with zero drift."""
+        model, feat_cols, _ = get_trained_live_model()
+        df_vec, _ = build_live_feature_vector()
+        self.assertEqual(set(df_vec.columns), set(feat_cols), "Feature drift detected between live vector and trained model!")
+        self.assertEqual(len(df_vec.columns), len(feat_cols))
 
 
 if __name__ == "__main__":

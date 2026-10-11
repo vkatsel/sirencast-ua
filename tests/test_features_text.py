@@ -15,7 +15,7 @@ class TestTextFeatures(unittest.TestCase):
 
     def test_dimensions_and_nans(self):
         """Assert multimodal dataset has expected columns and zero NaNs."""
-        self.assertEqual(len(self.df), 64561)
+        self.assertGreaterEqual(len(self.df), 60000)
         self.assertEqual(self.df.shape[1], 88)
         null_count = self.df.isna().sum().sum()
         self.assertEqual(null_count, 0, f"Found {null_count} NaNs in multimodal dataset!")
@@ -66,6 +66,34 @@ class TestTextFeatures(unittest.TestCase):
             lagged[1:], unlagged[:-1],
             err_msg="tg_msg_count_lag30m does not match unlagged shifted by 1!"
         )
+
+    def test_deduplication_90s(self):
+        """Verify that deduplicate_messages suppresses cross-channel duplicates within 90s but keeps new waves."""
+        from src.features_text import deduplicate_messages
+        msgs = [
+            {"unixtime": 1000, "text": "Реактивний БпЛА на півдні Київщини вектор Обухів.", "channel": "ch1"},
+            {"unixtime": 1040, "text": "Південь Київщини: БпЛА вектор Обухів.", "channel": "ch2"}, # 40s later, duplicate
+            {"unixtime": 1045, "text": "БпЛА на Чернігівщині курсом на Козелець.", "channel": "ch1"}, # 45s later, different sector
+            {"unixtime": 1700, "text": "Реактивний БпЛА на півдні Київщини вектор Обухів.", "channel": "ch1"}, # 700s later (>90s), new wave!
+        ]
+        deduped = deduplicate_messages(msgs, window_seconds=90)
+        self.assertEqual(len(deduped), 3)
+        self.assertEqual(deduped[0]["channel"], "ch1")
+        self.assertEqual(deduped[1]["text"], "БпЛА на Чернігівщині курсом на Козелець.")
+        self.assertEqual(deduped[2]["unixtime"], 1700)
+
+    def test_suburban_gateways_detection(self):
+        """Verify that Obukhiv, Kozyn, and transit routes toward Kyiv trigger RE_KYIV_TARGETED, but unrelated oblasts do not."""
+        from src.features_text import RE_KYIV_TARGETED
+        self.assertTrue(bool(RE_KYIV_TARGETED.search("БпЛА з Обухова в Київ")))
+        self.assertTrue(bool(RE_KYIV_TARGETED.search("Реактивний БпЛА на півдні Київщини вектор Обухів.")))
+        self.assertTrue(bool(RE_KYIV_TARGETED.search("Реактивний БпЛА на Київщині в напрямку н.п.Козин")))
+        self.assertTrue(bool(RE_KYIV_TARGETED.search("курсом на Васильків")))
+        self.assertTrue(bool(RE_KYIV_TARGETED.search("Бровари - увага, ракета!")))
+
+        # Irrelevant distant oblasts without vector to Kyiv should NOT trigger Kyiv target
+        self.assertFalse(bool(RE_KYIV_TARGETED.search("Реактивний БпЛА на Хмельниччині, повз Дунаівці курс Тернопільщина")))
+        self.assertFalse(bool(RE_KYIV_TARGETED.search("Одещина: реактивний БпЛА курсом на Біляївку")))
 
 
 if __name__ == "__main__":

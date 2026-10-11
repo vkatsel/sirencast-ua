@@ -347,6 +347,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #94a3b8;
+            transition: all 0.2s ease;
+        }
+
+        .chip-active {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: rgba(239, 68, 68, 0.5);
+            color: #fca5a5;
+            font-weight: 600;
         }
 
         /* Drivers List */
@@ -515,6 +524,7 @@
                             </div>
                             <span id="tier2-status" class="status-pill pill-clear">0 / 5 Active</span>
                         </div>
+                        <div id="adj-chips" class="chip-grid" style="grid-template-columns: repeat(5, 1fr);"></div>
 
                         <div class="tier-row">
                             <div>
@@ -532,7 +542,7 @@
                 <div>
                     <div class="card-header">
                         <span id="txt-drivers-title">AI Explanation & Decision Drivers</span>
-                        <span>Multi-Tier Reasoning</span>
+                        <span id="txt-drivers-subtitle">Multi-Tier Reasoning</span>
                     </div>
                     <ul id="drivers-list" class="driver-list">
                         <li class="driver-item"><span class="driver-icon">●</span> <span id="txt-loading-telemetry">Loading real-time early warning telemetry...</span></li>
@@ -585,7 +595,7 @@
     <script>
         let countdown = 15;
         let currentMode = 'threat_index';
-        let currentLang = 'en';
+        let currentLang = localStorage.getItem('sirencast_lang') || 'ua';
         let latestForecastData = null;
         const GAUGE_CIRCUMFERENCE = 251.2; // Pi * r where r=80
 
@@ -616,6 +626,7 @@
                 tier4Title: "Tier 4: National Threat Surge",
                 tier4Desc: "Active Oblasts Nationwide & Wave Speed ΔN",
                 driversTitle: "AI Explanation & Decision Drivers",
+                driversSubtitle: "Multi-Tier Reasoning",
                 loadingTelemetry: "Loading real-time early warning telemetry...",
                 intelTitle: "Telegram Defense Early Warning Stream",
                 kyivVector: "Kyiv Vector",
@@ -627,7 +638,13 @@
                 sirenActive: "SIREN ACTIVE",
                 allClear: "ALL CLEAR",
                 activeText: "Active",
-                regionsText: "Regions"
+                regionsText: "Regions",
+                yes: "YES",
+                no: "NO",
+                minAgo: "m ago",
+                hourAgo: "h ago",
+                tagLive: "● LIVE",
+                tagArchive: "ARCHIVE"
             },
             ua: {
                 title: "SirenCast UA",
@@ -642,9 +659,9 @@
                 rawTitle: "Ймовірність повітряної тривоги (Сира частота)",
                 horizon: "Наступні 30 хвилин",
                 hazardPrefix: "Ризик у",
-                hazardSuffix: "вище за тихий фон",
-                threatDesc: "Байєсівська операційна шкала небезпеки (0–100%) з урахуванням ціни помилки ППО.",
-                rawDesc: "Сира математична ймовірність настання сирени у наступні 30 хв (абсолютна частота).",
+                hazardSuffix: "вище за спокійний фон",
+                threatDesc: "Байєсівська операційна шкала небезпеки (0–100%) з урахуванням ціни пропуску цілі.",
+                rawDesc: "Сира математична ймовірність початку сирени у наступні 30 хв (історична частота).",
                 radarTitle: "4-Рівневий просторовий радар",
                 tier0Title: "Рівень 0: Місто Київ",
                 tier0Desc: "Безпосередній повітряний простір столиці",
@@ -653,8 +670,9 @@
                 tier2Title: "Рівень 2: Підльотні коридори та суміжні області",
                 tier2Desc: "Чернігівщина, Сумщина, Полтавщина, Черкащина, Житомирщина (активні сектори підльоту)",
                 tier4Title: "Рівень 4: Національний сплеск",
-                tier4Desc: "Активні області по країні та швидкість наростання ΔN",
-                driversTitle: "Пояснення AI та фактори рішення",
+                tier4Desc: "Активні області по країні та швидкість хвилі ΔN",
+                driversTitle: "AI Пояснення та фактори рішення",
+                driversSubtitle: "Багаторівневий аналіз",
                 loadingTelemetry: "Завантаження поточної телеметрії...",
                 intelTitle: "Стрічка раннього попередження Telegram",
                 kyivVector: "Вектор на Київ",
@@ -666,12 +684,52 @@
                 sirenActive: "ТРИВОГА АКТИВНА",
                 allClear: "ВІДБІЙ / ЧИСТО",
                 activeText: "Активно",
-                regionsText: "Областей"
+                regionsText: "Областей",
+                yes: "ТАК",
+                no: "НІ",
+                minAgo: "хв тому",
+                hourAgo: "год тому",
+                tagLive: "● НАЖИВО",
+                tagArchive: "АРХІВ"
             }
         };
 
+        const RISK_LEVELS = {
+            en: {
+                "LOW RISK": "LOW RISK",
+                "ELEVATED RISK": "ELEVATED RISK",
+                "HIGH RISK": "HIGH RISK",
+                "CRITICAL IMMINENT RISK": "CRITICAL IMMINENT RISK"
+            },
+            ua: {
+                "LOW RISK": "НИЗЬКИЙ РИЗИК",
+                "ELEVATED RISK": "ПІДВИЩЕНИЙ РИЗИК",
+                "HIGH RISK": "ВИСОКИЙ РИЗИК",
+                "CRITICAL IMMINENT RISK": "КРИТИЧНА НЕБЕЗПЕКА"
+            }
+        };
+
+        const RAIONS_DEF = [
+            { key: 'vyshhorodskyi', en: 'Vyshhorod', ua: 'Вишгородський' },
+            { key: 'brovarskyi', en: 'Brovary', ua: 'Броварський' },
+            { key: 'boryspilskyi', en: 'Boryspil', ua: 'Бориспільський' },
+            { key: 'buchanskyi', en: 'Bucha', ua: 'Бучанський' },
+            { key: 'fastivskyi', en: 'Fastiv', ua: 'Фастівський' },
+            { key: 'obukhivskyi', en: 'Obukhiv', ua: 'Обухівський' },
+            { key: 'bilotserkivskyi', en: 'Bila Tserkva', ua: 'Білоцерківський' }
+        ];
+
+        const ADJ_DEF = [
+            { key: 'chernihivska', en: 'Chernihiv', ua: 'Чернігівська' },
+            { key: 'sumska', en: 'Sumy', ua: 'Сумська' },
+            { key: 'poltavska', en: 'Poltava', ua: 'Полтавська' },
+            { key: 'cherkaska', en: 'Cherkasy', ua: 'Черкаська' },
+            { key: 'zhytomyrska', en: 'Zhytomyr', ua: 'Житомирська' }
+        ];
+
         function setLanguage(lang) {
             currentLang = lang;
+            try { localStorage.setItem('sirencast_lang', lang); } catch (e) {}
             document.getElementById('lang-en-btn').className = lang === 'en' ? 'lang-btn active' : 'lang-btn';
             document.getElementById('lang-ua-btn').className = lang === 'ua' ? 'lang-btn active' : 'lang-btn';
 
@@ -693,6 +751,8 @@
             document.getElementById('txt-tier4-title').textContent = t.tier4Title;
             document.getElementById('txt-tier4-desc').textContent = t.tier4Desc;
             document.getElementById('txt-drivers-title').textContent = t.driversTitle;
+            const sub = document.getElementById('txt-drivers-subtitle');
+            if (sub) sub.textContent = t.driversSubtitle;
             document.getElementById('txt-intel-title').textContent = t.intelTitle;
             document.getElementById('lbl-vector').textContent = t.kyivVector;
             document.getElementById('lbl-shaheds').textContent = t.shaheds;
@@ -767,7 +827,7 @@
                 pill.classList.add('risk-red');
                 arc.style.stroke = 'var(--accent-red)';
             }
-            pill.textContent = level;
+            pill.textContent = (RISK_LEVELS[currentLang] && RISK_LEVELS[currentLang][level]) || level;
 
             // Hazard Multiplier
             const mult = data.hazard_multiplier ?? 1.0;
@@ -789,7 +849,8 @@
             // 1. AI Drivers
             const driversList = document.getElementById('drivers-list');
             driversList.innerHTML = '';
-            (data.top_drivers || []).forEach(d => {
+            const drivers = (currentLang === 'ua' && data.top_drivers_ua) ? data.top_drivers_ua : (data.top_drivers || []);
+            drivers.forEach(d => {
                 const li = document.createElement('li');
                 li.className = 'driver-item';
                 li.innerHTML = `<span class="driver-icon">●</span> <span>${d}</span>`;
@@ -813,29 +874,44 @@
             tier1.className = meta.raion_active_count > 0 ? 'status-pill pill-active' : 'status-pill pill-clear';
             tier1.textContent = `${meta.raion_active_count} / 7 ${t.activeText}`;
 
+            // Raion Chips Grid - Accurate per-raion state
+            const chips = document.getElementById('raions-chips');
+            chips.innerHTML = '';
+            RAIONS_DEF.forEach(r => {
+                const isActive = !!(meta.raions && meta.raions[r.key]);
+                const c = document.createElement('div');
+                c.className = 'chip' + (isActive ? ' chip-active' : '');
+                const name = currentLang === 'ua' ? r.ua : r.en;
+                c.innerHTML = `<span>${name}</span><span>${isActive ? '🚨' : '🟢'}</span>`;
+                chips.appendChild(c);
+            });
+
             const tier2 = document.getElementById('tier2-status');
             tier2.className = meta.adjacent_active_count > 0 ? 'status-pill pill-active' : 'status-pill pill-clear';
             tier2.textContent = `${meta.adjacent_active_count} / 5 ${t.activeText}`;
+
+            // Adjacent Approach Corridors Chips Grid
+            const adjChips = document.getElementById('adj-chips');
+            if (adjChips) {
+                adjChips.innerHTML = '';
+                ADJ_DEF.forEach(a => {
+                    const isActive = !!(meta.adjacent_regions && meta.adjacent_regions[a.key]);
+                    const c = document.createElement('div');
+                    c.className = 'chip' + (isActive ? ' chip-active' : '');
+                    const name = currentLang === 'ua' ? a.ua : a.en;
+                    c.innerHTML = `<span>${name}</span><span>${isActive ? '🚨' : '🟢'}</span>`;
+                    adjChips.appendChild(c);
+                });
+            }
 
             const tier4 = document.getElementById('tier4-status');
             tier4.className = meta.national_active_count > 5 ? 'status-pill pill-active' : 'status-pill pill-clear';
             tier4.textContent = `${meta.national_active_count} / 25 ${t.regionsText} (Δ=${meta.national_delta > 0 ? '+' : ''}${meta.national_delta})`;
 
-            // Raion Chips Grid
-            const chips = document.getElementById('raions-chips');
-            chips.innerHTML = '';
-            const raionNames = ['Vyshhorod', 'Brovary', 'Boryspil', 'Bucha', 'Fastiv', 'Obukhiv', 'Bila Tserkva'];
-            raionNames.forEach(rn => {
-                const c = document.createElement('div');
-                c.className = 'chip';
-                c.innerHTML = `<span>${rn}</span><span>${meta.is_kyiv_active ? '🚨' : '🟢'}</span>`;
-                chips.appendChild(c);
-            });
-
             // 3. Telegram Signals
             const tg = meta.telegram_threats;
             const statTg = document.getElementById('stat-targeted');
-            statTg.textContent = tg.kyiv_targeted ? (currentLang === 'ua' ? 'ТАК' : 'YES') : (currentLang === 'ua' ? 'Ні' : 'No');
+            statTg.textContent = tg.kyiv_targeted ? t.yes : t.no;
             statTg.style.color = tg.kyiv_targeted ? 'var(--accent-red)' : 'var(--accent-green)';
 
             document.getElementById('stat-shahed').textContent = tg.shahed;
@@ -858,14 +934,14 @@
                     let isActive = false;
                     
                     if (typeof m === 'object' && m.age_minutes !== undefined) {
-                        ageStr = m.age_minutes < 60 ? `${Math.round(m.age_minutes)}m ago` : `${(m.age_minutes / 60).toFixed(1)}h ago`;
+                        ageStr = m.age_minutes < 60 ? `${Math.round(m.age_minutes)} ${t.minAgo}` : `${(m.age_minutes / 60).toFixed(1)} ${t.hourAgo}`;
                         isActive = !!m.is_active;
                     }
                     
                     const badgeColor = isActive 
                         ? 'background:rgba(239, 68, 68, 0.2); color:#ef4444; border:1px solid #ef4444;' 
                         : 'background:rgba(107, 114, 128, 0.2); color:#9ca3af; border:1px solid #4b5563;';
-                    const timeTag = ageStr ? `<span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:6px; ${badgeColor}">${isActive ? '● LIVE' : 'ARCHIVE'} ${ageStr}</span>` : '';
+                    const timeTag = ageStr ? `<span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:6px; ${badgeColor}">${isActive ? t.tagLive : t.tagArchive} ${ageStr}</span>` : '';
                     const channelTag = `<strong style="color:var(--accent-blue); margin-right:4px;">${channel}</strong>`;
                     
                     s.innerHTML = `${timeTag}${channelTag} <span>${text.length > 140 ? text.substring(0, 140) + '...' : text}</span>`;
@@ -885,6 +961,7 @@
         }, 1000);
 
         // Initial Load
+        setLanguage(currentLang);
         loadForecast();
     </script>
 </body>

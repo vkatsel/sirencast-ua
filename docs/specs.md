@@ -37,7 +37,7 @@ flowchart TD
     end
 
     subgraph Presentation ["Presentation Layer (The Trifecta)"]
-        WEB["Web Dashboard\n(FastAPI + Single-Page 2x2 UI)"]
+        WEB["Web Dashboard\n(Lightweight HTTP Server + Single-Page 2x2 UI)"]
         CLI["Rich Terminal CLI\n(live_forecast.py)"]
         NB["Jupyter Notebook\n(demo.ipynb What-If Scenarios)"]
     end
@@ -52,7 +52,7 @@ flowchart TD
 ### 2.1 State Alert API (`Ubilling`)
 - **Endpoint**: Official JSON alert status feed for all oblasts and Kyiv raions.
 - **Client-Side Rate Limiter**: 
-  - Token-bucket / cooldown limiting: maximum **2 requests per second**, minimum **5-second TTL cache** to eliminate hammering and respect third-party server quotas.
+  - Token-bucket / cooldown limiting: maximum **2 requests per second**, minimum **6-second TTL cache** (in-memory and on-disk fallback) to eliminate hammering and respect third-party server quotas.
   - Graceful fallback: cached state retention with offline mock generation for development and disconnected CI/CD test environments.
 
 ### 2.2 Tactical Telegram OSINT Feeds
@@ -78,7 +78,7 @@ Because air raid alerts in Ukraine propagate along specific threat axes (ballist
 
 ## 4. Feature Engineering
 
-The feature vector $\mathbf{x} \in \mathbb{R}^{D}$ combines 24 structured features across three distinct modalities:
+The feature vector $\mathbf{x} \in \mathbb{R}^{85}$ combines 85 structured features across three distinct modalities:
 
 ### 4.1 Spatial Indicators
 - `tier1_ratio`: Fraction of active Kyivska oblast raions ($0.0 \dots 1.0$).
@@ -94,12 +94,13 @@ The feature vector $\mathbf{x} \in \mathbb{R}^{D}$ combines 24 structured featur
 - `is_weekend`: Binary flag for weekend pacing.
 
 ### 4.3 Text Urgency & Threat Classification (NLP)
-Extracted via high-precision compiled regular expressions with Ukrainian case inflection support:
+Extracted via high-precision compiled regular expressions with Ukrainian case inflection and suburban gateway coverage:
 - `ballistic_flag`: Mentions of ballistic/hypersonic threats (`балісти[кч]`, `іскандер`, `кинджал`, `циркон`, `с-300`, `с-400`).
 - `aviation_flag`: Strategic aviation takeoffs (`ту-95`, `ту-22`, `міг-31`, `борт`, `зліт`).
 - `shahed_flag`: Loitering munition waves (`шахед`, `бпла`, `безпілотник`, `мопед`, `герань`).
-- `kyiv_targeted_flag`: Explicit vector towards the capital (`на київ`, `у напрямку києва`, `повз бровари`, `київщина`, `біла церква`).
+- `kyiv_targeted_flag`: Explicit vector towards the capital or inner ring suburban gateways (`на київ`, `у напрямку києва`, `вектор обухів`, `в напрямку козин`, `з обухова в київ`, `бровари`, `васильків`, `бориспіль`, `вишгород`, `фастів`, `біла церква`, `ірпінь`, `буча`).
 - `threat_severity_score`: Ordinal composite scale ($0 \dots 3$) aggregating weapon class, volume, and trajectory.
+- **Cross-Channel 90-Second Deduplication**: Sliding 90-second semantic token Jaccard window suppresses multi-channel redundant reporting of the same flight group while preserving distinct directional vectors and new sequential attack waves.
 
 ---
 
@@ -151,7 +152,7 @@ To resolve this without corrupting statistical rigor, the system provides two di
 
 2. **Hazard Multiplier ($\times$ quiet baseline)**:
    $$M = \frac{P_{\text{raw}}}{P_{\text{baseline}}}$$
-   where $P_{\text{baseline}} = 0.035$ (empirical quiet sky risk).
+   where $P_{\text{baseline}} = 0.018$ (empirical quiet sky risk).
    *Interpretation*: A straightforward, intuitive fold-change metric (e.g., *"Risk is 6.5x higher than quiet baseline"*).
 
 3. **Raw Statistical Probability ($P_{\text{raw}}$)**:
@@ -165,12 +166,12 @@ The system delivers real-time forecasts across three native interfaces:
 
 ### 7.1 Web Dashboard (`web/index.html` + `src/web.py`)
 - **Single-Page 2x2 Viewport Layout**: Tailored for emergency monitors and operations displays without requiring vertical page scrolling on standard 1080p displays.
-- **Bilingual Interface**: Seamless instant toggle between English (`EN`) and Ukrainian (`UA`) without reloading the page.
+- **Native Ukrainian & Bilingual Interface**: Defaults to Ukrainian (`UA`) with persistent client-side language switching (`EN`/`UA`), fully localized categorical risk levels, drivers, and feed timing.
 - **Reactive Components**:
   - **Hero Gauge**: Displays primary threat status, calibrated operational score, raw probability, and dynamic hazard badge.
-  - **Threat Radar**: Live visual cards for Tier 1 Inner Ring, Tier 2 Approach Corridors, Tier 3 Flanks, and Tier 4 National Surge.
-  - **AI Explanation & Decision Drivers**: Natural language breakdown of contributing factors (e.g., *"High national alert surge (68.0%)"*, *"Tactical mentions of ballistic weapons"*).
-  - **Recent Early Warnings Feed**: Real-time Telegram OSINT cards with severity flags and timestamps.
+  - **Spatial Radar**: Live visual cards for Tier 0 (Kyiv City), Tier 1 (7 Kyivska oblast raions with exact per-raion alert chips matching active counts), Tier 2 (5 approach corridors with individual status chips), and Tier 4 (National surge count & wave speed).
+  - **AI Explanation & Decision Drivers**: Dual-language natural language breakdown of contributing factors (`top_drivers` / `top_drivers_ua`).
+  - **Recent Early Warnings Feed**: Real-time Telegram OSINT cards with severity flags, relative timestamps, and active channel tags.
 
 ### 7.2 Terminal Command Line Interface (`src/live_forecast.py`)
 - **Rich-formatted Terminal Dashboard**: Built with the Python `rich` library.
@@ -184,11 +185,11 @@ The system delivers real-time forecasts across three native interfaces:
 
 ## 8. Verification & Quality Assurance
 
-- **Test Suite**: 27 automated unit and integration tests (`tests/test_live.py`, `tests/test_models.py`, `tests/test_pipeline.py`).
+- **Test Suite**: 38 automated unit and integration tests (`tests/test_business_logic.py`, `tests/test_web.py`, `tests/test_live.py`, `tests/test_models.py`, `tests/test_data_loader.py`, `tests/test_features_causality.py`, `tests/test_features_text.py`).
 - **Code Coverage**:
   - Rate limiting & cache TTL behavior.
-  - Text normalization and case-insensitive regex parsing.
-  - Spatial radar feature computation and raion aggregation.
+  - Text normalization, 90s cross-channel deduplication, and suburban gateway regex parsing.
+  - Spatial radar feature computation, individual raion state integrity, and corridor tracking.
   - Exponential time-decay weight decay slopes.
   - Bayesian odds calibration boundaries ($P \to 0 \implies 0$, $P \to 1 \implies 1$).
   - Web API endpoints and JSON serialization of NumPy/Pandas primitives.

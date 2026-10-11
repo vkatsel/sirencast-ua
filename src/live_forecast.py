@@ -20,6 +20,7 @@ from src.features_text import (
     RE_MISSILE,
     RE_RESOLUTION,
     RE_SHAHED,
+    deduplicate_messages,
     get_multimodal_dataset,
 )
 from src.live_data import parse_live_siren_states, fetch_live_telegram_stream
@@ -84,15 +85,17 @@ def get_trained_live_model():
     return model, feat_cols, sorted_hist_preds
 
 
-_cached_last_row = None
+# In-memory history buffer of recent live telemetry snapshots to compute real lag features
+_live_history: List[Dict] = []
+MAX_LIVE_HISTORY = 10
 
 
-def get_cached_baseline_row():
-    global _cached_last_row
-    if _cached_last_row is None:
-        df_hist = get_multimodal_dataset()
-        _cached_last_row = df_hist.iloc[-1].copy()
-    return _cached_last_row
+def record_live_snapshot(snapshot: dict):
+    """Maintains a rolling buffer of recent live telemetry snapshots for lag calculations."""
+    global _live_history
+    _live_history.append(snapshot)
+    if len(_live_history) > MAX_LIVE_HISTORY:
+        _live_history.pop(0)
 
 
 def build_live_feature_vector(
@@ -101,9 +104,9 @@ def build_live_feature_vector(
 ) -> Tuple[pd.DataFrame, Dict]:
     """
     Constructs the real-time feature vector for moment t using live or simulated signals.
+    Guarantees 100% feature coverage across all 85 model features without inheriting
+    stale historical data from September 2026.
     """
-    last_row = get_cached_baseline_row().copy()
-
     # 1. Physical Siren Telemetry
     if simulated_alerts is not None:
         alert_info = simulated_alerts
@@ -113,20 +116,26 @@ def build_live_feature_vector(
     now_utc = alert_info.get("timestamp_utc", datetime.now(timezone.utc))
     regions = alert_info.get("regions", {})
     raions = alert_info.get("kyiv_raions", {})
-    national_count = alert_info.get("national_active_count", 0)
+    national_count = int(alert_info.get("national_active_count", 0))
 
     # 2. Telegram Warnings
     if simulated_telegram_texts is not None:
         active_tg_texts = simulated_telegram_texts
-        formatted_samples = [{"channel": "simulation", "text": t, "age_minutes": 0.0, "is_active": True} for t in simulated_telegram_texts[:5]]
+        formatted_samples = [
+            {"channel": "simulation", "text": t, "age_minutes": 0.0, "is_active": True}
+            for t in simulated_telegram_texts[:5]
+        ]
     else:
         tg_msgs = fetch_live_telegram_stream()
-        # Strictly evaluate active messages published within the recent 45-minute window!
         active_msgs = [m for m in tg_msgs if m.get("is_active", False)]
-        active_tg_texts = [m["text"] for m in active_msgs]
-        
-        # Prepare sample messages for the UI, preferring active ones or latest
-        display_msgs = active_msgs if active_msgs else tg_msgs[-5:]
+
+        # Deduplicate active cross-channel threat warnings within a 90-second window
+        deduped_active = deduplicate_messages(active_msgs, window_seconds=90)
+        active_tg_texts = [m["text"] for m in deduped_active]
+
+        # Prioritize freshest intelligence first (lowest age_minutes) for the user display
+        display_candidates = deduped_active if deduped_active else tg_msgs
+        display_msgs = sorted(display_candidates, key=lambda m: m.get("age_minutes", 999.0))
         formatted_samples = [
             {
                 "channel": m.get("channel", "telegram"),
@@ -138,7 +147,7 @@ def build_live_feature_vector(
             for m in display_msgs[:5]
         ]
 
-    # NLP Signal Extraction strictly from messages published within the current threat window
+    # NLP Signal Extraction strictly from messages published within current threat window
     combined_texts = " ".join(active_tg_texts)
     has_kyiv_target = bool(re.search(RE_KYIV_TARGETED, combined_texts))
     is_resolution = bool(re.search(RE_RESOLUTION, combined_texts))
@@ -150,61 +159,147 @@ def build_live_feature_vector(
     aviation_count = len(re.findall(RE_AVIATION, combined_texts))
     resolution_count = len(re.findall(RE_RESOLUTION, combined_texts))
 
-    threat_sum = effective_kyiv_target * 3 + missile_count * 2 + ballistic_count * 2 + aviation_count * 2 + shahed_count
+    threat_sum = (
+        effective_kyiv_target * 3
+        + missile_count * 2
+        + ballistic_count * 2
+        + aviation_count * 2
+        + shahed_count
+    )
     net_threat = max(0, threat_sum - resolution_count * 2)
 
-    # 3. Assemble Feature Dictionary
-    f = dict(last_row)
+    # Record live snapshot if running on real data
+    if simulated_alerts is None:
+        record_live_snapshot({
+            "timestamp": now_utc,
+            "national_count": national_count,
+            "raions": dict(raions),
+            "regions": dict(regions),
+            "net_threat": float(net_threat),
+            "kyiv_targeted": effective_kyiv_target,
+            "msg_count": len(active_tg_texts),
+        })
 
-    # Calendar Cyclical
-    hour = now_utc.hour + now_utc.minute / 60.0
-    dow = now_utc.weekday()
-    f["hour_sin"] = np.sin(2 * np.pi * hour / 24.0)
-    f["hour_cos"] = np.cos(2 * np.pi * hour / 24.0)
-    f["dow_sin"] = np.sin(2 * np.pi * dow / 7.0)
-    f["dow_cos"] = np.cos(2 * np.pi * dow / 7.0)
-    f["is_weekend"] = 1 if dow >= 5 else 0
+    # Helper to retrieve lag from history buffer or default to current
+    def get_lag(key: str, step: int, default_val):
+        if simulated_alerts is not None or len(_live_history) <= step:
+            return default_val
+        prev = _live_history[-1 - step]
+        return prev.get(key, default_val)
+
+    # 3. Assemble complete 85-feature vector
+    f = {}
 
     # Tier 0 (Kyiv City)
     is_kyiv_active = 1 if regions.get("Kyiv City", False) else 0
     f["kyiv_is_active"] = is_kyiv_active
-    f["kyiv_active_duration_min"] = 30.0 if is_kyiv_active else 0.0
+
+    kyiv_changed_at = alert_info.get("kyiv_changed_at")
+    if is_kyiv_active:
+        if kyiv_changed_at:
+            elapsed_min = (now_utc - kyiv_changed_at).total_seconds() / 60.0
+            f["kyiv_minutes_active"] = float(max(1.0, elapsed_min))
+        else:
+            f["kyiv_minutes_active"] = 30.0
+        f["kyiv_time_since_last_alert_min"] = 0.0
+    else:
+        f["kyiv_minutes_active"] = 0.0
+        if kyiv_changed_at:
+            elapsed_min = (now_utc - kyiv_changed_at).total_seconds() / 60.0
+            f["kyiv_time_since_last_alert_min"] = float(np.clip(elapsed_min, 0.0, 10080.0))
+        else:
+            f["kyiv_time_since_last_alert_min"] = 720.0  # 12h baseline silence
+
+    f["kyiv_alerts_last_6h"] = 1 if is_kyiv_active else 0
+    f["kyiv_alerts_last_24h"] = 2 if is_kyiv_active else 1
 
     # Tier 1 (7 Kyivska Raions)
-    raion_active_count = sum(1 for v in raions.values() if v)
-    f["inner_ring_active_count"] = raion_active_count
-    f["inner_ring_any_active"] = 1 if raion_active_count > 0 else 0
-    f["inner_ring_all_active"] = 1 if raion_active_count == 7 else 0
+    raion_keys = [
+        ("vyshhorodskyi", "Vyshhorodskyi raion"),
+        ("brovarskyi", "Brovarskyi raion"),
+        ("boryspilskyi", "Boryspilskyi raion"),
+        ("obukhivskyi", "Obukhivskyi raion"),
+        ("bilotserkivskyi", "Bilotserkivskyi raion"),
+        ("fastivskyi", "Fastivskyi raion"),
+        ("buchanskyi", "Buchanskyi raion"),
+    ]
+    for short_r, full_r in raion_keys:
+        act = 1 if raions.get(full_r, False) else 0
+        f[f"raion_{short_r}_active"] = act
+        f[f"raion_{short_r}_mins_active"] = 30.0 if act else 0.0
 
-    for eng_raion, is_active in raions.items():
-        base_name = eng_raion.split()[0].lower()
-        col_active = f"raion_{base_name}_active"
-        col_mins = f"raion_{base_name}_mins_active"
-        if col_active in f:
-            f[col_active] = 1 if is_active else 0
-        if col_mins in f:
-            f[col_mins] = 30.0 if is_active else 0.0
+        lag30 = 1 if get_lag("raions", 1, {}).get(full_r, False) else act
+        lag60 = 1 if get_lag("raions", 2, {}).get(full_r, False) else act
+        f[f"raion_{short_r}_active_lag30m"] = lag30
+        f[f"raion_{short_r}_active_lag60m"] = lag60
 
-    # Tier 2 (Adjacent Oblasts)
-    adj_names = ["Chernihivska oblast", "Sumska oblast", "Poltavska oblast", "Cherkaska oblast", "Zhytomyrska oblast"]
-    adj_active = [regions.get(r, False) for r in adj_names]
-    f["adjacent_active_count"] = sum(1 for v in adj_active if v)
-    f["adjacent_any_active"] = 1 if any(adj_active) else 0
-    f["adjacent_all_active"] = 1 if all(adj_active) else 0
+    inner_active_cnt = sum(f[f"raion_{r}_active"] for r, _ in raion_keys)
+    inner_lag30 = sum(f[f"raion_{r}_active_lag30m"] for r, _ in raion_keys)
+    inner_lag60 = sum(f[f"raion_{r}_active_lag60m"] for r, _ in raion_keys)
+    f["inner_ring_active_count"] = inner_active_cnt
+    f["inner_ring_active_count_lag30m"] = inner_lag30
+    f["inner_ring_active_count_lag60m"] = inner_lag60
+    f["inner_ring_diff_30m"] = inner_active_cnt - inner_lag30
 
-    # Tier 3 (Flanks)
-    east_names = ["Kharkivska oblast", "Dnipropetrovska oblast", "Zaporizka oblast"]
+    # Tier 2 (5 Adjacent Oblasts)
+    adj_keys = [
+        ("chernihivska", "Chernihivska oblast"),
+        ("sumska", "Sumska oblast"),
+        ("poltavska", "Poltavska oblast"),
+        ("cherkaska", "Cherkaska oblast"),
+        ("zhytomyrska", "Zhytomyrska oblast"),
+    ]
+    for short_a, full_a in adj_keys:
+        act = 1 if regions.get(full_a, False) else 0
+        f[f"adj_{short_a}_active"] = act
+
+        lag30 = 1 if get_lag("regions", 1, {}).get(full_a, False) else act
+        lag60 = 1 if get_lag("regions", 2, {}).get(full_a, False) else act
+        f[f"adj_{short_a}_active_lag30m"] = lag30
+        f[f"adj_{short_a}_active_lag60m"] = lag60
+
+    adj_active_cnt = sum(f[f"adj_{a}_active"] for a, _ in adj_keys)
+    adj_lag30 = sum(f[f"adj_{a}_active_lag30m"] for a, _ in adj_keys)
+    adj_lag60 = sum(f[f"adj_{a}_active_lag60m"] for a, _ in adj_keys)
+    f["adjacent_active_count"] = adj_active_cnt
+    f["adjacent_active_count_lag30m"] = adj_lag30
+    f["adjacent_active_count_lag60m"] = adj_lag60
+    f["adjacent_diff_30m"] = adj_active_cnt - adj_lag30
+
+    # Tier 3 (Flanks) - Exact naming matching training feature store
+    east_names = ["Kharkivska oblast", "Dnipropetrovska oblast", "Zaporizka oblast", "Donetska oblast"]
     south_names = ["Mykolaivska oblast", "Odeska oblast", "Khersonska oblast"]
-    f["eastern_flank_active_count"] = sum(1 for r in east_names if regions.get(r, False))
-    f["southern_flank_active_count"] = sum(1 for r in south_names if regions.get(r, False))
 
-    # Tier 4 (Macro Surge Speed)
-    last_national = last_row.get("national_active_count", national_count)
+    east_cnt = sum(1 for r in east_names if regions.get(r, False))
+    south_cnt = sum(1 for r in south_names if regions.get(r, False))
+
+    f["east_flank_active_count"] = east_cnt
+    f["east_flank_active_count_lag30m"] = east_cnt
+    f["east_flank_active_count_lag60m"] = east_cnt
+    f["east_flank_active_count_lag90m"] = east_cnt
+
+    f["south_flank_active_count"] = south_cnt
+    f["south_flank_active_count_lag30m"] = south_cnt
+    f["south_flank_active_count_lag60m"] = south_cnt
+    f["south_flank_active_count_lag90m"] = south_cnt
+
+    # Tier 4 (National Macro-Wave)
     f["national_active_count"] = national_count
-    f["national_delta_30m"] = national_count - last_national
-    surge_speed = (national_count - last_national) / 0.5  # per hour
-    f["national_wave_speed_30m"] = surge_speed
-    f["national_wave_speed_60m"] = surge_speed * 0.8
+    nat_lag30 = get_lag("national_count", 1, national_count)
+    nat_lag60 = get_lag("national_count", 2, national_count)
+    f["national_active_count_lag30m"] = nat_lag30
+    f["national_active_count_lag60m"] = nat_lag60
+    f["national_wave_speed_30m"] = float(national_count - nat_lag30)
+    f["national_wave_speed_60m"] = float(national_count - nat_lag60)
+
+    # Cyclical Calendar features
+    hour = now_utc.hour + now_utc.minute / 60.0
+    dow = now_utc.weekday()
+    f["hour_sin"] = float(np.sin(2 * np.pi * hour / 24.0))
+    f["hour_cos"] = float(np.cos(2 * np.pi * hour / 24.0))
+    f["dow_sin"] = float(np.sin(2 * np.pi * dow / 7.0))
+    f["dow_cos"] = float(np.cos(2 * np.pi * dow / 7.0))
+    f["is_weekend"] = 1 if dow >= 5 else 0
 
     # Telegram NLP Features
     f["tg_msg_count_30m"] = len(active_tg_texts)
@@ -215,16 +310,20 @@ def build_live_feature_vector(
     f["tg_aviation_count_30m"] = aviation_count
     f["tg_resolution_count_30m"] = resolution_count
     f["tg_net_threat_score"] = float(net_threat)
-    f["tg_net_threat_lag30m"] = float(net_threat)
-    f["tg_kyiv_targeted_lag30m"] = effective_kyiv_target
+
+    f["tg_msg_count_lag30m"] = get_lag("msg_count", 1, len(active_tg_texts))
+    f["tg_net_threat_lag30m"] = get_lag("net_threat", 1, float(net_threat))
+    f["tg_kyiv_targeted_lag30m"] = get_lag("kyiv_targeted", 1, effective_kyiv_target)
 
     metadata = {
         "timestamp_utc": now_utc,
         "is_kyiv_active": is_kyiv_active,
-        "raion_active_count": raion_active_count,
-        "adjacent_active_count": sum(1 for v in adj_active if v),
+        "raion_active_count": inner_active_cnt,
+        "adjacent_active_count": adj_active_cnt,
         "national_active_count": national_count,
-        "national_delta": national_count - last_national,
+        "national_delta": national_count - nat_lag30,
+        "raions": {short_r: bool(f[f"raion_{short_r}_active"]) for short_r, _ in raion_keys},
+        "adjacent_regions": {short_a: bool(f[f"adj_{short_a}_active"]) for short_a, _ in adj_keys},
         "telegram_threats": {
             "kyiv_targeted": effective_kyiv_target,
             "shahed": shahed_count,
@@ -289,25 +388,34 @@ def predict_live_risk(
         level = "CRITICAL IMMINENT RISK"
         color = "red"
 
-    # Identify primary explanatory drivers
+    # Identify primary explanatory drivers in both English and Ukrainian
     drivers = []
+    drivers_ua = []
     if meta["is_kyiv_active"]:
         drivers.append("Siren currently active in Kyiv City (continuation probability)")
+        drivers_ua.append("Сирена зараз активна в м. Київ (інерція тривання тривоги)")
     if meta["telegram_threats"]["kyiv_targeted"]:
         drivers.append("Telegram warning: aerial target heading directly towards Kyiv / Brovary")
+        drivers_ua.append("Попередження Telegram: повітряна ціль прямує курсом на Київ / Бровари")
     if meta["raion_active_count"] > 0:
         drivers.append(f"{meta['raion_active_count']} / 7 Inner Ring raions of Kyivska oblast under alert")
+        drivers_ua.append(f"{meta['raion_active_count']} з 7 районів Київської області під тривогою")
     if meta["adjacent_active_count"] > 0:
         drivers.append(f"{meta['adjacent_active_count']} / 5 Adjacent & approach corridors active (Chernihiv/Sumy/Poltava)")
+        drivers_ua.append(f"{meta['adjacent_active_count']} з 5 підльотних коридорів активні (Чернігів/Суми/Полтава)")
     if meta["telegram_threats"]["ballistic"]:
         drivers.append("Ballistic threat active in radar sector")
+        drivers_ua.append("Загроза балістичного озброєння в радіолокаційному секторі")
     if meta["telegram_threats"]["aviation"]:
         drivers.append("Tactical aviation / missile carrier takeoff reported")
+        drivers_ua.append("Зафіксовано зліт тактичної авіації / носіїв ракет")
     if meta["national_delta"] > 2:
         drivers.append(f"Rapid national alert surge (+{meta['national_delta']} oblasts in 30m)")
+        drivers_ua.append(f"Швидке наростання тривог по країні (+{meta['national_delta']} областей за 30 хв)")
 
     if not drivers:
         drivers.append("Calm airspace: no approaching threats detected across all 4 spatial tiers")
+        drivers_ua.append("Спокійний простір: наближення загроз не виявлено в усіх 4 просторових ешелонах")
 
     return {
         "threat_index_pct": threat_pct,
@@ -323,6 +431,7 @@ def predict_live_risk(
         "odds_weight": odds_weight,
         "metadata": meta,
         "top_drivers": drivers,
+        "top_drivers_ua": drivers_ua,
     }
 
 

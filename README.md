@@ -89,11 +89,19 @@ In long-term datasets, Kyiv is under alert approximately 5% of all 30-minute int
 While a 5x increase represents extreme danger, users often perceive "20%" as a "low chance." To preserve statistical integrity while providing clear operational guidance, SirenCast UA computes:
 
 1. **Calibrated Operational Threat Score ($P_{\text{calibrated}}$)**:
-   $$\text{Odds}_{\text{raw}} = \frac{P_{\text{raw}}}{1 - P_{\text{raw}}}, \quad \text{Odds}_{\text{calibrated}} = w \cdot \text{Odds}_{\text{raw}}, \quad P_{\text{calibrated}} = \frac{\text{Odds}_{\text{calibrated}}}{1 + \text{Odds}_{\text{calibrated}}}$$
-   Using $w = 5.0$, a $20\%$ raw probability maps to an intuitive $\sim 56\%$ operational threat level.
+
+   $$P_{\text{calibrated}} = \frac{w \cdot P_{\text{raw}}}{1 + (w - 1) P_{\text{raw}}} = \frac{\text{Odds}_{\text{calibrated}}}{1 + \text{Odds}_{\text{calibrated}}}$$
+
+   where:
+   $$\text{Odds}_{\text{raw}} = \frac{P_{\text{raw}}}{1 - P_{\text{raw}}}, \quad \text{Odds}_{\text{calibrated}} = w \cdot \text{Odds}_{\text{raw}}$$
+   Using $w = 5.0$, a $20\%$ raw probability maps to an intuitive $\sim 56\%$ operational threat level while strictly preserving monotonicity.
+
 2. **Hazard Multiplier ($\times$ quiet baseline)**:
-   $$M = \frac{P_{\text{raw}}}{P_{\text{baseline}}} \quad (P_{\text{baseline}} = 0.035)$$
+
+   $$M = \frac{P_{\text{raw}}}{P_{\text{baseline}}} \quad (P_{\text{baseline}} \approx 0.018 - 0.035)$$
+
    Directly communicates risk surge (e.g., *"🔥 Risk is 6.5x higher than quiet baseline"*).
+
 3. **Raw Statistical Probability ($P_{\text{raw}}$)**:
    Fully accessible alongside the calibrated score for technical audits and verification.
 
@@ -160,7 +168,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run Comprehensive Test Suite (36 Tests)
+### 2. Run Comprehensive Test Suite (38 Tests)
 ```bash
 python run_experiment.py --test
 ```
@@ -184,6 +192,14 @@ python run_experiment.py --phase 4    # Multimodal Telegram NLP fusion
 For detailed mathematical formulations, client-side rate limit specifications, and feature schemas, see:
 * [**docs/specs.md**](docs/specs.md) — Comprehensive System Architecture & Technical Specifications.
 * [**reports/specs.md**](reports/specs.md) — Specification report copy.
+
+---
+
+## 🙏 Acknowledgments & Data Sources
+
+* **Historical Air Raid Sirens Dataset (2022–2026)**: Special thanks to [Vadimkin/ukrainian-air-raid-sirens-dataset](https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset) for collecting, structuring, and maintaining the open historical dataset of Ukrainian air raid alerts.
+* **Live Sirens API**: Real-time alerts telemetry provided via [Ubilling Sirens API](https://ubilling.net.ua/aerialalerts/).
+* **Open Source OSINT Feeds**: Real-time tactical trajectory and air defense alerts synthesized from the Air Force of the Armed Forces of Ukraine (`@kpszsu`) and regional monitoring channels (`@war_monitor`).
 
 ---
 

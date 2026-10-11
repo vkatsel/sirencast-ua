@@ -41,6 +41,8 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.cache_live_alerts.json
+data/.cache_live_alerts.json
 nosetests.xml
 coverage.xml
 *.cover

@@ -15,8 +15,11 @@ from typing import Dict, List, Optional, Tuple
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
+from src.config import DATA_DIR
+
 UBILLING_API_URL = "https://ubilling.net.ua/aerialalerts/?raw"
 CACHE_TTL_SECONDS = 6.0  # Safe TTL > 0.5s to strictly respect 2 RPS limit
+DISK_CACHE_FILE = DATA_DIR / ".cache_live_alerts.json"
 
 # Thread-safe in-memory cache
 _alert_cache: Dict = {"timestamp": 0.0, "data": None}
@@ -64,17 +67,47 @@ RAION_MAPPING = {
 }
 
 
+def _load_disk_cache() -> Optional[dict]:
+    if DISK_CACHE_FILE.exists():
+        try:
+            mtime = DISK_CACHE_FILE.stat().st_mtime
+            with open(DISK_CACHE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            return {"timestamp": mtime, "data": data}
+        except Exception:
+            pass
+    return None
+
+
+def _save_disk_cache(data: dict):
+    try:
+        DISK_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(DISK_CACHE_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+    except Exception as e:
+        logger.debug(f"Could not persist disk cache: {e}")
+
+
 def fetch_live_alerts_raw(timeout: int = 5) -> dict:
     """
-    Fetches raw alerts from Ubilling API with an in-memory TTL cache
-    to strictly adhere to the 2 RPS rate limit.
+    Fetches raw alerts from Ubilling API with an in-memory and on-disk TTL cache
+    to strictly adhere to the 2 RPS rate limit and prevent HTTP 429 across processes.
     """
     global _alert_cache
     now = time.time()
 
-    # Return cached data if within TTL
+    # Check in-memory cache
     if _alert_cache["data"] is not None and (now - _alert_cache["timestamp"]) < CACHE_TTL_SECONDS:
         return _alert_cache["data"]
+
+    # Check on-disk cache if in-memory is cold
+    if _alert_cache["data"] is None:
+        disk_cached = _load_disk_cache()
+        if disk_cached is not None:
+            _alert_cache["timestamp"] = disk_cached["timestamp"]
+            _alert_cache["data"] = disk_cached["data"]
+            if (now - disk_cached["timestamp"]) < CACHE_TTL_SECONDS:
+                return disk_cached["data"]
 
     req = urllib.request.Request(
         UBILLING_API_URL,
@@ -86,12 +119,20 @@ def fetch_live_alerts_raw(timeout: int = 5) -> dict:
             data = json.loads(resp.read().decode("utf-8"))
             _alert_cache["timestamp"] = now
             _alert_cache["data"] = data
+            _save_disk_cache(data)
             return data
     except Exception as e:
         logger.warning(f"Failed to fetch live alerts from {UBILLING_API_URL}: {e}")
+        # If in-memory or on-disk cache exists, serve stale cache gracefully
         if _alert_cache["data"] is not None:
             logger.info("Serving stale cached alerts as fallback.")
             return _alert_cache["data"]
+        disk_cached = _load_disk_cache()
+        if disk_cached is not None:
+            logger.info("Serving stale on-disk cached alerts as fallback.")
+            _alert_cache["timestamp"] = disk_cached["timestamp"]
+            _alert_cache["data"] = disk_cached["data"]
+            return disk_cached["data"]
         # Fallback to simulated quiescent state
         return {"source": "simulated", "raw": {}}
 
@@ -146,6 +187,20 @@ def parse_live_siren_states() -> Dict[str, dict]:
         for r in kyiv_raions_status:
             kyiv_raions_status[r] = True
 
+    # Parse Kyiv changed timestamp if available
+    kyiv_raw = raw.get("м. Київ", {})
+    kyiv_changed_at = None
+    changed_str = kyiv_raw.get("changed") or kyiv_raw.get("enabled_at") or kyiv_raw.get("disabled_at")
+    if changed_str:
+        try:
+            # Handles standard SQL format "YYYY-MM-DD HH:MM:SS" or ISO
+            parsed_ch = datetime.fromisoformat(str(changed_str).replace("Z", "+00:00"))
+            if parsed_ch.tzinfo is None:
+                parsed_ch = parsed_ch.replace(tzinfo=timezone.utc)
+            kyiv_changed_at = parsed_ch
+        except Exception:
+            pass
+
     national_active = sum(1 for v in regions_status.values() if v)
 
     return {
@@ -153,6 +208,7 @@ def parse_live_siren_states() -> Dict[str, dict]:
         "kyiv_raions": kyiv_raions_status,
         "timestamp_utc": now_utc,
         "national_active_count": national_active,
+        "kyiv_changed_at": kyiv_changed_at,
     }
 
 

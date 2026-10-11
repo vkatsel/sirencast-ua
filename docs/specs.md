@@ -37,7 +37,7 @@ flowchart TD
     end
 
     subgraph Presentation ["Presentation Layer (The Trifecta)"]
-        WEB["Web Dashboard\n(FastAPI + Single-Page 2x2 UI)"]
+        WEB["Web Dashboard\n(Lightweight HTTP Server + Single-Page 2x2 UI)"]
         CLI["Rich Terminal CLI\n(live_forecast.py)"]
         NB["Jupyter Notebook\n(demo.ipynb What-If Scenarios)"]
     end
@@ -52,7 +52,7 @@ flowchart TD
 ### 2.1 State Alert API (`Ubilling`)
 - **Endpoint**: Official JSON alert status feed for all oblasts and Kyiv raions.
 - **Client-Side Rate Limiter**: 
-  - Token-bucket / cooldown limiting: maximum **2 requests per second**, minimum **5-second TTL cache** to eliminate hammering and respect third-party server quotas.
+  - Token-bucket / cooldown limiting: maximum **2 requests per second**, minimum **6-second TTL cache** (in-memory and on-disk fallback) to eliminate hammering and respect third-party server quotas.
   - Graceful fallback: cached state retention with offline mock generation for development and disconnected CI/CD test environments.
 
 ### 2.2 Tactical Telegram OSINT Feeds
@@ -78,7 +78,7 @@ Because air raid alerts in Ukraine propagate along specific threat axes (ballist
 
 ## 4. Feature Engineering
 
-The feature vector $\mathbf{x} \in \mathbb{R}^{D}$ combines 24 structured features across three distinct modalities:
+The feature vector $\mathbf{x} \in \mathbb{R}^{85}$ combines 85 structured features across three distinct modalities:
 
 ### 4.1 Spatial Indicators
 - `tier1_ratio`: Fraction of active Kyivska oblast raions ($0.0 \dots 1.0$).
@@ -151,7 +151,7 @@ To resolve this without corrupting statistical rigor, the system provides two di
 
 2. **Hazard Multiplier ($\times$ quiet baseline)**:
    $$M = \frac{P_{\text{raw}}}{P_{\text{baseline}}}$$
-   where $P_{\text{baseline}} = 0.035$ (empirical quiet sky risk).
+   where $P_{\text{baseline}} = 0.018$ (empirical quiet sky risk).
    *Interpretation*: A straightforward, intuitive fold-change metric (e.g., *"Risk is 6.5x higher than quiet baseline"*).
 
 3. **Raw Statistical Probability ($P_{\text{raw}}$)**:

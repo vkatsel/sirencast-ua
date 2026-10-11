@@ -2,8 +2,6 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![KSE AI School](https://img.shields.io/badge/KSE-Agentic%20AI%20School-red.svg)](https://kse.ua/)
-[![Tests: 27 Passing](https://img.shields.io/badge/tests-27%20passing-brightgreen.svg)](tests/)
 [![Specs](https://img.shields.io/badge/docs-System%20Specs-blue.svg)](docs/specs.md)
 
 **SirenCast UA** is an end-to-end machine learning system that forecasts air raid alert probabilities for **Kyiv City** on a 30-minute operational horizon ($[t, t + 30\text{min}]$).
@@ -14,17 +12,18 @@ The system integrates **4-tier spatial radar telemetry** across 25 Ukrainian obl
 
 ## 🎯 Benchmark Summary
 
-Evaluated under expanding-window **Walk-Forward temporal splits** across 2026 (**Fold 1:** Jan–Mar, **Fold 2:** Apr–Jun, **Fold 3:** Jul–Sep) with strict causal hygiene ($t_{\text{input}} < t$):
+Evaluated under expanding-window **Walk-Forward temporal splits** across 2026 (**Fold 1:** Jan–Mar, **Fold 2:** Apr–Jun, **Fold 3:** Jul–Sep) with exponential time-decay ($T_{\text{half}} = 270\text{d}$) and strict causal hygiene ($t_{\text{input}} < t$):
 
 | Model Architecture | Input Modalities | 2026 Mean ROC-AUC | 2026 Mean PR-AUC | Brier Score (Calibration) |
 | :--- | :--- | :---: | :---: | :---: |
 | **Heuristic Baseline** | Kyivska Ring active siren rule | 0.7663 | 0.2208 | 0.1792 |
-| **Logistic Regression** | L2 Regularized Spatial Lag Features | 0.8992 | 0.8039 | 0.0847 |
-| **LightGBM V1** | 77 Causal Spatial Radar Features | **0.9021** | **0.8000** | **0.0339** |
-| **LightGBM V2 (Multimodal)** | Spatial Radar + Telegram Threat NLP | **0.9037** | **0.8015** | **0.0339** |
+| **Logistic Regression** | L2 Regularized Spatial Lag Features | 0.8990 | 0.8028 | 0.0684 |
+| **LightGBM V1** | 74 Causal Spatial Radar Features | **0.8995** | **0.7998** | **0.0338** |
+| **LightGBM V2 (Multimodal)** | Spatial Radar + Telegram Threat NLP | **0.9011** | **0.8019** | **0.0336** |
 
-* On **Fold 1 (Winter 2026 missile/drone campaign)**, Multimodal V2 achieved an Active Alert ROC-AUC of **0.9167** and PR-AUC of **0.8255**.
-* On **Alert Onset Prediction** (forecasting the exact moment a silent city enters an alert), text signals increased PR-AUC by **+21.4%**, as strategic takeoffs (MiG-31K, Tu-95MS) and Shahed vectors are broadcast minutes before sirens physically sound in Kyiv.
+### 🔍 Dual-Horizon Operational Formulation
+1. **Task A: Quiet Sky Early Warning (Alert Onset)**: When skies in Kyiv are calm ($y_t = 0$), forecasting an alert onset in $[t, t+30\text{m}]$. Under heavy class imbalance (~3.3% empirical alert incidence), Multimodal LightGBM achieves a PR-AUC of **0.1724** (Fold 1) vs a no-skill baseline of **0.033** (**5.2x lift over random guessing**), with Recall reaching 84%+ at threshold 0.15 on Logistic Regression and ~22% high-precision on LightGBM.
+2. **Task B: Active Airspace Persistence**: When sirens are already active, forecasting strike salvo duration and airspace continuation, achieving **0.9127 ROC-AUC** and **0.8237 PR-AUC**.
 
 ---
 

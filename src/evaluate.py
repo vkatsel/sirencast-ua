@@ -31,6 +31,7 @@ from src.models import (
     HeuristicCivilDefenseModel,
     create_lightgbm_model,
     create_logistic_baseline,
+    compute_time_decay_weights,
 )
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
@@ -64,7 +65,8 @@ def run_walk_forward_evaluation(
     figures_dir: Path = FIGURES_DIR,
 ) -> Tuple[pd.DataFrame, Dict]:
     """
-    Runs Walk-Forward expanding-window cross validation across 2026 folds.
+    Runs Walk-Forward expanding-window cross validation across 2026 folds
+    with exponential time-decay sample weighting (T_half = 270 days).
     Folds:
     - Fold 1: Train 2023..2025, Test 2026 Q1 (Jan - Mar 2026)
     - Fold 2: Train 2023..2026-03, Test 2026 Q2 (Apr - Jun 2026)
@@ -102,6 +104,10 @@ def run_walk_forward_evaluation(
         y_test = df.loc[test_mask, target_col]
         cached_y_true.append(y_test.values)
 
+        train_weights = compute_time_decay_weights(
+            df.loc[train_mask, "timestamp"], half_life_days=270.0
+        )
+
         logger.info(f"Train samples: {len(y_train):,} (positive: {y_train.sum():,})")
         logger.info(f"Test samples:  {len(y_test):,} (positive: {y_test.sum():,})")
 
@@ -109,7 +115,13 @@ def run_walk_forward_evaluation(
             X_train = df.loc[train_mask, feat_cols]
             X_test = df.loc[test_mask, feat_cols]
 
-            model.fit(X_train, y_train)
+            if m_name == "Logistic Regression":
+                model.fit(X_train, y_train, clf__sample_weight=train_weights)
+            elif m_name.startswith("LightGBM"):
+                model.fit(X_train, y_train, sample_weight=train_weights)
+            else:
+                model.fit(X_train, y_train)
+
             probs = model.predict_proba(X_test)[:, 1]
             cached_predictions[m_name].append(probs)
 
@@ -125,6 +137,18 @@ def run_walk_forward_evaluation(
                 f"Brier: {metrics['brier_score']:.4f} | "
                 f"F1: {metrics['f1']:.4f}"
             )
+
+            # Quiet sky onset metrics (Early Warning evaluation: kyiv_is_active == 0)
+            calm_test_mask = (df.loc[test_mask, "kyiv_is_active"] == 0).values
+            if calm_test_mask.sum() > 0 and target_col == "target_kyiv_active_30m":
+                y_onset_calm = df.loc[test_mask, "target_kyiv_start_30m"].values[calm_test_mask]
+                probs_calm = probs[calm_test_mask]
+                onset_metrics = compute_metrics(y_onset_calm, probs_calm, threshold=0.15)
+                logger.info(
+                    f"   ↳ [Quiet Sky Onset] ROC-AUC: {onset_metrics['roc_auc']:.4f} | "
+                    f"PR-AUC: {onset_metrics['pr_auc']:.4f} (baseline: {y_onset_calm.mean():.3f}) | "
+                    f"Recall@0.15: {onset_metrics['recall']:.2%}"
+                )
 
     results_df = pd.DataFrame(records)
 

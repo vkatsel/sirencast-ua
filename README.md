@@ -160,7 +160,7 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Run Comprehensive Test Suite (27 Tests)
+### 2. Run Comprehensive Test Suite (36 Tests)
 ```bash
 python run_experiment.py --test
 ```

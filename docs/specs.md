@@ -184,7 +184,7 @@ The system delivers real-time forecasts across three native interfaces:
 
 ## 8. Verification & Quality Assurance
 
-- **Test Suite**: 27 automated unit and integration tests (`tests/test_live.py`, `tests/test_models.py`, `tests/test_pipeline.py`).
+- **Test Suite**: 36 automated unit and integration tests (`tests/test_business_logic.py`, `tests/test_web.py`, `tests/test_live.py`, `tests/test_models.py`, `tests/test_data_loader.py`, `tests/test_features_causality.py`, `tests/test_features_text.py`).
 - **Code Coverage**:
   - Rate limiting & cache TTL behavior.
   - Text normalization and case-insensitive regex parsing.

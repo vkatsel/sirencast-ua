@@ -94,12 +94,13 @@ The feature vector $\mathbf{x} \in \mathbb{R}^{85}$ combines 85 structured featu
 - `is_weekend`: Binary flag for weekend pacing.
 
 ### 4.3 Text Urgency & Threat Classification (NLP)
-Extracted via high-precision compiled regular expressions with Ukrainian case inflection support:
+Extracted via high-precision compiled regular expressions with Ukrainian case inflection and suburban gateway coverage:
 - `ballistic_flag`: Mentions of ballistic/hypersonic threats (`балісти[кч]`, `іскандер`, `кинджал`, `циркон`, `с-300`, `с-400`).
 - `aviation_flag`: Strategic aviation takeoffs (`ту-95`, `ту-22`, `міг-31`, `борт`, `зліт`).
 - `shahed_flag`: Loitering munition waves (`шахед`, `бпла`, `безпілотник`, `мопед`, `герань`).
-- `kyiv_targeted_flag`: Explicit vector towards the capital (`на київ`, `у напрямку києва`, `повз бровари`, `київщина`, `біла церква`).
+- `kyiv_targeted_flag`: Explicit vector towards the capital or inner ring suburban gateways (`на київ`, `у напрямку києва`, `вектор обухів`, `в напрямку козин`, `з обухова в київ`, `бровари`, `васильків`, `бориспіль`, `вишгород`, `фастів`, `біла церква`, `ірпінь`, `буча`).
 - `threat_severity_score`: Ordinal composite scale ($0 \dots 3$) aggregating weapon class, volume, and trajectory.
+- **Cross-Channel 90-Second Deduplication**: Sliding 90-second semantic token Jaccard window suppresses multi-channel redundant reporting of the same flight group while preserving distinct directional vectors and new sequential attack waves.
 
 ---
 
@@ -184,11 +185,11 @@ The system delivers real-time forecasts across three native interfaces:
 
 ## 8. Verification & Quality Assurance
 
-- **Test Suite**: 36 automated unit and integration tests (`tests/test_business_logic.py`, `tests/test_web.py`, `tests/test_live.py`, `tests/test_models.py`, `tests/test_data_loader.py`, `tests/test_features_causality.py`, `tests/test_features_text.py`).
+- **Test Suite**: 38 automated unit and integration tests (`tests/test_business_logic.py`, `tests/test_web.py`, `tests/test_live.py`, `tests/test_models.py`, `tests/test_data_loader.py`, `tests/test_features_causality.py`, `tests/test_features_text.py`).
 - **Code Coverage**:
   - Rate limiting & cache TTL behavior.
-  - Text normalization and case-insensitive regex parsing.
-  - Spatial radar feature computation and raion aggregation.
+  - Text normalization, 90s cross-channel deduplication, and suburban gateway regex parsing.
+  - Spatial radar feature computation, individual raion state integrity, and corridor tracking.
   - Exponential time-decay weight decay slopes.
   - Bayesian odds calibration boundaries ($P \to 0 \implies 0$, $P \to 1 \implies 1$).
   - Web API endpoints and JSON serialization of NumPy/Pandas primitives.

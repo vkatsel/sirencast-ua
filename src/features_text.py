@@ -26,10 +26,27 @@ from src.features_ts import get_feature_dataset
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
+# Comprehensive regex pattern covering all 7 raions and approach gateways to Kyiv
+P_KYIV_GATEWAYS = (
+    r"(?:київ|київщин[а-я]*|бровар[а-я]*|бориспіл[а-я]*|васильків[а-я]*|обухів[а-я]*|"
+    r"буч[а-я]*|ірпін[а-я]*|вишгород[а-я]*|фастів[а-я]*|біл[ао]ї?\s+церкв[а-я]*|козин[а-я]*|"
+    r"вишеньк[а-я]*|ходосівк[а-я]*|боярк[а-я]*|вишнев[а-я]*|гостомел[а-я]*|димер[а-я]*|"
+    r"макар[а-я]*|бородянк[а-я]*|переяслав[а-я]*|яготин[а-я]*|березан[а-я]*)"
+)
+
 # Precompiled regex patterns for threat and resolution signals (Cyrillic-safe without ASCII \b)
 RE_KYIV_TARGETED = re.compile(
-    r"(?:курс(?:ом)?|напрям(?:ок|ку)?|вектор(?:ом)?|летить|летять|пряму[єе]ть?|рух(?:ом)?|зах[іі]д|заходять|заходить|повз|ціль|цілі|швидкісна|ракета|ракети)\s+(?:на\s+|у\s+|через\s+|до\s+)?(?:київ|київщин|бровар|васильків|бориспіль|вишгород|буч|ірпін|вишеньки|позняк)"
-    r"|(?:київ|київщина|бровари|васильків|бориспіль|вишгород|буча)\s*[-:—–]?\s*(?:увага|загроза|ракета|бпла|шахед|тривога|укриття|в\s+укриття)",
+    r"(?:курс(?:ом)?|напрям(?:ок|ку)?|вектор(?:ом)?|летить|летять|пряму[єе]ть?|рух(?:ом)?|зах[іі]д|"
+    r"заходять|заходить|повз|підліт|підліта[єе]ть?|швидкісна|ракета|ракети|бпла|шахед|дрон)\s+"
+    r"(?:на\s+|у\s+|через\s+|до\s+|у\s+бік\s+|в\s+бік\s+|в\s+напрямку\s+)?(?:н\.?п\.?\s*)?(?:[а-яіїєґ\-]+\s+)?"
+    + P_KYIV_GATEWAYS
+    + r"|(?:з|від)\s+[а-яіїєґ\-]+\s+(?:в|на|у|до|у\s+бік|в\s+бік|в\s+напрямку)\s+"
+    + P_KYIV_GATEWAYS
+    + r"|вектор\s+(?:н\.?п\.?\s*)?"
+    + P_KYIV_GATEWAYS
+    + r"|"
+    + P_KYIV_GATEWAYS
+    + r"\s*[-:—–]?\s*(?:увага|загроза|ракета|бпла|шахед|дрон|тривога|укриття|в\s+укриття)",
     re.IGNORECASE,
 )
 
@@ -42,6 +59,59 @@ RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)"
 RE_MISSILE = re.compile(r"(?:ракета|крилат|х-101|х-555|х-22|х-59|калібр|пуск|залп)", re.IGNORECASE)
 RE_BALLISTIC = re.compile(r"(?:балісти[кч]|іскандер|с-300|с-400|бєлгород|курськ)", re.IGNORECASE)
 RE_AVIATION = re.compile(r"(?:ту-95|ту-22|ту-160|міг-31|кинджал|оленья|енгельс|саваслейк)", re.IGNORECASE)
+
+
+def normalize_text_tokens(text: str) -> set:
+    """Extracts lowercased alphanumeric words (min length 3) for semantic matching."""
+    return set(re.findall(r"[a-zа-яіїєґ0-9]{3,}", text.lower()))
+
+
+def is_duplicate_message(msg_a: str, msg_b: str, jaccard_threshold: float = 0.45) -> bool:
+    """Returns True if two messages share significant semantic vocabulary (Jaccard similarity >= threshold)."""
+    tokens_a = normalize_text_tokens(msg_a)
+    tokens_b = normalize_text_tokens(msg_b)
+    if not tokens_a or not tokens_b:
+        return False
+    intersection = tokens_a.intersection(tokens_b)
+    union = tokens_a.union(tokens_b)
+    return (len(intersection) / len(union)) >= jaccard_threshold
+
+
+def deduplicate_messages(messages: List[dict], window_seconds: int = 90) -> List[dict]:
+    """
+    Suppresses cross-channel duplicate threat messages occurring within a tight window (default 90s).
+    Preserves distinct geographic targets and chronological threat wave escalations.
+    """
+    if not messages:
+        return []
+
+    # Sort chronologically by timestamp
+    sorted_msgs = sorted(messages, key=lambda m: m.get("unixtime", m.get("age_minutes", 0) * -60.0))
+    deduped = []
+
+    for msg in sorted_msgs:
+        t_curr = msg.get("unixtime", 0)
+        if not t_curr and "age_minutes" in msg:
+            t_curr = -msg["age_minutes"] * 60.0
+
+        txt_curr = msg.get("text", "")
+        is_dup = False
+        for kept in reversed(deduped):
+            t_prev = kept.get("unixtime", 0)
+            if not t_prev and "age_minutes" in kept:
+                t_prev = -kept["age_minutes"] * 60.0
+
+            if abs(t_curr - t_prev) > window_seconds:
+                break
+
+            if is_duplicate_message(txt_curr, kept.get("text", "")):
+                is_dup = True
+                break
+
+        if not is_dup:
+            deduped.append(msg)
+
+    return deduped
 
 
 def extract_plain_text(raw_text) -> str:

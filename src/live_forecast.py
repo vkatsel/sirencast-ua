@@ -20,6 +20,7 @@ from src.features_text import (
     RE_MISSILE,
     RE_RESOLUTION,
     RE_SHAHED,
+    deduplicate_messages,
     get_multimodal_dataset,
 )
 from src.live_data import parse_live_siren_states, fetch_live_telegram_stream
@@ -127,9 +128,14 @@ def build_live_feature_vector(
     else:
         tg_msgs = fetch_live_telegram_stream()
         active_msgs = [m for m in tg_msgs if m.get("is_active", False)]
-        active_tg_texts = [m["text"] for m in active_msgs]
 
-        display_msgs = active_msgs if active_msgs else tg_msgs[-5:]
+        # Deduplicate active cross-channel threat warnings within a 90-second window
+        deduped_active = deduplicate_messages(active_msgs, window_seconds=90)
+        active_tg_texts = [m["text"] for m in deduped_active]
+
+        # Prioritize freshest intelligence first (lowest age_minutes) for the user display
+        display_candidates = deduped_active if deduped_active else tg_msgs
+        display_msgs = sorted(display_candidates, key=lambda m: m.get("age_minutes", 999.0))
         formatted_samples = [
             {
                 "channel": m.get("channel", "telegram"),

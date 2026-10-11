@@ -98,6 +98,14 @@ class TestLiveModule(unittest.TestCase):
         self.assertIn("risk_level", res)
         self.assertIn("risk_color", res)
         self.assertIn("top_drivers", res)
+        self.assertIn("top_drivers_ua", res)
+        self.assertEqual(len(res["top_drivers"]), len(res["top_drivers_ua"]))
+
+        # Spatial telemetry dictionary integrity
+        self.assertIn("raions", res["metadata"])
+        self.assertIn("adjacent_regions", res["metadata"])
+        self.assertEqual(len(res["metadata"]["raions"]), 7)
+        self.assertEqual(len(res["metadata"]["adjacent_regions"]), 5)
 
         pct = res["probability_pct"]
         self.assertGreaterEqual(pct, 0.0)

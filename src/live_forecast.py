@@ -316,6 +316,8 @@ def build_live_feature_vector(
         "adjacent_active_count": adj_active_cnt,
         "national_active_count": national_count,
         "national_delta": national_count - nat_lag30,
+        "raions": {short_r: bool(f[f"raion_{short_r}_active"]) for short_r, _ in raion_keys},
+        "adjacent_regions": {short_a: bool(f[f"adj_{short_a}_active"]) for short_a, _ in adj_keys},
         "telegram_threats": {
             "kyiv_targeted": effective_kyiv_target,
             "shahed": shahed_count,
@@ -380,25 +382,34 @@ def predict_live_risk(
         level = "CRITICAL IMMINENT RISK"
         color = "red"
 
-    # Identify primary explanatory drivers
+    # Identify primary explanatory drivers in both English and Ukrainian
     drivers = []
+    drivers_ua = []
     if meta["is_kyiv_active"]:
         drivers.append("Siren currently active in Kyiv City (continuation probability)")
+        drivers_ua.append("Сирена зараз активна в м. Київ (інерція тривання тривоги)")
     if meta["telegram_threats"]["kyiv_targeted"]:
         drivers.append("Telegram warning: aerial target heading directly towards Kyiv / Brovary")
+        drivers_ua.append("Попередження Telegram: повітряна ціль прямує курсом на Київ / Бровари")
     if meta["raion_active_count"] > 0:
         drivers.append(f"{meta['raion_active_count']} / 7 Inner Ring raions of Kyivska oblast under alert")
+        drivers_ua.append(f"{meta['raion_active_count']} з 7 районів Київської області під тривогою")
     if meta["adjacent_active_count"] > 0:
         drivers.append(f"{meta['adjacent_active_count']} / 5 Adjacent & approach corridors active (Chernihiv/Sumy/Poltava)")
+        drivers_ua.append(f"{meta['adjacent_active_count']} з 5 підльотних коридорів активні (Чернігів/Суми/Полтава)")
     if meta["telegram_threats"]["ballistic"]:
         drivers.append("Ballistic threat active in radar sector")
+        drivers_ua.append("Загроза балістичного озброєння в радіолокаційному секторі")
     if meta["telegram_threats"]["aviation"]:
         drivers.append("Tactical aviation / missile carrier takeoff reported")
+        drivers_ua.append("Зафіксовано зліт тактичної авіації / носіїв ракет")
     if meta["national_delta"] > 2:
         drivers.append(f"Rapid national alert surge (+{meta['national_delta']} oblasts in 30m)")
+        drivers_ua.append(f"Швидке наростання тривог по країні (+{meta['national_delta']} областей за 30 хв)")
 
     if not drivers:
         drivers.append("Calm airspace: no approaching threats detected across all 4 spatial tiers")
+        drivers_ua.append("Спокійний простір: наближення загроз не виявлено в усіх 4 просторових ешелонах")
 
     return {
         "threat_index_pct": threat_pct,
@@ -414,6 +425,7 @@ def predict_live_risk(
         "odds_weight": odds_weight,
         "metadata": meta,
         "top_drivers": drivers,
+        "top_drivers_ua": drivers_ua,
     }
 
 

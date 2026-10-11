@@ -165,12 +165,12 @@ The system delivers real-time forecasts across three native interfaces:
 
 ### 7.1 Web Dashboard (`web/index.html` + `src/web.py`)
 - **Single-Page 2x2 Viewport Layout**: Tailored for emergency monitors and operations displays without requiring vertical page scrolling on standard 1080p displays.
-- **Bilingual Interface**: Seamless instant toggle between English (`EN`) and Ukrainian (`UA`) without reloading the page.
+- **Native Ukrainian & Bilingual Interface**: Defaults to Ukrainian (`UA`) with persistent client-side language switching (`EN`/`UA`), fully localized categorical risk levels, drivers, and feed timing.
 - **Reactive Components**:
   - **Hero Gauge**: Displays primary threat status, calibrated operational score, raw probability, and dynamic hazard badge.
-  - **Threat Radar**: Live visual cards for Tier 1 Inner Ring, Tier 2 Approach Corridors, Tier 3 Flanks, and Tier 4 National Surge.
-  - **AI Explanation & Decision Drivers**: Natural language breakdown of contributing factors (e.g., *"High national alert surge (68.0%)"*, *"Tactical mentions of ballistic weapons"*).
-  - **Recent Early Warnings Feed**: Real-time Telegram OSINT cards with severity flags and timestamps.
+  - **Spatial Radar**: Live visual cards for Tier 0 (Kyiv City), Tier 1 (7 Kyivska oblast raions with exact per-raion alert chips matching active counts), Tier 2 (5 approach corridors with individual status chips), and Tier 4 (National surge count & wave speed).
+  - **AI Explanation & Decision Drivers**: Dual-language natural language breakdown of contributing factors (`top_drivers` / `top_drivers_ua`).
+  - **Recent Early Warnings Feed**: Real-time Telegram OSINT cards with severity flags, relative timestamps, and active channel tags.
 
 ### 7.2 Terminal Command Line Interface (`src/live_forecast.py`)
 - **Rich-formatted Terminal Dashboard**: Built with the Python `rich` library.

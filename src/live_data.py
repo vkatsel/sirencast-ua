@@ -156,10 +156,16 @@ def parse_live_siren_states() -> Dict[str, dict]:
     }
 
 
-def fetch_live_telegram_channel(channel_handle: str, limit: int = 15, timeout: int = 5) -> List[dict]:
+def fetch_live_telegram_channel(
+    channel_handle: str,
+    limit: int = 20,
+    max_age_minutes: float = 45.0,
+    timeout: int = 5,
+) -> List[dict]:
     """
     Scrapes recent messages from public Telegram web preview (https://t.me/s/<channel>).
-    Zero tokens, zero setup, completely open.
+    Strictly associates each text with its own timestamp and marks whether it is an active threat
+    (published within max_age_minutes of current UTC time).
     """
     url = f"https://t.me/s/{channel_handle}"
     req = urllib.request.Request(
@@ -172,37 +178,51 @@ def fetch_live_telegram_channel(channel_handle: str, limit: int = 15, timeout: i
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             content = resp.read().decode("utf-8", errors="ignore")
 
-        # Extract message divs
-        pattern = re.compile(
-            r'<div class="tgme_widget_message_text[^"]*"[^>]*>(.*?)</div>',
-            re.DOTALL,
-        )
-        time_pattern = re.compile(r'<time[^>]*datetime="([^"]+)"', re.IGNORECASE)
+        # Split content into individual message blocks
+        chunks = re.split(r'<div class="tgme_widget_message\s+', content)[1:]
+        now_utc = datetime.now(timezone.utc)
 
-        raw_texts = pattern.findall(content)
-        times = time_pattern.findall(content)
+        for chunk in chunks:
+            time_m = re.search(r'<time[^>]*datetime="([^"]+)"', chunk)
+            text_m = re.search(
+                r'<div class="tgme_widget_message_text[^"]*"[^>]*>(.*?)</div>',
+                chunk,
+                re.DOTALL,
+            )
+            if not time_m or not text_m:
+                continue
 
-        for i, raw_html in enumerate(raw_texts[-limit:]):
-            clean_text = html.unescape(re.sub(r"<[^>]+>", " ", raw_html)).strip()
+            dt_str = time_m.group(1)
+            try:
+                dt = datetime.fromisoformat(dt_str)
+                age_min = (now_utc - dt).total_seconds() / 60.0
+            except Exception:
+                dt = now_utc
+                age_min = 0.0
+
+            clean_text = html.unescape(re.sub(r"<[^>]+>", " ", text_m.group(1))).strip()
             clean_text = re.sub(r"\s+", " ", clean_text)
             if not clean_text:
                 continue
 
-            msg_time = times[i] if i < len(times) else None
             messages.append({
                 "channel": channel_handle,
                 "text": clean_text,
-                "datetime_iso": msg_time,
+                "datetime_iso": dt.isoformat(),
+                "age_minutes": round(age_min, 1),
+                "is_active": age_min <= max_age_minutes,
             })
     except Exception as e:
         logger.warning(f"Could not scrape telegram channel @{channel_handle}: {e}")
 
-    return messages
+    # Return the most recent messages up to limit
+    return messages[-limit:]
 
 
-def fetch_live_telegram_stream() -> List[dict]:
+def fetch_live_telegram_stream(max_age_minutes: float = 45.0) -> List[dict]:
     """
     Combines live telegram messages from @war_monitor and @kpszsu with 10s caching.
+    Sorts all messages by publication timestamp so the latest events are always evaluated first.
     """
     global _telegram_cache
     now = time.time()
@@ -211,8 +231,12 @@ def fetch_live_telegram_stream() -> List[dict]:
         return _telegram_cache["data"]
 
     msgs = []
-    msgs.extend(fetch_live_telegram_channel("war_monitor", limit=10))
-    msgs.extend(fetch_live_telegram_channel("kpszsu", limit=10))
+    # Scrape both official military and volunteer monitor channels
+    msgs.extend(fetch_live_telegram_channel("kpszsu", limit=15, max_age_minutes=max_age_minutes))
+    msgs.extend(fetch_live_telegram_channel("war_monitor", limit=15, max_age_minutes=max_age_minutes))
+
+    # Sort chronologically by datetime_iso
+    msgs.sort(key=lambda m: m.get("datetime_iso", ""), reverse=False)
 
     _telegram_cache["timestamp"] = now
     _telegram_cache["data"] = msgs

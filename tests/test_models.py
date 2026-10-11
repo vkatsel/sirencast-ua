@@ -59,6 +59,21 @@ class TestModels(unittest.TestCase):
         self.assertEqual(set(metrics.keys()), expected_keys)
         self.assertGreaterEqual(metrics["roc_auc"], 0.5)
 
+    def test_compute_time_decay_weights(self):
+        """Verify exponential time decay weights calculation, monotonicity and half-life."""
+        from src.models import compute_time_decay_weights
+        dates = pd.date_range("2025-01-01", "2026-01-01", periods=100)
+        w = compute_time_decay_weights(dates, half_life_days=365.0)
+
+        # Most recent sample gets weight 1.0
+        self.assertAlmostEqual(w[-1], 1.0, places=5)
+        # Oldest sample (exactly 365 days ago) gets weight 0.5
+        self.assertAlmostEqual(w[0], 0.5, places=2)
+        # Monotonically increasing towards the present
+        self.assertTrue((np.diff(w) >= 0).all())
+        # All weights in (0, 1]
+        self.assertTrue(((w > 0.0) & (w <= 1.0)).all())
+
 
 if __name__ == "__main__":
     unittest.main()

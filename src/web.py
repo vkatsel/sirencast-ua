@@ -37,7 +37,17 @@ class SirenCastHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
 
     def serve_forecast_api(self):
         try:
-            forecast = predict_live_risk()
+            from urllib.parse import urlparse, parse_qs
+            parsed = urlparse(self.path)
+            qs = parse_qs(parsed.query)
+            odds_weight = 5.0
+            if "w" in qs:
+                try:
+                    odds_weight = float(qs["w"][0])
+                except ValueError:
+                    pass
+
+            forecast = predict_live_risk(odds_weight=odds_weight)
             # Convert timestamp to isoformat string for clean JSON serialization
             if "metadata" in forecast and "timestamp_utc" in forecast["metadata"]:
                 forecast["metadata"]["timestamp_utc"] = forecast["metadata"]["timestamp_utc"].isoformat()

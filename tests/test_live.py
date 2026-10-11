@@ -95,6 +95,35 @@ class TestLiveModule(unittest.TestCase):
         self.assertLessEqual(pct, 100.0)
         self.assertIn(res["risk_level"], ["LOW RISK", "ELEVATED RISK", "HIGH RISK", "CRITICAL IMMINENT RISK"])
 
+        # Multi-dimensional metric contract checks
+        self.assertIn("threat_index_pct", res)
+        self.assertIn("raw_probability_pct", res)
+        self.assertIn("ecdf_percentile", res)
+        self.assertIn("hazard_multiplier", res)
+        self.assertGreaterEqual(res["ecdf_percentile"], 0.0)
+        self.assertLessEqual(res["ecdf_percentile"], 100.0)
+        self.assertGreaterEqual(res["hazard_multiplier"], 1.0)
+
+    def test_calibrate_odds(self):
+        """Verify Bayesian odds calibration behavior and monotonicity."""
+        from src.live_forecast import calibrate_odds
+        # Boundary cases
+        self.assertAlmostEqual(calibrate_odds(0.0), 0.0, delta=1e-3)
+        self.assertAlmostEqual(calibrate_odds(1.0), 1.0, delta=1e-3)
+
+        # Monotonicity
+        p1 = calibrate_odds(0.05, weight=5.0)
+        p2 = calibrate_odds(0.20, weight=5.0)
+        p3 = calibrate_odds(0.50, weight=5.0)
+        self.assertLess(p1, p2)
+        self.assertLess(p2, p3)
+
+        # Higher weight elevates posterior
+        p_w1 = calibrate_odds(0.10, weight=1.0)
+        p_w5 = calibrate_odds(0.10, weight=5.0)
+        self.assertAlmostEqual(p_w1, 0.10, places=4)
+        self.assertGreater(p_w5, p_w1)
+
 
 if __name__ == "__main__":
     unittest.main()

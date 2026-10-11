@@ -29,31 +29,34 @@
             background-color: var(--bg-color);
             color: var(--text-primary);
             min-height: 100vh;
-            padding: 24px;
+            padding: 20px 24px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
+            padding-bottom: 14px;
         }
 
         .title-block h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             letter-spacing: -0.5px;
             color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .badge-live {
@@ -61,7 +64,7 @@
             color: var(--accent-red);
             font-size: 11px;
             font-weight: 700;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 9999px;
             border: 1px solid rgba(239, 68, 68, 0.4);
             animation: pulse 2s infinite;
@@ -75,7 +78,7 @@
         .title-block p {
             color: var(--text-secondary);
             font-size: 13px;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .header-controls {
@@ -84,13 +87,39 @@
             gap: 12px;
         }
 
+        .lang-switch {
+            display: inline-flex;
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 6px;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--accent-blue);
+            color: #ffffff;
+        }
+
         .btn {
             background-color: #1f2937;
             color: #ffffff;
             border: 1px solid #374151;
-            padding: 8px 16px;
+            padding: 7px 14px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -112,17 +141,18 @@
         .status-time {
             color: var(--text-secondary);
             font-size: 12px;
+            font-variant-numeric: tabular-nums;
         }
 
-        .grid {
+        /* 2x2 Balanced Grid (Fits cleanly on 1 page) */
+        .dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 16px;
         }
 
-        @media (max-width: 900px) {
-            .grid {
+        @media (max-width: 960px) {
+            .dashboard-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -131,20 +161,56 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 20px;
+            padding: 18px 22px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 16px;
-            font-size: 14px;
+            margin-bottom: 12px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* Mode Switcher */
+        .mode-toggle {
+            display: inline-flex;
+            background: #0b0f19;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 3px;
+            margin-bottom: 8px;
+            width: 100%;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .mode-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .mode-btn.active {
+            background: var(--accent-blue);
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         /* Gauge Meter */
@@ -153,12 +219,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px 0;
+            padding: 4px 0;
         }
 
         .gauge-svg {
-            width: 200px;
-            height: 120px;
+            width: 210px;
+            height: 115px;
         }
 
         .gauge-bg {
@@ -175,24 +241,26 @@
             stroke-linecap: round;
             stroke-dasharray: 251.2;
             stroke-dashoffset: 251.2;
-            transition: stroke-dashoffset 1s ease, stroke 0.5s ease;
+            transition: stroke-dashoffset 0.8s ease, stroke 0.4s ease;
         }
 
         .gauge-number {
-            font-size: 40px;
+            font-size: 42px;
             font-weight: 800;
             color: #ffffff;
-            margin-top: -10px;
+            margin-top: -14px;
+            letter-spacing: -1px;
         }
 
         .risk-badge {
             display: inline-block;
-            margin-top: 8px;
-            padding: 6px 14px;
+            margin-top: 6px;
+            padding: 5px 14px;
             border-radius: 9999px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .risk-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
@@ -200,247 +268,315 @@
         .risk-orange { background: rgba(249, 115, 22, 0.15); color: var(--accent-orange); border: 1px solid rgba(249, 115, 22, 0.3); }
         .risk-red { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); }
 
+        .hazard-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(249, 115, 22, 0.12);
+            color: var(--accent-orange);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 12px;
+            margin-top: 10px;
+        }
+
+        .mode-description {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
         /* Radar Tiers */
         .tier-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .tier-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 12px;
-            background: #1a2234;
-            border-radius: 6px;
+            padding: 9px 12px;
+            background: #161f33;
+            border-radius: 8px;
             border: 1px solid #283548;
         }
 
         .tier-title {
             font-size: 13px;
             font-weight: 600;
+            color: #ffffff;
         }
 
         .tier-desc {
             font-size: 11px;
             color: var(--text-secondary);
+            margin-top: 1px;
         }
 
         .status-pill {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
         }
 
-        .pill-clear { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
-        .pill-active { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); font-weight: 700; }
+        .pill-clear { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .pill-active { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.4); animation: pulse 1.5s infinite; }
 
         .chip-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 8px;
-            margin-top: 10px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 2px;
+            margin-bottom: 2px;
         }
 
         .chip {
-            background: #1e293b;
-            padding: 6px 10px;
+            background: #0b0f19;
+            border: 1px solid #283548;
+            padding: 5px 8px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #334155;
         }
 
-        .chip.active {
-            background: rgba(239, 68, 68, 0.15);
-            border-color: rgba(239, 68, 68, 0.4);
-            color: #fca5a5;
-        }
-
-        /* Drivers and Telegram */
+        /* Drivers List */
         .driver-list {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 8px;
+            margin-top: 6px;
         }
 
         .driver-item {
             font-size: 13px;
-            line-height: 1.4;
+            color: #e2e8f0;
             display: flex;
             align-items: flex-start;
             gap: 8px;
-            color: #e5e7eb;
+            line-height: 1.4;
+            padding: 8px 12px;
+            background: #161f33;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-blue);
         }
 
         .driver-icon {
             color: var(--accent-blue);
-            margin-top: 2px;
+            font-size: 14px;
+            margin-top: 1px;
         }
 
+        /* Telegram Feed */
         .telegram-stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 14px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
         .stat-box {
-            background: #1e293b;
-            padding: 10px;
+            background: #0b0f19;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            padding: 8px 6px;
             text-align: center;
-            border: 1px solid #334155;
         }
 
         .stat-num {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: #ffffff;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-secondary);
             margin-top: 2px;
+            text-transform: uppercase;
+        }
+
+        .tg-snippets-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 150px;
+            overflow-y: auto;
         }
 
         .tg-snippet {
-            background: #0f172a;
+            background: #0b0f19;
             border-left: 3px solid var(--accent-blue);
-            padding: 8px 12px;
+            padding: 7px 10px;
             border-radius: 0 6px 6px 0;
-            font-size: 12px;
+            font-size: 11px;
             color: #cbd5e1;
-            margin-top: 6px;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
             <div class="title-block">
                 <h1>
-                    <span>SirenCast UA</span>
-                    <span class="badge-live">LIVE TELEMETRY</span>
+                    <span id="txt-title">SirenCast UA</span>
+                    <span id="txt-live-badge" class="badge-live">LIVE TELEMETRY</span>
                 </h1>
-                <p>Real-Time Probabilistic Air Raid Early Warning System for Kyiv City (30m Horizon)</p>
+                <p id="txt-subtitle">30-Minute Probabilistic Air Raid Early Warning Suite for Kyiv City</p>
             </div>
             <div class="header-controls">
+                <div class="lang-switch">
+                    <button id="lang-en-btn" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button id="lang-ua-btn" class="lang-btn" onclick="setLanguage('ua')">UA</button>
+                </div>
                 <span id="update-timer" class="status-time">Auto-refresh: 15s</span>
                 <button id="refresh-btn" class="btn btn-primary" onclick="loadForecast()">Refresh Now</button>
             </div>
         </header>
 
-        <div class="grid">
-            <!-- 1. Probability Gauge -->
+        <!-- Balanced 2x2 Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- 1. Air Raid Probability Core -->
             <div class="card">
-                <div class="card-header">
-                    <span>Forecasted Alert Probability</span>
-                    <span id="forecast-horizon">Next 30 Minutes</span>
+                <div>
+                    <div class="card-header">
+                        <span id="card-metric-title">Air Raid Alert Probability</span>
+                        <span id="txt-horizon">Next 30 Minutes</span>
+                    </div>
+
+                    <!-- Mode Toggle -->
+                    <div class="mode-toggle">
+                        <button id="mode-threat-btn" class="mode-btn active" onclick="setMetricMode('threat_index')">⚡ Threat Index</button>
+                        <button id="mode-raw-btn" class="mode-btn" onclick="setMetricMode('raw')">📊 Raw Probability</button>
+                    </div>
+
+                    <!-- Circular Progress Gauge -->
+                    <div class="gauge-container">
+                        <svg class="gauge-svg" viewBox="0 0 200 120">
+                            <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" />
+                            <path id="gauge-arc" class="gauge-val" d="M 20 100 A 80 80 0 0 1 180 100" />
+                        </svg>
+                        <div id="prob-display" class="gauge-number">--%</div>
+                        <div id="risk-pill" class="risk-badge risk-green">INITIALIZING...</div>
+
+                        <!-- Hazard Surge Badge -->
+                        <div id="hazard-badge" class="hazard-badge">
+                            <span>🔥</span> <span id="hazard-text">Risk is --x vs quiet baseline</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="gauge-container">
-                    <svg class="gauge-svg" viewBox="0 0 200 120">
-                        <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" />
-                        <path id="gauge-arc" class="gauge-val" d="M 20 100 A 80 80 0 0 1 180 100" />
-                    </svg>
-                    <div id="prob-display" class="gauge-number">--%</div>
-                    <div id="risk-pill" class="risk-badge risk-green">INITIALIZING...</div>
-                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 12px;">
-                        Calibrated LightGBM model combining 4-tier spatial telemetry & Telegram NLP
-                    </p>
+
+                <p id="mode-description" class="mode-description">
+                    Bayesian operational threat score (0–100%) calibrated for civil defense early warning.
+                </p>
+            </div>
+
+            <!-- 2. Spatial Radar Hierarchy -->
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <span id="txt-radar-title">4-Tier Spatial Radar Telemetry</span>
+                        <span id="radar-timestamp">--:--:-- UTC</span>
+                    </div>
+                    <div class="tier-list">
+                        <div class="tier-row">
+                            <div>
+                                <div id="txt-tier0-title" class="tier-title">Tier 0: Kyiv City</div>
+                                <div id="txt-tier0-desc" class="tier-desc">Direct Urban Airspace Sirens</div>
+                            </div>
+                            <span id="tier0-status" class="status-pill pill-clear">ALL CLEAR</span>
+                        </div>
+
+                        <div class="tier-row">
+                            <div>
+                                <div id="txt-tier1-title" class="tier-title">Tier 1: Inner Ring (7 Raions)</div>
+                                <div id="txt-tier1-desc" class="tier-desc">Kyivska Oblast Perimeter Defense</div>
+                            </div>
+                            <span id="tier1-status" class="status-pill pill-clear">0 / 7 Active</span>
+                        </div>
+                        <div id="raions-chips" class="chip-grid"></div>
+
+                        <div class="tier-row">
+                            <div>
+                                <div id="txt-tier2-title" class="tier-title">Tier 2: Adjacent & Approach Corridors</div>
+                                <div id="txt-tier2-desc" class="tier-desc">Chernihiv, Sumy, Poltava, Cherkasy, Zhytomyr (Active transit sectors)</div>
+                            </div>
+                            <span id="tier2-status" class="status-pill pill-clear">0 / 5 Active</span>
+                        </div>
+
+                        <div class="tier-row">
+                            <div>
+                                <div id="txt-tier4-title" class="tier-title">Tier 4: National Threat Surge</div>
+                                <div id="txt-tier4-desc" class="tier-desc">Active Oblasts Nationwide & Wave Speed ΔN</div>
+                            </div>
+                            <span id="tier4-status" class="status-pill pill-clear">0 / 25 Active</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 2. Primary Explanatory Drivers -->
+            <!-- 3. Primary AI Explanation & Decision Drivers -->
             <div class="card">
-                <div class="card-header">
-                    <span>Primary Threat Drivers</span>
-                    <span id="driver-count">AI Explanation</span>
-                </div>
-                <ul id="drivers-list" class="driver-list">
-                    <li class="driver-item">Loading real-time early warning telemetry...</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="grid">
-            <!-- 3. Spatial Radar Hierarchy -->
-            <div class="card">
-                <div class="card-header">
-                    <span>4-Tier Spatial Radar Telemetry</span>
-                    <span id="radar-timestamp">--:--:-- UTC</span>
-                </div>
-                <div class="tier-list">
-                    <div class="tier-row">
-                        <div>
-                            <div class="tier-title">Tier 0: Kyiv City</div>
-                            <div class="tier-desc">Local Target Sirens</div>
-                        </div>
-                        <span id="tier0-status" class="status-pill pill-clear">ALL CLEAR</span>
+                <div>
+                    <div class="card-header">
+                        <span id="txt-drivers-title">AI Explanation & Decision Drivers</span>
+                        <span>Multi-Tier Reasoning</span>
                     </div>
-
-                    <div class="tier-row">
-                        <div>
-                            <div class="tier-title">Tier 1: Inner Ring (7 Raions)</div>
-                            <div class="tier-desc">Kyivska Oblast Perimeter</div>
-                        </div>
-                        <span id="tier1-status" class="status-pill pill-clear">0 / 7 Active</span>
-                    </div>
-                    <div id="raions-chips" class="chip-grid"></div>
-
-                    <div class="tier-row">
-                        <div>
-                            <div class="tier-title">Tier 2: Bordering Oblasts (5 Regions)</div>
-                            <div class="tier-desc">Chernihiv, Sumy, Poltava, Cherkasy, Zhytomyr</div>
-                        </div>
-                        <span id="tier2-status" class="status-pill pill-clear">0 / 5 Active</span>
-                    </div>
-
-                    <div class="tier-row">
-                        <div>
-                            <div class="tier-title">Tier 4: National Threat Surge</div>
-                            <div class="tier-desc">Total Active Regions Nationwide & Speed ΔN</div>
-                        </div>
-                        <span id="tier4-status" class="status-pill pill-clear">0 / 25 Active</span>
-                    </div>
+                    <ul id="drivers-list" class="driver-list">
+                        <li class="driver-item"><span class="driver-icon">●</span> <span id="txt-loading-telemetry">Loading real-time early warning telemetry...</span></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- 4. Telegram Warning Signals -->
+            <!-- 4. Telegram Defence Intel Feed -->
             <div class="card">
-                <div class="card-header">
-                    <span>Real-Time Telegram NLP Stream</span>
-                    <span>@war_monitor & @kpszsu</span>
-                </div>
-                <div class="telegram-stats">
-                    <div class="stat-box">
-                        <div id="stat-targeted" class="stat-num" style="color: var(--accent-green);">No</div>
-                        <div class="stat-label">Kyiv Vector</div>
+                <div>
+                    <div class="card-header">
+                        <span id="txt-intel-title">Telegram Defense Early Warning Stream</span>
+                        <span>@kpszsu & @war_monitor</span>
                     </div>
-                    <div class="stat-box">
-                        <div id="stat-shahed" class="stat-num">0</div>
-                        <div class="stat-label">Shaheds</div>
+
+                    <!-- Keyword Counters -->
+                    <div class="telegram-stats">
+                        <div class="stat-box">
+                            <div id="stat-targeted" class="stat-num" style="color: var(--accent-green);">No</div>
+                            <div id="lbl-vector" class="stat-label">Kyiv Vector</div>
+                        </div>
+                        <div class="stat-box">
+                            <div id="stat-shahed" class="stat-num">0</div>
+                            <div id="lbl-shaheds" class="stat-label">Shaheds</div>
+                        </div>
+                        <div class="stat-box">
+                            <div id="stat-missile" class="stat-num">0</div>
+                            <div id="lbl-missiles" class="stat-label">Missiles</div>
+                        </div>
+                        <div class="stat-box">
+                            <div id="stat-ballistic" class="stat-num">0</div>
+                            <div id="lbl-ballistics" class="stat-label">Ballistics</div>
+                        </div>
                     </div>
-                    <div class="stat-box">
-                        <div id="stat-missile" class="stat-num">0</div>
-                        <div class="stat-label">Missiles</div>
+
+                    <!-- Live Message Feed -->
+                    <div>
+                        <div class="card-header" style="margin-bottom: 6px; font-size: 11px;">
+                            <span id="txt-recent-feed">Recent Defense Alerts:</span>
+                        </div>
+                        <div id="tg-snippets" class="tg-snippets-container">
+                            <div class="tg-snippet" id="txt-awaiting-stream">Awaiting stream ingestion...</div>
+                        </div>
                     </div>
-                    <div class="stat-box">
-                        <div id="stat-ballistic" class="stat-num">0</div>
-                        <div class="stat-label">Ballistics</div>
-                    </div>
-                </div>
-                <div class="card-header" style="margin-top: 14px; margin-bottom: 6px; font-size: 11px;">
-                    <span>Recent Live Message Snippets</span>
-                </div>
-                <div id="tg-snippets">
-                    <div class="tg-snippet">Awaiting stream ingestion...</div>
                 </div>
             </div>
         </div>
@@ -448,49 +584,183 @@
 
     <script>
         let countdown = 15;
+        let currentMode = 'threat_index';
+        let currentLang = 'en';
+        let latestForecastData = null;
         const GAUGE_CIRCUMFERENCE = 251.2; // Pi * r where r=80
+
+        const I18N = {
+            en: {
+                title: "SirenCast UA",
+                liveTelemetry: "LIVE TELEMETRY",
+                subtitle: "30-Minute Probabilistic Air Raid Early Warning Suite for Kyiv City",
+                refreshBtn: "Refresh Now",
+                updatingBtn: "Updating...",
+                autoRefresh: "Auto-refresh",
+                modeThreat: "⚡ Threat Index",
+                modeRaw: "📊 Raw Probability",
+                threatTitle: "Air Raid Alert Probability (Threat Index)",
+                rawTitle: "Air Raid Alert Probability (Raw Frequency)",
+                horizon: "Next 30 Minutes",
+                hazardPrefix: "Risk is",
+                hazardSuffix: "vs quiet baseline",
+                threatDesc: "Bayesian operational threat score (0–100%) calibrated for civil defense early warning.",
+                rawDesc: "Uncalibrated mathematical probability of siren onset in the next 30 minutes (historical frequency).",
+                radarTitle: "4-Tier Spatial Radar Telemetry",
+                tier0Title: "Tier 0: Kyiv City",
+                tier0Desc: "Direct Urban Airspace Sirens",
+                tier1Title: "Tier 1: Inner Ring (7 Raions)",
+                tier1Desc: "Kyivska Oblast Perimeter Defense",
+                tier2Title: "Tier 2: Adjacent & Approach Corridors",
+                tier2Desc: "Chernihiv, Sumy, Poltava, Cherkasy, Zhytomyr (Active transit sectors)",
+                tier4Title: "Tier 4: National Threat Surge",
+                tier4Desc: "Active Oblasts Nationwide & Wave Speed ΔN",
+                driversTitle: "AI Explanation & Decision Drivers",
+                loadingTelemetry: "Loading real-time early warning telemetry...",
+                intelTitle: "Telegram Defense Early Warning Stream",
+                kyivVector: "Kyiv Vector",
+                shaheds: "Shaheds",
+                missiles: "Missiles",
+                ballistics: "Ballistics",
+                recentFeed: "Recent Defense Alerts:",
+                awaitingFeed: "Awaiting stream ingestion...",
+                sirenActive: "SIREN ACTIVE",
+                allClear: "ALL CLEAR",
+                activeText: "Active",
+                regionsText: "Regions"
+            },
+            ua: {
+                title: "SirenCast UA",
+                liveTelemetry: "ЖИВА ТЕЛЕМЕТРІЯ",
+                subtitle: "30-хвилинна ймовірнісна система раннього попередження про тривоги для Києва",
+                refreshBtn: "Оновити зараз",
+                updatingBtn: "Оновлення...",
+                autoRefresh: "Автооновлення",
+                modeThreat: "⚡ Оцінка загрози",
+                modeRaw: "📊 Сира ймовірність",
+                threatTitle: "Ймовірність повітряної тривоги (Оцінка загрози)",
+                rawTitle: "Ймовірність повітряної тривоги (Сира частота)",
+                horizon: "Наступні 30 хвилин",
+                hazardPrefix: "Ризик у",
+                hazardSuffix: "вище за тихий фон",
+                threatDesc: "Байєсівська операційна шкала небезпеки (0–100%) з урахуванням ціни помилки ППО.",
+                rawDesc: "Сира математична ймовірність настання сирени у наступні 30 хв (абсолютна частота).",
+                radarTitle: "4-Рівневий просторовий радар",
+                tier0Title: "Рівень 0: Місто Київ",
+                tier0Desc: "Безпосередній повітряний простір столиці",
+                tier1Title: "Рівень 1: Внутрішнє кільце (7 районів)",
+                tier1Desc: "Периметр оборони Київської області",
+                tier2Title: "Рівень 2: Підльотні коридори та суміжні області",
+                tier2Desc: "Чернігівщина, Сумщина, Полтавщина, Черкащина, Житомирщина (активні сектори підльоту)",
+                tier4Title: "Рівень 4: Національний сплеск",
+                tier4Desc: "Активні області по країні та швидкість наростання ΔN",
+                driversTitle: "Пояснення AI та фактори рішення",
+                loadingTelemetry: "Завантаження поточної телеметрії...",
+                intelTitle: "Стрічка раннього попередження Telegram",
+                kyivVector: "Вектор на Київ",
+                shaheds: "Шахеди",
+                missiles: "Ракети",
+                ballistics: "Балістика",
+                recentFeed: "Останні сповіщення оборони:",
+                awaitingFeed: "Очікування повідомлень...",
+                sirenActive: "ТРИВОГА АКТИВНА",
+                allClear: "ВІДБІЙ / ЧИСТО",
+                activeText: "Активно",
+                regionsText: "Областей"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('lang-en-btn').className = lang === 'en' ? 'lang-btn active' : 'lang-btn';
+            document.getElementById('lang-ua-btn').className = lang === 'ua' ? 'lang-btn active' : 'lang-btn';
+
+            const t = I18N[lang];
+            document.getElementById('txt-title').textContent = t.title;
+            document.getElementById('txt-live-badge').textContent = t.liveTelemetry;
+            document.getElementById('txt-subtitle').textContent = t.subtitle;
+            document.getElementById('refresh-btn').textContent = t.refreshBtn;
+            document.getElementById('mode-threat-btn').textContent = t.modeThreat;
+            document.getElementById('mode-raw-btn').textContent = t.modeRaw;
+            document.getElementById('txt-horizon').textContent = t.horizon;
+            document.getElementById('txt-radar-title').textContent = t.radarTitle;
+            document.getElementById('txt-tier0-title').textContent = t.tier0Title;
+            document.getElementById('txt-tier0-desc').textContent = t.tier0Desc;
+            document.getElementById('txt-tier1-title').textContent = t.tier1Title;
+            document.getElementById('txt-tier1-desc').textContent = t.tier1Desc;
+            document.getElementById('txt-tier2-title').textContent = t.tier2Title;
+            document.getElementById('txt-tier2-desc').textContent = t.tier2Desc;
+            document.getElementById('txt-tier4-title').textContent = t.tier4Title;
+            document.getElementById('txt-tier4-desc').textContent = t.tier4Desc;
+            document.getElementById('txt-drivers-title').textContent = t.driversTitle;
+            document.getElementById('txt-intel-title').textContent = t.intelTitle;
+            document.getElementById('lbl-vector').textContent = t.kyivVector;
+            document.getElementById('lbl-shaheds').textContent = t.shaheds;
+            document.getElementById('lbl-missiles').textContent = t.missiles;
+            document.getElementById('lbl-ballistics').textContent = t.ballistics;
+            document.getElementById('txt-recent-feed').textContent = t.recentFeed;
+
+            if (latestForecastData) {
+                renderDashboard(latestForecastData);
+            }
+        }
+
+        function setMetricMode(mode) {
+            currentMode = mode;
+            document.getElementById('mode-threat-btn').className = mode === 'threat_index' ? 'mode-btn active' : 'mode-btn';
+            document.getElementById('mode-raw-btn').className = mode === 'raw' ? 'mode-btn active' : 'mode-btn';
+
+            if (latestForecastData) {
+                updateMetricDisplay(latestForecastData);
+            }
+        }
 
         async function loadForecast() {
             const btn = document.getElementById('refresh-btn');
-            btn.textContent = 'Updating...';
+            const t = I18N[currentLang];
+            btn.textContent = t.updatingBtn;
             btn.disabled = true;
 
             try {
                 const resp = await fetch('/api/forecast');
                 if (!resp.ok) throw new Error('API offline');
                 const data = await resp.json();
+                latestForecastData = data;
                 renderDashboard(data);
             } catch (err) {
                 console.error('Forecast fetch failed:', err);
                 document.getElementById('risk-pill').textContent = 'API ERROR (RETRYING)';
             } finally {
-                btn.textContent = 'Refresh Now';
+                btn.textContent = t.refreshBtn;
                 btn.disabled = false;
                 countdown = 15;
             }
         }
 
-        function renderDashboard(data) {
-            const pct = data.probability_pct;
+        function updateMetricDisplay(data) {
+            const t = I18N[currentLang];
+            const isThreat = currentMode === 'threat_index';
+            const pct = isThreat ? (data.threat_index_pct ?? data.probability_pct) : (data.raw_probability_pct ?? data.probability_raw * 100.0);
             const level = data.risk_level;
-            const meta = data.metadata;
 
-            // 1. Gauge Arc & Number
+            document.getElementById('card-metric-title').textContent = isThreat ? t.threatTitle : t.rawTitle;
             document.getElementById('prob-display').textContent = `${pct.toFixed(1)}%`;
+
             const arc = document.getElementById('gauge-arc');
             const offset = GAUGE_CIRCUMFERENCE - (pct / 100.0) * GAUGE_CIRCUMFERENCE;
             arc.style.strokeDashoffset = offset;
 
-            // Color Coding
+            // Color Coding based on Threat Score
             const pill = document.getElementById('risk-pill');
             pill.className = 'risk-badge';
-            if (pct < 15.0) {
+            const threatScore = data.threat_index_pct ?? data.probability_pct;
+            if (threatScore < 10.0) {
                 pill.classList.add('risk-green');
                 arc.style.stroke = 'var(--accent-green)';
-            } else if (pct < 35.0) {
+            } else if (threatScore < 35.0) {
                 pill.classList.add('risk-yellow');
                 arc.style.stroke = 'var(--accent-yellow)';
-            } else if (pct < 65.0) {
+            } else if (threatScore < 70.0) {
                 pill.classList.add('risk-orange');
                 arc.style.stroke = 'var(--accent-orange)';
             } else {
@@ -499,47 +769,62 @@
             }
             pill.textContent = level;
 
-            // 2. Drivers
+            // Hazard Multiplier
+            const mult = data.hazard_multiplier ?? 1.0;
+            if (currentLang === 'ua') {
+                document.getElementById('hazard-text').textContent = `${t.hazardPrefix} ${mult.toFixed(1)}× ${t.hazardSuffix}`;
+            } else {
+                document.getElementById('hazard-text').textContent = `${t.hazardPrefix} ${mult.toFixed(1)}x ${t.hazardSuffix}`;
+            }
+
+            // Description
+            document.getElementById('mode-description').textContent = isThreat ? t.threatDesc : t.rawDesc;
+        }
+
+        function renderDashboard(data) {
+            const t = I18N[currentLang];
+            updateMetricDisplay(data);
+            const meta = data.metadata;
+
+            // 1. AI Drivers
             const driversList = document.getElementById('drivers-list');
             driversList.innerHTML = '';
-            data.top_drivers.forEach(d => {
+            (data.top_drivers || []).forEach(d => {
                 const li = document.createElement('li');
                 li.className = 'driver-item';
                 li.innerHTML = `<span class="driver-icon">●</span> <span>${d}</span>`;
                 driversList.appendChild(li);
             });
 
-            // 3. Radar Tiers
+            // 2. Radar Tiers
             document.getElementById('radar-timestamp').textContent = 
-                new Date(meta.timestamp_utc).toLocaleTimeString('uk-UA') + ' (UTC)';
+                new Date(meta.timestamp_utc).toLocaleTimeString('en-US', { hour12: false }) + ' (UTC)';
 
             const tier0 = document.getElementById('tier0-status');
             if (meta.is_kyiv_active) {
                 tier0.className = 'status-pill pill-active';
-                tier0.textContent = 'SIREN ACTIVE';
+                tier0.textContent = t.sirenActive;
             } else {
                 tier0.className = 'status-pill pill-clear';
-                tier0.textContent = 'ALL CLEAR';
+                tier0.textContent = t.allClear;
             }
 
             const tier1 = document.getElementById('tier1-status');
             tier1.className = meta.raion_active_count > 0 ? 'status-pill pill-active' : 'status-pill pill-clear';
-            tier1.textContent = `${meta.raion_active_count} / 7 Active`;
+            tier1.textContent = `${meta.raion_active_count} / 7 ${t.activeText}`;
 
             const tier2 = document.getElementById('tier2-status');
             tier2.className = meta.adjacent_active_count > 0 ? 'status-pill pill-active' : 'status-pill pill-clear';
-            tier2.textContent = `${meta.adjacent_active_count} / 5 Active`;
+            tier2.textContent = `${meta.adjacent_active_count} / 5 ${t.activeText}`;
 
             const tier4 = document.getElementById('tier4-status');
             tier4.className = meta.national_active_count > 5 ? 'status-pill pill-active' : 'status-pill pill-clear';
-            tier4.textContent = `${meta.national_active_count} / 25 Regions (Δ=${meta.national_delta > 0 ? '+' : ''}${meta.national_delta})`;
+            tier4.textContent = `${meta.national_active_count} / 25 ${t.regionsText} (Δ=${meta.national_delta > 0 ? '+' : ''}${meta.national_delta})`;
 
-            // Raion Chips
+            // Raion Chips Grid
             const chips = document.getElementById('raions-chips');
             chips.innerHTML = '';
-            const raionNames = [
-                'Vyshhorod', 'Brovary', 'Boryspil', 'Bucha', 'Fastiv', 'Obukhiv', 'Bila Tserkva'
-            ];
+            const raionNames = ['Vyshhorod', 'Brovary', 'Boryspil', 'Bucha', 'Fastiv', 'Obukhiv', 'Bila Tserkva'];
             raionNames.forEach(rn => {
                 const c = document.createElement('div');
                 c.className = 'chip';
@@ -547,10 +832,10 @@
                 chips.appendChild(c);
             });
 
-            // 4. Telegram Signals
+            // 3. Telegram Signals
             const tg = meta.telegram_threats;
             const statTg = document.getElementById('stat-targeted');
-            statTg.textContent = tg.kyiv_targeted ? 'YES' : 'No';
+            statTg.textContent = tg.kyiv_targeted ? (currentLang === 'ua' ? 'ТАК' : 'YES') : (currentLang === 'ua' ? 'Ні' : 'No');
             statTg.style.color = tg.kyiv_targeted ? 'var(--accent-red)' : 'var(--accent-green)';
 
             document.getElementById('stat-shahed').textContent = tg.shahed;
@@ -559,18 +844,41 @@
 
             const tgSnippets = document.getElementById('tg-snippets');
             tgSnippets.innerHTML = '';
-            (meta.sample_messages || []).forEach(m => {
-                const s = document.createElement('div');
-                s.className = 'tg-snippet';
-                s.textContent = m.length > 100 ? m.substring(0, 100) + '...' : m;
-                tgSnippets.appendChild(s);
-            });
+            const sampleMsgs = meta.sample_messages || [];
+            if (sampleMsgs.length === 0) {
+                tgSnippets.innerHTML = `<div class="tg-snippet">${t.awaitingFeed}</div>`;
+            } else {
+                sampleMsgs.slice(0, 3).forEach(m => {
+                    const s = document.createElement('div');
+                    s.className = 'tg-snippet';
+                    
+                    let text = typeof m === 'string' ? m : (m.text || '');
+                    let channel = typeof m === 'object' && m.channel ? `@${m.channel}` : 'Telegram';
+                    let ageStr = '';
+                    let isActive = false;
+                    
+                    if (typeof m === 'object' && m.age_minutes !== undefined) {
+                        ageStr = m.age_minutes < 60 ? `${Math.round(m.age_minutes)}m ago` : `${(m.age_minutes / 60).toFixed(1)}h ago`;
+                        isActive = !!m.is_active;
+                    }
+                    
+                    const badgeColor = isActive 
+                        ? 'background:rgba(239, 68, 68, 0.2); color:#ef4444; border:1px solid #ef4444;' 
+                        : 'background:rgba(107, 114, 128, 0.2); color:#9ca3af; border:1px solid #4b5563;';
+                    const timeTag = ageStr ? `<span style="font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; margin-right:6px; ${badgeColor}">${isActive ? '● LIVE' : 'ARCHIVE'} ${ageStr}</span>` : '';
+                    const channelTag = `<strong style="color:var(--accent-blue); margin-right:4px;">${channel}</strong>`;
+                    
+                    s.innerHTML = `${timeTag}${channelTag} <span>${text.length > 140 ? text.substring(0, 140) + '...' : text}</span>`;
+                    tgSnippets.appendChild(s);
+                });
+            }
         }
 
         // Auto Refresh Countdown
         setInterval(() => {
             countdown--;
-            document.getElementById('update-timer').textContent = `Auto-refresh: ${countdown}s`;
+            const t = I18N[currentLang];
+            document.getElementById('update-timer').textContent = `${t.autoRefresh}: ${countdown}s`;
             if (countdown <= 0) {
                 loadForecast();
             }

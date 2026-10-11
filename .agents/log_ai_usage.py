@@ -23,14 +23,65 @@ from datetime import datetime
 from pathlib import Path
 
 
-def read_stdin_safely() -> str:
-    """Read stdin if redirected/piped, without blocking if running interactively."""
+try:
+    if hasattr(sys.stdin, "reconfigure"):
+        sys.stdin.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+
+import time
+
+def read_stdin_safely(timeout: float = 0.15) -> str:
+    """Read stdin safely without blocking on interactive shell, supporting UTF-8 on Windows."""
     if sys.stdin.isatty():
         return ""
-    try:
-        return sys.stdin.read()
-    except Exception:
-        return ""
+    if sys.platform == "win32":
+        try:
+            import msvcrt
+            import ctypes
+            handle = msvcrt.get_osfhandle(sys.stdin.fileno())
+            avail = ctypes.c_ulong()
+            start = time.time()
+            while time.time() - start < timeout:
+                res = ctypes.windll.kernel32.PeekNamedPipe(
+                    handle, None, 0, None, ctypes.byref(avail), None
+                )
+                if not res:
+                    break
+                if avail.value > 0:
+                    break
+                time.sleep(0.01)
+
+            if avail.value > 0:
+                chunks = []
+                while True:
+                    res = ctypes.windll.kernel32.PeekNamedPipe(
+                        handle, None, 0, None, ctypes.byref(avail), None
+                    )
+                    if not res or avail.value == 0:
+                        break
+                    raw = sys.stdin.buffer.read(avail.value)
+                    if not raw:
+                        break
+                    chunks.append(raw)
+                    time.sleep(0.01)
+                return b"".join(chunks).decode("utf-8", errors="replace")
+            return ""
+        except Exception:
+            return ""
+    else:
+        try:
+            import select
+            if select.select([sys.stdin], [], [], timeout)[0]:
+                return sys.stdin.read()
+        except Exception:
+            pass
+    return ""
 
 
 def safe_print_json(data: dict):
@@ -39,7 +90,7 @@ def safe_print_json(data: dict):
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
-    print(json.dumps(data))
+    print(json.dumps(data, ensure_ascii=False))
 
 
 def get_git_branch(repo_dir: Path) -> str:
@@ -396,16 +447,15 @@ def get_paths(stdin_payload: dict):
                 if active_tf.exists():
                     try:
                         mtime = active_tf.stat().st_mtime
-                        # Read first 10k bytes to check workspace match
                         with open(active_tf, "r", encoding="utf-8", errors="ignore") as f:
-                            chunk = f.read(10240)
-                        matches_ws = str(workspace_dir).lower() in chunk.lower()
-                        candidates.append((d.name, mtime, matches_ws))
+                            chunk = f.read(50000)
+                        matches_ws = str(workspace_dir).lower() in chunk.lower() or workspace_dir.name.lower() in chunk.lower()
+                        if matches_ws:
+                            candidates.append((d.name, mtime))
                     except Exception:
                         pass
             if candidates:
-                # Prefer matching workspace candidates first, then latest mtime
-                candidates.sort(key=lambda x: (x[2], x[1]), reverse=True)
+                candidates.sort(key=lambda x: x[1], reverse=True)
                 conv_id = candidates[0][0]
             else:
                 conv_id = "default-chat"
@@ -461,6 +511,45 @@ def extract_session_steps_from_markdown(md_text: str) -> dict[str, set[int]]:
             steps = set(int(m) for m in re.findall(r'step:\s*\[(\d+)\]', block))
             mapping[cid] = steps
     return mapping
+
+
+def update_turn_response_in_markdown(md_text: str, conv_id: str, user_step: int, new_model_response: str) -> str:
+    """Update #### [Model Response] for an existing interaction with the given user_step within conv_id session."""
+    session_pattern = re.compile(
+        rf'(##\s*\[Chat Session\s*#[^\]]+\]\s*\n[^\n]*\*\*Session ID:\*\*\s*`{re.escape(conv_id)}`.*?)'
+        rf'(?=\n##\s*\[Chat Session|\Z)',
+        re.DOTALL
+    )
+    sm = session_pattern.search(md_text)
+    if not sm:
+        target_block = md_text
+        block_start = 0
+        block_end = len(md_text)
+    else:
+        target_block = sm.group(1)
+        block_start = sm.start(1)
+        block_end = sm.end(1)
+
+    turn_pattern = re.compile(
+        rf'(###\s*\[Interaction\s*#\d+\][^\n]*step:\s*\[{user_step}\].*?####\s*\[Model Response\]\s*\n)(`{{3,}}[^\n]*\n.*?\n`{{3,}}|\(No response text\))(.*?)(?=\s*\n---|\s*\Z)',
+        re.DOTALL
+    )
+    tm = turn_pattern.search(target_block)
+    if not tm:
+        turn_pattern_fallback = re.compile(
+            rf'(###\s*\[Interaction\s*#\d+\][^\n]*step:\s*\[{user_step}\].*?####\s*\[Model Response\]\s*\n)(.*?)(?=\s*\n---|\s*\Z)',
+            re.DOTALL
+        )
+        tm = turn_pattern_fallback.search(target_block)
+        if not tm:
+            return md_text
+
+    new_wrapped = wrap_in_code_block(new_model_response, lang="text")
+    if tm.group(2).strip() == new_wrapped.strip():
+        return md_text
+
+    updated_block = target_block[:tm.start(2)] + new_wrapped + target_block[tm.end(2):]
+    return md_text[:block_start] + updated_block + md_text[block_end:]
 
 
 def handle_restore(paths: dict):
@@ -602,20 +691,69 @@ def main():
 
     current_workspace_content = workspace_log_file.read_text(encoding="utf-8")
 
-    # Detect turns manually removed by the user in ai_usage.md across all known sessions
+    # Detect turns manually removed by the user in ai_usage.md ONLY for sessions actually present in the file
     existing_session_steps = extract_session_steps_from_markdown(current_workspace_content)
     if "deleted_turns" not in state:
         state["deleted_turns"] = {}
 
-    for cid, steps in list(state.get("logged_turns", {}).items()):
-        present_in_file = existing_session_steps.get(cid, set())
-        for st in steps:
+    for cid in existing_session_steps:
+        present_in_file = existing_session_steps[cid]
+        previously_logged = set(state.get("logged_turns", {}).get(cid, []))
+        for st in previously_logged:
             if st not in present_in_file:
                 if cid not in state["deleted_turns"]:
                     state["deleted_turns"][cid] = []
                 if st not in state["deleted_turns"][cid]:
                     state["deleted_turns"][cid].append(st)
 
+    # 1. Update any existing turns across all known sessions whose responses improved/completed
+    updated_workspace_content = current_workspace_content
+    brain_base = Path.home() / ".gemini" / "antigravity-cli" / "brain"
+
+    sessions_to_sync = set(existing_session_steps.keys())
+    if conv_id:
+        sessions_to_sync.add(conv_id)
+
+    for cid in sessions_to_sync:
+        if cid in existing_session_steps:
+            cid_full = brain_base / cid / ".system_generated" / "logs" / "transcript_full.jsonl"
+            cid_norm = brain_base / cid / ".system_generated" / "logs" / "transcript.jsonl"
+            cid_path = cid_full if cid_full.exists() else cid_norm
+            if cid_path.exists():
+                cid_records = load_transcript_records(cid_path)
+                cid_turns = parse_completed_turns(cid_records, paths["artifact_dirs"])
+                for turn in cid_turns:
+                    u_step = turn["user_step"]
+                    if u_step in existing_session_steps[cid]:
+                        new_resp = (turn.get("model_response") or "").strip()
+                        if new_resp:
+                            updated_workspace_content = update_turn_response_in_markdown(
+                                updated_workspace_content, cid, u_step, new_resp
+                            )
+
+    if updated_workspace_content != current_workspace_content:
+        workspace_log_file.write_text(updated_workspace_content, encoding="utf-8")
+        current_workspace_content = updated_workspace_content
+        if archive_file.exists():
+            arc_content = archive_file.read_text(encoding="utf-8")
+            for cid in sessions_to_sync:
+                if cid in existing_session_steps:
+                    cid_full = brain_base / cid / ".system_generated" / "logs" / "transcript_full.jsonl"
+                    cid_norm = brain_base / cid / ".system_generated" / "logs" / "transcript.jsonl"
+                    cid_path = cid_full if cid_full.exists() else cid_norm
+                    if cid_path.exists():
+                        cid_records = load_transcript_records(cid_path)
+                        cid_turns = parse_completed_turns(cid_records, paths["artifact_dirs"])
+                        for turn in cid_turns:
+                            u_step = turn["user_step"]
+                            new_resp = (turn.get("model_response") or "").strip()
+                            if new_resp:
+                                arc_content = update_turn_response_in_markdown(
+                                    arc_content, cid, u_step, new_resp
+                                )
+            archive_file.write_text(arc_content, encoding="utf-8")
+
+    # 2. Append new completed turns for current session
     logged_steps_for_conv = set(state.get("logged_turns", {}).get(conv_id, []))
     deleted_steps_for_conv = set(state.get("deleted_turns", {}).get(conv_id, []))
     present_steps_in_this_conv = existing_session_steps.get(conv_id, set())
@@ -682,7 +820,7 @@ def main():
 
     if "logged_turns" not in state:
         state["logged_turns"] = {}
-    state["logged_turns"][conv_id] = sorted(list(logged_steps_for_conv))
+    state["logged_turns"][conv_id] = sorted(list(logged_steps_for_conv | present_steps_in_this_conv))
 
     if "deleted_turns" not in state:
         state["deleted_turns"] = {}

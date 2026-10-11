@@ -23,7 +23,7 @@ from src.features_text import (
     get_multimodal_dataset,
 )
 from src.live_data import parse_live_siren_states, fetch_live_telegram_stream
-from src.models import create_lightgbm_model
+from src.models import create_lightgbm_model, compute_time_decay_weights
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -32,19 +32,32 @@ MODEL_CACHE_DIR = BASE_DIR / "models"
 MODEL_PATH = MODEL_CACHE_DIR / "lightgbm_multimodal_live.joblib"
 
 
+def calibrate_odds(prob: float, weight: float = 5.0) -> float:
+    """
+    Bayesian cost-sensitive odds calibration for civil defense decision-making:
+        P_cal = (w * p) / ((1 - p) + w * p)
+    Maps low base rates into an intuitive operational threat scale (0-100%)
+    while preserving 100% of rank ordering (monotonic).
+    """
+    p = np.clip(prob, 1e-6, 1.0 - 1e-6)
+    cal_odds = (p / (1.0 - p)) * weight
+    return float(cal_odds / (1.0 + cal_odds))
+
+
 def get_trained_live_model():
     """
-    Loads pre-trained multimodal LightGBM model from cache,
-    or trains and saves it if not already cached.
+    Loads pre-trained multimodal LightGBM model and cached empirical ECDF distribution,
+    or trains with exponential time-decay (half-life = 270 days) and saves if not cached.
     """
     if MODEL_PATH.exists():
         try:
             bundle = joblib.load(MODEL_PATH)
-            return bundle["model"], bundle["feature_cols"]
+            if "sorted_hist_preds" in bundle:
+                return bundle["model"], bundle["feature_cols"], bundle["sorted_hist_preds"]
         except Exception:
             pass
 
-    logger.info("Training full multimodal LightGBM model for live inference...")
+    logger.info("Training multimodal LightGBM model with time-decay (T_half=270d) for live inference...")
     df = get_multimodal_dataset()
     ignore_cols = ["timestamp", "target_kyiv_start_30m", "target_kyiv_active_30m"]
     feat_cols = [c for c in df.columns if c not in ignore_cols]
@@ -52,14 +65,23 @@ def get_trained_live_model():
     X = df[feat_cols]
     y = df["target_kyiv_active_30m"].values
 
+    sample_weights = compute_time_decay_weights(df["timestamp"], half_life_days=270.0)
     model = create_lightgbm_model()
-    model.fit(X, y)
+    model.fit(X, y, sample_weight=sample_weights)
+
+    # Precalculate and sort historical predictions for fast O(log N) ECDF percentile lookup
+    hist_preds = model.predict_proba(X)[:, 1]
+    sorted_hist_preds = np.sort(hist_preds)
 
     MODEL_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    joblib.dump({"model": model, "feature_cols": feat_cols}, MODEL_PATH)
-    logger.info(f"Model saved to {MODEL_PATH}")
+    joblib.dump({
+        "model": model,
+        "feature_cols": feat_cols,
+        "sorted_hist_preds": sorted_hist_preds,
+    }, MODEL_PATH)
+    logger.info(f"Model and ECDF distribution saved to {MODEL_PATH}")
 
-    return model, feat_cols
+    return model, feat_cols, sorted_hist_preds
 
 
 _cached_last_row = None
@@ -95,13 +117,29 @@ def build_live_feature_vector(
 
     # 2. Telegram Warnings
     if simulated_telegram_texts is not None:
-        tg_texts = simulated_telegram_texts
+        active_tg_texts = simulated_telegram_texts
+        formatted_samples = [{"channel": "simulation", "text": t, "age_minutes": 0.0, "is_active": True} for t in simulated_telegram_texts[:5]]
     else:
         tg_msgs = fetch_live_telegram_stream()
-        tg_texts = [m["text"] for m in tg_msgs]
+        # Strictly evaluate active messages published within the recent 45-minute window!
+        active_msgs = [m for m in tg_msgs if m.get("is_active", False)]
+        active_tg_texts = [m["text"] for m in active_msgs]
+        
+        # Prepare sample messages for the UI, preferring active ones or latest
+        display_msgs = active_msgs if active_msgs else tg_msgs[-5:]
+        formatted_samples = [
+            {
+                "channel": m.get("channel", "telegram"),
+                "text": m.get("text", ""),
+                "age_minutes": m.get("age_minutes", 0.0),
+                "is_active": m.get("is_active", False),
+                "datetime_iso": m.get("datetime_iso", ""),
+            }
+            for m in display_msgs[:5]
+        ]
 
-    # NLP Signal Extraction
-    combined_texts = " ".join(tg_texts)
+    # NLP Signal Extraction strictly from messages published within the current threat window
+    combined_texts = " ".join(active_tg_texts)
     has_kyiv_target = bool(re.search(RE_KYIV_TARGETED, combined_texts))
     is_resolution = bool(re.search(RE_RESOLUTION, combined_texts))
     effective_kyiv_target = 1 if (has_kyiv_target and not is_resolution) else 0
@@ -140,9 +178,12 @@ def build_live_feature_vector(
 
     for eng_raion, is_active in raions.items():
         base_name = eng_raion.split()[0].lower()
-        col = f"raion_{base_name}_active"
-        if col in f:
-            f[col] = 1 if is_active else 0
+        col_active = f"raion_{base_name}_active"
+        col_mins = f"raion_{base_name}_mins_active"
+        if col_active in f:
+            f[col_active] = 1 if is_active else 0
+        if col_mins in f:
+            f[col_mins] = 30.0 if is_active else 0.0
 
     # Tier 2 (Adjacent Oblasts)
     adj_names = ["Chernihivska oblast", "Sumska oblast", "Poltavska oblast", "Cherkaska oblast", "Zhytomyrska oblast"]
@@ -161,10 +202,12 @@ def build_live_feature_vector(
     last_national = last_row.get("national_active_count", national_count)
     f["national_active_count"] = national_count
     f["national_delta_30m"] = national_count - last_national
-    f["national_surge_speed"] = (national_count - last_national) / 0.5  # per hour
+    surge_speed = (national_count - last_national) / 0.5  # per hour
+    f["national_wave_speed_30m"] = surge_speed
+    f["national_wave_speed_60m"] = surge_speed * 0.8
 
     # Telegram NLP Features
-    f["tg_msg_count_30m"] = len(tg_texts)
+    f["tg_msg_count_30m"] = len(active_tg_texts)
     f["tg_kyiv_targeted_30m"] = effective_kyiv_target
     f["tg_shahed_count_30m"] = shahed_count
     f["tg_missile_count_30m"] = missile_count
@@ -172,6 +215,8 @@ def build_live_feature_vector(
     f["tg_aviation_count_30m"] = aviation_count
     f["tg_resolution_count_30m"] = resolution_count
     f["tg_net_threat_score"] = float(net_threat)
+    f["tg_net_threat_lag30m"] = float(net_threat)
+    f["tg_kyiv_targeted_lag30m"] = effective_kyiv_target
 
     metadata = {
         "timestamp_utc": now_utc,
@@ -189,7 +234,7 @@ def build_live_feature_vector(
             "resolution": resolution_count,
             "net_score": net_threat,
         },
-        "sample_messages": tg_texts[:3],
+        "sample_messages": formatted_samples,
     }
 
     df_live = pd.DataFrame([f])
@@ -199,32 +244,45 @@ def build_live_feature_vector(
 def predict_live_risk(
     simulated_alerts: Optional[dict] = None,
     simulated_telegram_texts: Optional[List[str]] = None,
+    odds_weight: float = 5.0,
 ) -> Dict:
     """
-    Computes calibrated probability forecast for Kyiv City on the [t, t+30min] horizon.
+    Computes multi-dimensional risk forecast for Kyiv City on the [t, t+30min] horizon:
+    1. Operational Threat Index (%): Bayesian cost-calibrated decision posterior (0-100%).
+    2. Raw Statistical Probability (%): Unweighted frequentist chance of siren onset.
+    3. Empirical Threat Percentile (%): ECDF quantile vs entire 2023-2026 dataset history.
+    4. Hazard Surge Multiplier: Factor increase over quiet baseline airspace (~1.8%).
+
     Returns:
-        dict: {
-            "probability_pct": float (e.g. 24.5),
-            "risk_level": "LOW" | "ELEVATED" | "HIGH" | "CRITICAL",
-            "risk_color": "green" | "yellow" | "orange" | "red",
-            "metadata": dict,
-            "top_drivers": list[str]
-        }
+        dict: contract containing all four dimensions, categorical level, metadata, and drivers.
     """
-    model, feat_cols = get_trained_live_model()
+    model, feat_cols, sorted_hist_preds = get_trained_live_model()
     df_live, meta = build_live_feature_vector(simulated_alerts, simulated_telegram_texts)
 
     X_live = df_live[feat_cols]
-    prob = float(model.predict_proba(X_live)[0, 1])
-    pct = round(prob * 100.0, 1)
+    prob_raw = float(model.predict_proba(X_live)[0, 1])
+    raw_pct = round(prob_raw * 100.0, 1)
 
-    if pct < 15.0:
+    # 1. Operational Threat Index via Bayesian odds calibration (preserves monotonicity)
+    threat_prob = calibrate_odds(prob_raw, weight=odds_weight)
+    threat_pct = round(threat_prob * 100.0, 1)
+
+    # 2. Empirical ECDF Percentile (rank among all historical 30-min intervals)
+    idx = int(np.searchsorted(sorted_hist_preds, prob_raw, side="right"))
+    ecdf_pct = float(round((idx / len(sorted_hist_preds)) * 100.0, 1))
+
+    # 3. Hazard Surge Multiplier vs quiet calm baseline (~1.8% historical prior)
+    p_baseline = 0.018
+    hazard_multiplier = round(max(1.0, prob_raw / p_baseline), 1)
+
+    # Risk level categorized by Operational Threat Index:
+    if threat_pct < 10.0:
         level = "LOW RISK"
         color = "green"
-    elif pct < 35.0:
+    elif threat_pct < 35.0:
         level = "ELEVATED RISK"
         color = "yellow"
-    elif pct < 65.0:
+    elif threat_pct < 70.0:
         level = "HIGH RISK"
         color = "orange"
     else:
@@ -240,7 +298,7 @@ def predict_live_risk(
     if meta["raion_active_count"] > 0:
         drivers.append(f"{meta['raion_active_count']} / 7 Inner Ring raions of Kyivska oblast under alert")
     if meta["adjacent_active_count"] > 0:
-        drivers.append(f"{meta['adjacent_active_count']} / 5 Bordering oblasts active (Chernihiv/Sumy/Poltava)")
+        drivers.append(f"{meta['adjacent_active_count']} / 5 Adjacent & approach corridors active (Chernihiv/Sumy/Poltava)")
     if meta["telegram_threats"]["ballistic"]:
         drivers.append("Ballistic threat active in radar sector")
     if meta["telegram_threats"]["aviation"]:
@@ -252,29 +310,37 @@ def predict_live_risk(
         drivers.append("Calm airspace: no approaching threats detected across all 4 spatial tiers")
 
     return {
-        "probability_pct": pct,
-        "risk_pct": pct,
-        "probability_raw": prob,
+        "threat_index_pct": threat_pct,
+        "raw_probability_pct": raw_pct,
+        "probability_pct": threat_pct,  # backward compatibility
+        "risk_pct": threat_pct,
+        "probability_raw": prob_raw,
+        "ecdf_percentile": ecdf_pct,
+        "hazard_multiplier": hazard_multiplier,
         "risk_level": level,
         "risk_band": level,
         "risk_color": color,
+        "odds_weight": odds_weight,
         "metadata": meta,
         "top_drivers": drivers,
     }
 
 
 def format_cli_dashboard(result: Optional[Dict] = None) -> str:
-    """Formats live forecast results into a clean terminal dashboard."""
+    """Formats live forecast results into a clean terminal dashboard with dual metrics."""
     if result is None:
         result = predict_live_risk()
-    pct = result["probability_pct"]
+    threat_pct = result["threat_index_pct"]
+    raw_pct = result["raw_probability_pct"]
+    ecdf_pct = result["ecdf_percentile"]
+    hazard_mult = result["hazard_multiplier"]
     level = result["risk_level"]
     meta = result["metadata"]
     drivers = result["top_drivers"]
     t_str = meta["timestamp_utc"].strftime("%Y-%m-%d %H:%M:%S UTC")
 
-    # Visual percentage progress gauge
-    filled = int(round(pct / 5.0))
+    # Visual percentage progress gauge for operational threat
+    filled = int(round(threat_pct / 5.0))
     bar = "=" * filled + "-" * (20 - filled)
 
     kyiv_status = "[ALERT ACTIVE]" if meta['is_kyiv_active'] else "[ALL CLEAR]"
@@ -288,13 +354,14 @@ def format_cli_dashboard(result: Optional[Dict] = None) -> str:
         "+==============================================================================+",
         f"  Timestamp: {t_str}",
         "",
-        f"  FORECASTED THREAT PROBABILITY:  [{bar}]  {pct:.1f}%",
-        f"  STATUS LEVEL:                   {level}",
+        f"  OPERATIONAL THREAT SCORE:       [{bar}]  {threat_pct:.1f}%  ({level})",
+        f"  RAW STATISTICAL PROBABILITY:    {raw_pct:.1f}% in next 30 min",
+        f"  HAZARD SURGE MULTIPLIER:        {hazard_mult:.1f}x vs quiet baseline",
         "",
         "  +-- SPATIAL RADAR TIERS -----------------------------------------------------+",
         f"  | Tier 0 (Kyiv City):       {kyiv_status:<20}                             |",
         f"  | Tier 1 (Kyivska Raions):  {meta['raion_active_count']} / 7 active surrounding raions           |",
-        f"  | Tier 2 (Bordering Obl.):  {meta['adjacent_active_count']} / 5 adjacent oblasts active             |",
+        f"  | Tier 2 (Adjacent/Transit):{meta['adjacent_active_count']} / 5 approach corridors active           |",
         f"  | Tier 4 (National Count):  {meta['national_active_count']} / 25 regions active (delta={meta['national_delta']:+d})          |",
         "  +----------------------------------------------------------------------------+",
         "",
@@ -308,6 +375,18 @@ def format_cli_dashboard(result: Optional[Dict] = None) -> str:
     ]
     for d in drivers:
         lines.append(f"   * {d}")
+
+    sample_msgs = meta.get("sample_messages", [])
+    if sample_msgs:
+        lines.append("")
+        lines.append("  RECENT TELEGRAM INTEL FEED:")
+        for sm in sample_msgs[:4]:
+            ch = sm.get("channel", "tg")
+            age = sm.get("age_minutes", 0.0)
+            age_str = f"{int(age)}m ago" if age < 60 else f"{age / 60.0:.1f}h ago"
+            status_tag = "[ACTIVE]" if sm.get("is_active", False) else "[ARCHIVE]"
+            txt = sm.get("text", "")[:75].encode("ascii", errors="backslashreplace").decode("ascii")
+            lines.append(f"   * {status_tag} ({age_str}) @{ch}: {txt}...")
 
     lines.append("")
     return "\n".join(lines)

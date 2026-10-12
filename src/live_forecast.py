@@ -191,12 +191,15 @@ def build_live_feature_vector(
     f = {}
 
     # Tier 0 (Kyiv City)
-    is_kyiv_active = 1 if regions.get("Kyiv City", False) else 0
+    kyiv_tel = alert_info.get("kyiv_telemetry", {})
+    is_kyiv_active = 1 if (regions.get("Kyiv City", False) or kyiv_tel.get("is_active", False)) else 0
     f["kyiv_is_active"] = is_kyiv_active
 
     kyiv_changed_at = alert_info.get("kyiv_changed_at")
     if is_kyiv_active:
-        if kyiv_changed_at:
+        if kyiv_tel.get("minutes_active"):
+            f["kyiv_minutes_active"] = float(kyiv_tel["minutes_active"])
+        elif kyiv_changed_at:
             elapsed_min = (now_utc - kyiv_changed_at).total_seconds() / 60.0
             f["kyiv_minutes_active"] = float(max(1.0, elapsed_min))
         else:
@@ -204,7 +207,9 @@ def build_live_feature_vector(
         f["kyiv_time_since_last_alert_min"] = 0.0
     else:
         f["kyiv_minutes_active"] = 0.0
-        if kyiv_changed_at:
+        if "time_since_last_alert_min" in kyiv_tel:
+            f["kyiv_time_since_last_alert_min"] = float(np.clip(kyiv_tel["time_since_last_alert_min"], 0.0, 10080.0))
+        elif kyiv_changed_at:
             elapsed_min = (now_utc - kyiv_changed_at).total_seconds() / 60.0
             f["kyiv_time_since_last_alert_min"] = float(np.clip(elapsed_min, 0.0, 10080.0))
         else:
@@ -334,6 +339,21 @@ def build_live_feature_vector(
             "net_score": net_threat,
         },
         "sample_messages": formatted_samples,
+        "kyiv_telemetry": kyiv_tel if kyiv_tel else {
+            "is_active": bool(is_kyiv_active),
+            "minutes_active": float(f["kyiv_minutes_active"]),
+            "time_since_last_alert_min": float(f["kyiv_time_since_last_alert_min"]),
+            "status_label_en": "ALERT ACTIVE" if is_kyiv_active else "ALL CLEAR",
+            "status_label_ua": "ТРИВОГА" if is_kyiv_active else "ВІДБІЙ",
+            "badge_en": f"ALERT ACTIVE • {int(f['kyiv_minutes_active'])}m" if is_kyiv_active else f"ALL CLEAR • {int(f['kyiv_time_since_last_alert_min'])}m",
+            "badge_ua": f"ТРИВОГА • {int(f['kyiv_minutes_active'])} хв" if is_kyiv_active else f"ВІДБІЙ • {int(f['kyiv_time_since_last_alert_min'])} хв",
+            "detail_en": f"Alert active: {int(f['kyiv_minutes_active'])}m" if is_kyiv_active else f"All clear: {int(f['kyiv_time_since_last_alert_min'])}m ago",
+            "detail_ua": f"Триває {int(f['kyiv_minutes_active'])} хв" if is_kyiv_active else f"Відбій {int(f['kyiv_time_since_last_alert_min'])} хв тому",
+            "card_en": f"Active for {int(f['kyiv_minutes_active'])}m" if is_kyiv_active else f"All clear: {int(f['kyiv_time_since_last_alert_min'])}m ago",
+            "card_ua": f"Триває {int(f['kyiv_minutes_active'])} хв" if is_kyiv_active else f"Відбій {int(f['kyiv_time_since_last_alert_min'])} хв тому",
+            "last_event_time_iso": "",
+            "source": "fallback",
+        },
     }
 
     df_live = pd.DataFrame([f])
@@ -452,7 +472,13 @@ def format_cli_dashboard(result: Optional[Dict] = None) -> str:
     filled = int(round(threat_pct / 5.0))
     bar = "=" * filled + "-" * (20 - filled)
 
-    kyiv_status = "[ALERT ACTIVE]" if meta['is_kyiv_active'] else "[ALL CLEAR]"
+    kyiv_tel = meta.get("kyiv_telemetry", {})
+    if meta['is_kyiv_active']:
+        badge = kyiv_tel.get('badge_en', 'Active')
+        kyiv_status = f"[ALERT ACTIVE] ({badge})"
+    else:
+        badge = kyiv_tel.get('badge_en', 'All clear')
+        kyiv_status = f"[ALL CLEAR] ({badge})"
     vector_status = "[INCOMING VECTOR]" if meta['telegram_threats']['kyiv_targeted'] else "None"
 
     lines = [
@@ -468,7 +494,7 @@ def format_cli_dashboard(result: Optional[Dict] = None) -> str:
         f"  HAZARD SURGE MULTIPLIER:        {hazard_mult:.1f}x vs quiet baseline",
         "",
         "  +-- SPATIAL RADAR TIERS -----------------------------------------------------+",
-        f"  | Tier 0 (Kyiv City):       {kyiv_status:<20}                             |",
+        f"  | Tier 0 (Kyiv City):       {kyiv_status:<48} |",
         f"  | Tier 1 (Kyivska Raions):  {meta['raion_active_count']} / 7 active surrounding raions           |",
         f"  | Tier 2 (Adjacent/Transit):{meta['adjacent_active_count']} / 5 approach corridors active           |",
         f"  | Tier 4 (National Count):  {meta['national_active_count']} / 25 regions active (delta={meta['national_delta']:+d})          |",

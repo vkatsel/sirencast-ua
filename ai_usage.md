@@ -2545,6 +2545,70 @@ L188: я поки не певен щодо цього, це відкладемо
 Гілка чиста, робоче дерево синхронізоване, тести зелені.
 
 Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
+````text
+* 6db9703 (HEAD -> fix/pipeline-audit-remediation) test(qa): add domain business logic tests, API integration tests, and case-inflection regex support
+* 0798da0 fix(pipeline): resolve live feature vector drift, integrate exponential time-decay in evaluation, and align specs
+* 424ef95 (main, origin/main) docs: update README with updated architecture diagram, spatial hierarchy, time-decay, and dual metrics
+```
+Гілка чиста, робоче дерево синхронізоване, тести зелені.
+
+Чи хочете додатково налаштувати гіперпараметри моделі (наприклад, тюнінг `scale_pos_weight` чи `threshold` для ще вищого recall на початку атак), або зливаємо гілку в `main` і готуємо фінальний рефлекшн для KSE?
 ````
 
 ---
@@ -2581,6 +2645,398 @@ $$P(\text{тривога почнеться або триватиме в інт�
 #### ⚠️ Як це працює в коді зараз:
 У файлі [`src/features_text.py`](file:///D:/Projects/sirencast-ua/src/features_text.py#L164-L171) та [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py#L147-L154):
 ```python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
+shahed_count = len(re.findall(RE_SHAHED, combined_texts))
+```
+**Зараз дедуплікації немає взагалі.**
+Код просто рахує **кількість згадок ключового слова** («шахед», «дрон», «бпла») у текстах обох каналів. Якщо і `@kpszsu`, і `@war_monitor` одночасно написали про одну й ту саму групу дронів, лічильник збільшується на $1 + 1 = 2$. Якщо написали 5 разів — лічильник стане 10.
+
+#### 🛠️ Варіанти імплементації відсічення дублікатів:
+
+| Варіант | Складність | Як працює | Плюси / Мінуси |
+| :--- | :---: | :--- | :--- |
+| **1. Capped Saturation (Стелі згадок)** *(Швидкий і надійний)* | 🟢 Низька (10 хв) | Обмеження максимального внеску від одного типу зброї у вікні: `shahed_score = min(3, raw_count)` або бінарний прапорець `has_shahed_threat = 1`. | Виключає ефект «паніки каналів», коли 10 репостів про 1 шахед сприймаються як армада з 10 дронів. Не ламає існуючі фічі. |
+| **2. Часовий кластер (Temporal Bucket Deduplication)** | 🟡 Середня (30 хв) | Якщо протягом вікна $\Delta t = 10\text{ хв}$ обидва канали пишуть про загрозу одного типу (наприклад, `shahed`), ми зараховуємо лише $1$ унікальну подію (`max(ch1, ch2)`), а не сумуємо їх. | Фізично моделює одну хвилю прольоту. Відсікає синхронні репости між офіційним і волонтерським каналами. |
+| **3. Regex-екстракція кількості (Entity Extraction)** | 🔴 Висока (1-2 год) | Парсинг конкретних цифр перед словами: `r"(\d+)\s*(?:шахед|бпла|ціл)"`. Якщо обидва канали вказали «15 шахедів», береться `max(15, 15) = 15`, а не сума $30$. | Найбільш реалістично, але військові канали часто пишуть текстом («група», «декілька», «пара»), тому потрібен складніший NLP-словник. |
+
+> **Рекомендація**: Для фази 3 реалізувати **Варіант 1 + 2** (часовий кластер 10 хв + насичення стелі), що надійно захистить модель від подвійного рахунку дублікатів.
+
+---
+
+### 3. Які саме тести перевіряють виправлення виявлених багів?
+
+У коміті `6db9703` загальну кількість тестів збільшено з **27** до **36**. Ось конкретні тести, які гарантують, що знайдені баги ліквідовані:
+
+1. **Захист від 72 застиглих фічей («Франкенштейн-вектор»):**
+   * [`test_live_features_exact_match_model`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L137-L142) в `tests/test_live.py`:
+     Отримує треновану модель, викликає функцію живого інференсу і строго перевіряє:
+     `self.assertEqual(set(df_vec.columns), set(feat_cols))` та `self.assertEqual(len(df_vec.columns), 85)`. Якщо в коді з'явиться хоча б одна одруківка (як було з `kyiv_active_duration_min` замість `kyiv_minutes_active` чи `eastern_flank` замість `east_flank`), цей тест впаде.
+   * [`test_build_live_feature_vector`](file:///D:/Projects/sirencast-ua/tests/test_live.py#L52-L80) в `tests/test_live.py`:
+     Перевіряє, що живий вектор не застиг на вересні 2026, а динамічно і правильно заповнює прилеглі області:
+     `df_vec["adj_chernihivska_active"].values[0] == 1`, `df_vec["raion_brovarskyi_active"].values[0] == 1`, `df_vec.isna().sum().sum() == 0`.
+2. **Виправлення української граматики (баг із «курсом на Київ»):**
+   * [`test_directional_vector_sensitivity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L76-L113) в `tests/test_business_logic.py`:
+     Подає фразу *«Увага! БпЛА Shahed курсом на Київ через Бровари!»* та перевіряє, що NLP-модуль атрибутує `kyiv_targeted == 1`, а в списку `top_drivers` обов'язково з'являється попередження про вектор на столицю (раніше слово «курсом» ігнорувалося через відсутність відмінка у regex).
+3. **Монотонність військової небезпеки:**
+   * [`test_threat_escalation_monotonicity`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L18-L74) в `tests/test_business_logic.py`:
+     Симулює 4 тактичні рівні і перевіряє сувору монотонність:
+     $\text{Calm Sky (5.9%)} < \text{Approach (19.5%)} < \text{Ballistic Vector (22.3%)} < \text{Siren Active (100%)}$.
+4. **Придушення хибних тривог відбоями:**
+   * [`test_resolution_suppression`](file:///D:/Projects/sirencast-ua/tests/test_business_logic.py#L115-L131) в `tests/test_business_logic.py`:
+     Подає текст *«Київщина — чисто. По шахедах відбій»* і перевіряє, що `net_score == 0` і ризик залишається `LOW RISK`.
+5. **Тести надійності веб-сервера та API:**
+   * [`test_health_endpoint`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L30-L37) та [`test_forecast_endpoint_default`](file:///D:/Projects/sirencast-ua/tests/test_web.py#L39-L49) в `tests/test_web.py`:
+     Піднімають веб-сервер у фоновому потоці і перевіряють HTTP 200, JSON-контракт та параметри калібрації `?w=10.0`.
+
+Всі 36 тестів зелені (`python run_experiment.py --test`).
+
+---
+
+### Пропозиція щодо Фази 3:
+Чи реалізуємо зараз **дедуплікацію каналів Telegram** (Варіант 1+2: часовий кластер + capped saturation) у `src/features_text.py` та `src/live_forecast.py` з відповідним юніт-тестом?
+````python
 shahed_count = len(re.findall(RE_SHAHED, combined_texts))
 ```
 **Зараз дедуплікації немає взагалі.**
@@ -3133,6 +3589,422 @@ shahed_count = len(re.findall(RE_SHAHED, combined_texts))
 4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
 
 Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
+````text
+3.3m ago:  Ланівці
+6.8m ago:  ⚠ Увага! 🛫 Активність тактичної авіації на північно-східному напрямку!
+11.3m ago: 🏍 Реактивний БпЛА на Київщині в напрямку н.п. Козин
+17.0m ago: 🏍 Реактивний БпЛА на півдні Київщини вектор Обухів
+23.2m ago: 🏍 Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина
+```
+
+Ось чому система поводилася саме так:
+
+---
+
+### 1. Чому найсвіжіше повідомлення показувалося ~30 хв тому (а не 3–10 хв)?
+* **Причина:** у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py) повідомлення сортувалися за часом від **найстарішого до найновішого** (`reverse=False`).
+* А в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py) для дашборду стояло зрізання: `display_msgs[:5]`, а потім у JS: `sampleMsgs.slice(0, 3)`.
+* В результаті дашборд завжди показував **3 найстаріших повідомлення** у 45-хвилинному вікні (тобто саме ті, яким 30–35 хвилин), а найновіші повідомлення (3–11 хв тому) просто відсікалися в кінець списку.
+* **Рішення:** сортувати `display_msgs` за віком у порядку зростання (`age_minutes` від найменшого) — тоді вгорі завжди будуть повідомлення, опубліковані кілька хвилин тому.
+
+---
+
+### 2. Чому «БпЛА вектор Обухів / з Обухова в Київ» не сприймався як ціль на Київ?
+* **Причина 1:** у патерні [`RE_KYIV_TARGETED`](file:///D:/Projects/sirencast-ua/src/features_text.py#L30-L34) були прописані тільки `київ|бровари|васильків|бориспіль|вишгород|буча`.  
+  **Обухова, Козина, Фастова, Білої Церкви, Переяслава, Яготина, Макарова** взагалі не було в регулярці!
+* **Причина 2:** регулярний вираз вимагав жорсткої конструкції `{дієслово руху} {на/в} {Київ}`. Конструкції військових зведень:
+  * `"БпЛА на півдні Київщини вектор Обухів"`
+  * `"БпЛА на Київщині в напрямку н.п. Козин"`
+  * `"БпЛА з Обухова в/на Київ"`
+  * `"Шахеди повз Обухів у бік столиці"`  
+  тупо не потрапляли під шаблон, хоча Козин і Обухів — це південне передмістя Києва (15–30 км, підліт за 10–15 хвилин).
+
+---
+
+### 3. Чому БпЛА на Хмельниччині потрапляв у лічильник Шахедів для Києва?
+* **Причина:** регулярний вираз `RE_SHAHED = re.compile(r"(?:шахед|бпла|дрон|мопед|геран)")` підраховував **будь-яку** згадку БпЛА по всій країні.
+* Оскільки Повітряні Сили публікують зведення для всієї України, повідомлення:
+  * `"Реактивний БпЛА на Хмельниччині, повз Дунаївці курс Тернопільщина"`
+  * `"Одещина: реактивний БпЛА курсом на Біляївку"`
+  додавали `+1` до `shahed_count` та збільшували загрозу для Києва, хоча Хмельниччина та Одещина розташовані за сотні кілометрів і на 30-хвилинному горизонті фізично не можуть загрожувати столиці (швидкість БпЛА ~180 км/год, за 30 хв він долає максимум 90 км).
+* **Рішення:** лічильник загроз для Києва повинен фільтрувати повідомлення за **географічним радіусом**:
+  1. БпЛА, які перебувають у **Києві або Київській області** (зокрема всі 7 районів: Обухів, Бровари, Бориспіль, Вишгород, Буча, Фастів, Біла Церква, Козин тощо).
+  2. БпЛА у **підльотних секторах** (Чернігівщина, Полтавщина, Черкащина, Житомирщина, Сумщина), які мають вектор на Київщину/Київ.
+  3. Якщо в повідомленні фігурують далекі області (Хмельниччина, Тернопільщина, Львівщина, Одещина, Харківщина) і немає вектора на Київ — вони **не повинні** накручувати локальний лічильник шахедів для Києва.
+
+---
+
+### План виправлення (перед дедуплікацією):
+1. **Виправити сортування стрічки:** віддавати найсвіжіші повідомлення (0–5 хв) першими.
+2. **Розширити географію та фразеологію `RE_KYIV_TARGETED`:** додати Обухів, Козин, Фастів, Білу Церкву тощо та розпізнавання маршрутів `з [району] на/в [Київ]`.
+3. **Додати географічний фільтр релевантності БпЛА для Києва:** рахувати загрози БпЛА тільки в зоні підльоту (Київська обл. + суміжні коридори на Київ).
+4. **Реалізувати дедуплікацію з вікном 90 секунд** (так, як ви запропонували: якщо в межах 90 секунд різні канали пишуть про ту саму ціль/район — зараховувати як одну подію).
+
+Впроваджуємо ці виправлення?
 ````
 
 ---
@@ -3224,6 +4096,218 @@ shahed_count = len(re.findall(RE_SHAHED, combined_texts))
 * **Документація:** повністю синхронізована в [`README.md`](file:///D:/Projects/sirencast-ua/README.md) та [`docs/specs.md`](file:///D:/Projects/sirencast-ua/docs/specs.md).
 
 Код стабільний, дашборд готовий до демонстрації або деплою (`python run_experiment.py --serve`).
+```
+
+---
+### [Interaction #52] · 2026-10-11 17:11:23 UTC · branch: [main] · step: [635]
+
+#### [User Prompt]
+```text
+а пофікси в рідмі вираз на 91 рядку та вкажи ж джерело даних, дякуємо пану https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset
+```
+
+#### [Model Response]
+```text
+Вніс зміни до [README.md](file:///D:/Projects/sirencast-ua/README.md) та зафіксував їх у `main`:
+
+### 1. Форматування математичного виразу (рядок 91)
+* Розділив та структурував відображення формули калібрування шансів (Bayesian odds calibration):
+  $$P_{\text{calibrated}} = \frac{w \cdot P_{\text{raw}}}{1 + (w - 1) P_{\text{raw}}} = \frac{\text{Odds}_{\text{calibrated}}}{1 + \text{Odds}_{\text{calibrated}}}$$
+  де:
+  $$\text{Odds}_{\text{raw}} = \frac{P_{\text{raw}}}{1 - P_{\text{raw}}}, \quad \text{Odds}_{\text{calibrated}} = w \cdot \text{Odds}_{\text{raw}}$$
+* Усунув проблеми парсингу MathJax/KaTeX на GitHub (блочні `$$` тепер розміщені на окремих рядках із належними відступами).
+* Синхронізував формулу множника ризику $M = \frac{P_{\text{raw}}}{P_{\text{baseline}}}$ із фактичним базовим діапазоном ($0.018 - 0.035$).
+
+### 2. Джерело даних та подяка
+* Додав блок **🙏 Acknowledgments & Data Sources** наприкінці документа:
+  * Подяка проєкту [Vadimkin/ukrainian-air-raid-sirens-dataset](https://github.com/Vadimkin/ukrainian-air-raid-sirens-dataset) за відкритий історичний датасет тривог (2022–2026).
+  * Посилання на [Ubilling Sirens API](https://ubilling.net.ua/aerialalerts/) та відкриті джерела моніторингу Повітряних Сил ЗСУ.
+* Оновив лічильник тестів у документації до актуальних **38 тестів**.
+
+### 3. Перевірка та коміт
+* Прогнано повний тестовий набір: **38 із 38 тестів успішно пройдено** за 2.5 сек.
+* Створено коміт `e62a604`: `"docs: fix math formatting in README and add dataset attribution to Vadimkin"`. Робоче дерево чисте.
+```
+
+---
+### [Interaction #53] · 2026-10-12 17:04:43 UTC · branch: [main] · step: [668]
+
+#### [User Prompt]
+```text
+а глянь будь ласка, чи враховується  у нас час з останньої тривоги на дашборді, чи оновлюється врешті ця фіча?
+```
+
+#### [Model Response]
+````text
+Ось детальний розбір поточного стану цієї фічі в коді, моделі та на дашборді:
+
+---
+
+### 1. Чи враховується вона в моделі?
+* **Так, і вона є найважливішою фічею в системі.**
+* У LightGBM ознака називається [`kyiv_time_since_last_alert_min`](file:///D:/Projects/sirencast-ua/src/features_ts.py#L96-L121) (кількість хвилин від моменту завершення останньої тривоги в Києві, або `0.0`, якщо тривога активна).
+* За оцінкою ваги ознак у тренованій моделі вона посідає **1-е місце з усіх 85 ознак** (Feature Importance = **578 сплітів**, що значно перевищує решту ознак).
+
+---
+
+### 2. Чи оновлюється вона зараз у реальному часі?
+**Коротко: на практиці зараз вона падає в дефолт 720 хв (12 год).**
+
+Ось чому це відбувається:
+1. **Коли тривога в Києві активна:**
+   * Ubilling API передає `enabled_at`, тому тривалість поточної тривоги [`kyiv_minutes_active`](file:///D:/Projects/sirencast-ua/src/live_forecast.py#L201) рахується коректно, а `kyiv_time_since_last_alert_min` виставляється в `0.0`. Тут усе працює.
+2. **Коли в Києві відбій (спокійне небо):**
+   * Відкритий Ubilling API (`https://ubilling.net.ua/aerialalerts/?raw`) для міста Київ повертає:
+     ```json
+     {"enabled": false, "enabled_at": null, "disabled_at": null}
+     ```
+   * Тобто поле `disabled_at` на бекенді Ubilling **завжди `null`** і взагалі не зберігає timestamp попереднього відбою.
+   * Через це в [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py#L205-L212):
+     ```python
+     if kyiv_changed_at:
+         elapsed_min = (now_utc - kyiv_changed_at).total_seconds() / 60.0
+         f["kyiv_time_since_last_alert_min"] = float(np.clip(elapsed_min, 0.0, 10080.0))
+     else:
+         f["kyiv_time_since_last_alert_min"] = 720.0  # 12h baseline silence
+     ```
+     Оскільки `kyiv_changed_at is None`, значення **завжди стає фіксованим дефолтом `720.0 хв`**. Динамічного щохвилинного лічильника часу відбою наразі немає.
+
+---
+
+### 3. Чи відображається вона на дашборді?
+* **Ні, на дашборді вона зараз не виводиться.**
+* У картці **Tier 0: Kyiv City** на вебі показується лише бейдж `ALL CLEAR` або `ALERT ACTIVE`. Самого часу відбою («Відбій X хв тому» або «Триває X хв») у презентаційному шарі наразі немає.
+
+---
+
+### 💡 Як це можна повноцінно закрити:
+
+1. **Динамічне визначення часу відбою (2 джерела):**
+   * **Збереження стану переходу в кеш (`.cache/siren_state.json`):** коли сервіс бачить зміну `enabled: true -> false`, він фіксує точний `last_all_clear_at`.
+   * **Парсинг Telegram-повідомлення про відбій:** оскільки в Telegram-стрімі ми парсимо офіційні канали (`@kpszsu`), можна шукати найсвіжіше повідомлення з патерном `відбій` по Києву і брати його `timestamp`.
+2. **Вивід на дашборд:**
+   * Передати `time_since_last_alert_min` та `minutes_active` у `metadata` API.
+   * У блоці **Tier 0 (Kyiv City)** відображати статус:
+     * Якщо тихо: `🟢 ALL CLEAR (відбій 2 год 15 хв тому)`
+     * Якщо сирена: `🔴 ACTIVE (триває 35 хв)`
+
+Якщо потрібно, можу реалізувати цей механізм і додати вивід лічильника на дашборд.
+````
+
+---
+### [Interaction #54] · 2026-10-12 17:13:28 UTC · branch: [main] · step: [725]
+
+#### [User Prompt]
+```text
+прожени поки апішку, пошукай чи там немає поля потрібного на якомусь енді. якщо ні, можна брати дані з t.me/suspilne_kyiv, там постійно оновлюється все. єдине що там є поділ на жовту та червону тривоги, тому треба нормально парсити, ми рахуємо тривога (будь яка) == можливий статус тривог, можливо ні == відбій рахується як одна тривога, тобто не ресетимось коли жовта тривога змінюється на червону чи навпаки, для нас немає значення, бо ми модель на жовті не тренували. види повідомлень (фактично можуть відрізнятися, але ключові слова поки ні) представлені в examples.txt. окрім цього, на дашборді також треба якось показувати відбій/початок тривоги, час з останньох тривоги (але без роздування дашборду десь його акуратно прикріпити) а також впевнитися шо якшо з суспільного беруться повідомлення, там пише лише про тривогу і не пишуться новини, що "свиня народила дітей"
+```
+
+#### [Model Response]
+```text
+### 1. Перевірка Ubilling API
+Протестував усі варіації ендпоінтів (`/`, `?raw`, `?history`, `?status`, `?all`):
+* Для Києва (та інших регіонів) у стані відбою бекенд Ubilling повертає `{"enabled": false, "enabled_at": null, "disabled_at": null}` або дефолтне значення `1970-01-01 03:00:00` (через PHP-форматування `date(..., null)`).
+* Тобто в самому Ubilling API **історичного часу попереднього відбою немає взагалі**.
+
+---
+
+### 2. Інтеграція `t.me/suspilne_kyiv`
+Реалізовано модуль збору та хронологічного трекінгу подій тривог у [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py):
+
+* **Регулярні вирази для розпізнавання тривог:**
+  * Початок тривоги: `(?:[🟡🔴]\s*)?(?:м\.\s*)?Київ\s*[—–\-−]\s*повітряна\s*тривога` (покриває як жовтий рівень — дронова небезпека, так і червоний рівень — ракетна небезпека).
+  * Відбій тривоги: `(?:[🟢]\s*)?(?:м\.\s*)?Київ\s*[—–\-−]\s*відбій\s*повітряної\s*тривоги`.
+* **Бізнес-логіка переходів (жовтий / червоний):**
+  * Подія `START` фіксує початок тривоги.
+  * Якщо після жовтого рівня приходить червоний (або навпаки) — **час початку тривоги НЕ скидається** (`in_alert` залишається активним, тривалість рахується суцільно від першого сповіщення).
+  * Тривога вважається активною до явного повідомлення про відбій (`CLEAR`).
+  * Після повідомлення про відбій фіксується точний `cleared_at`.
+* **Фільтрація новин («свиня народила поросят» тощо):**
+  * Будь-які нетривожні публікації з Суспільного (про комунальні служби, наслідки влучань, культурні події чи побутові новини) **на 100% відфільтровуються**. Вони не потрапляють ні в парсер тривог, ні в стрічку розвідданих Telegram на дашборді.
+
+---
+
+### 3. Оновлення моделі та розрахунку ознаки
+У [`src/live_forecast.py`](file:///D:/Projects/sirencast-ua/src/live_forecast.py):
+* Ознака [`kyiv_time_since_last_alert_min`](file:///D:/Projects/sirencast-ua/src/live_forecast.py#L206-L215) тепер отримує **реальну кількість хвилин від останнього відбою** замість дефолтних 720 хв.
+* Якщо тривога активна — ознака дорівнює `0.0`, а `kyiv_minutes_active` рахує точний час тривання тривоги.
+* Кеш подій зберігається у локальному леджері `.cache_kyiv_alert_events.json`, тому час відбою не губиться навіть між перезапусками сервісу.
+
+---
+
+### 4. Відображення на дашборді (без роздування UI)
+Зміни в [`web/index.html`](file:///D:/Projects/sirencast-ua/web/index.html):
+* **У картці 2 (Tier 0: Місто Київ):**
+  * Замість статичного тексту виводиться динамічний підпис:
+    * UA: `🟢 Відбій: 1 год 10 хв тому (з 16:12 UTC)` або `🚨 Триває: 25 хв (з 16:00 UTC)`.
+    * EN: `🟢 All clear: 1h 10m ago (since 16:12 UTC)` або `🚨 Alert active: 25m (started 16:00 UTC)`.
+  * Статус-бейдж праворуч показує тривалість: `ВІДБІЙ • 1г 10хв` / `ТРИВОГА • 25хв`.
+* **У картці 1 (Core Gauge):**
+  * Під бейджем мультиплікатора ризику акуратно додано компактний тайм-бейдж: `⏱ Відбій: 1 год 10 хв тому`, що збалансувало висоту першої картки із сусідньою без додавання вертикального скролу на 1080p.
+* **У термінальному моніторі (`--live`):**
+  * `Tier 0 (Kyiv City): [ALL CLEAR] (ALL CLEAR • 1h 10m)`.
+
+---
+
+### 5. Тести та верифікація
+* Додано 4 нові цільові тести в [`tests/test_live.py`](file:///D:/Projects/sirencast-ua/tests/test_live.py):
+  1. `test_suspilne_kyiv_regex_patterns`: розпізнавання `examples.txt` та відсіювання сторонніх новин.
+  2. `test_kyiv_alert_timeline_yellow_red_transition`: незмінність початку тривоги при перемиканні рівнів небезпеки.
+  3. `test_kyiv_alert_timeline_all_clear_duration`: точність вимірювання часу відбою.
+  4. `test_suspilne_news_filtered_from_telegram_stream`: блокування новин у живому стрімі.
+* Усі **42 тести проєкту успішно пройдено**. Зміни зафіксовано в коміті `28b5ee1`.
+```
+
+---
+### [Interaction #55] · 2026-10-12 17:24:10 UTC · branch: [main] · step: [867]
+
+#### [User Prompt]
+```text
+відцентруй будь ласка ту плашку де тривога, зроби там нормальні марджіни/гепи між елементами пж. амендни до коміту
+```
+
+#### [Model Response]
+```text
+Перевіряю тести після оновлення стилів плашок...
+```
+
+---
+### [Interaction #56] · 2026-10-12 17:26:31 UTC · branch: [main] · step: [891]
+
+#### [User Prompt]
+```text
+знову там проблема зчасовими форматами. рахує ніби правильно, але показує шо тривоги нема з 16:12 (по києву з 19:12)
+```
+
+#### [Model Response]
+```text
+Виправив відображення часових поясів, відцентрував плашки та аменднув зміни до коміту:
+
+### 1. Формат часу (київський час замість UTC)
+* **Причина:** Раніше в бекенді [`src/live_data.py`](file:///D:/Projects/sirencast-ua/src/live_data.py#L380-L420) час події форматувався безпосередньо з UTC-timestamp (`16:12 UTC`), через що користувач бачив зміщення на -3 години.
+* **Виправлення:**
+  * Додав явну конвертацію через `zoneinfo.ZoneInfo("Europe/Kyiv")`.
+  * Тепер виводиться:
+    * UA: `Відбій 1 год 17 хв тому (з 19:12 за Києвом)` (або `Триває 25 хв (з 19:00 за Києвом)`).
+    * EN: `All clear: 1h 17m ago (since 19:12 Kyiv time)`.
+  * На дашборді в заголовку просторового радара час також приведено до київського часу: `HH:MM:SS (Київ)`.
+
+---
+
+### 2. Центрування та геометрія плашок (марджіни / гепи)
+У [`web/index.html`](file:///D:/Projects/sirencast-ua/web/index.html):
+* **Контейнер `.badges-group`:** об'єднав плашку мультиплікатора загрози (`🔥 Ризик у 5.4× вище`) та плашку стану тривоги (`⏱ Відбій / 🚨 Тривога`) у спільний флекс-ряд:
+  * `display: flex; justify-content: center; align-items: center; gap: 8px;`
+  * Додав уніфікований `margin-top: 10px; margin-bottom: 0;` — прибрав хаотичні індивідуальні марджіни.
+* **Стилі плашок `.hazard-badge`:**
+  * Усі елементи всередині (іконка та текст) вирівняні по центру: `display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 5px 12px;`.
+  * При активній тривозі плашка автоматично набуває червоного акцентного стилю `alert-active` з іконкою `🚨`, а при відбої — спокійного синього з іконкою `⏱`.
+
+---
+
+### 3. Верифікація та коміт
+* Прогнано тести — усі **42 тести пройдено успішно**.
+* Зміни аменднуто до коміту: `69fc718` (`"feat: track Kyiv alert duration and all-clear timing via Suspilne Kyiv in Kyiv timezone, filter news, update centered UI badges"`). Робоче дерево чисте.
 ```
 
 ---

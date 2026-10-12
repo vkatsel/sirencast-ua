@@ -149,5 +149,82 @@ class TestLiveModule(unittest.TestCase):
         self.assertEqual(len(df_vec.columns), len(feat_cols))
 
 
+    def test_suspilne_kyiv_regex_patterns(self):
+        """Verify that Suspilne alert regexes capture alerts and reject news stories."""
+        from src.live_data import RE_SUSPILNE_KYIV_START, RE_SUSPILNE_KYIV_CLEAR
+        start_yellow = "🟡 м. Київ — повітряна тривога, жовтий рівень: Дронова загроза (жовтий рівень)"
+        start_red = "🔴 м. Київ — повітряна тривога, червоний рівень: Ракетна загроза (червоний рівень)"
+        clear_msg = "🟢 м. Київ — відбій повітряної тривоги"
+        news_lake = "Межі заказника Червонохуторські озера, що у Дарницькому районі Києва..."
+        news_pig = "Свиня народила поросят у приватному секторі..."
+
+        self.assertTrue(bool(RE_SUSPILNE_KYIV_START.search(start_yellow)))
+        self.assertTrue(bool(RE_SUSPILNE_KYIV_START.search(start_red)))
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_CLEAR.search(start_yellow)))
+
+        self.assertTrue(bool(RE_SUSPILNE_KYIV_CLEAR.search(clear_msg)))
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_START.search(clear_msg)))
+
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_START.search(news_lake)))
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_CLEAR.search(news_lake)))
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_START.search(news_pig)))
+        self.assertFalse(bool(RE_SUSPILNE_KYIV_CLEAR.search(news_pig)))
+
+    def test_kyiv_alert_timeline_yellow_red_transition(self):
+        """
+        Verify that yellow -> red -> yellow transitions do not reset alert start time,
+        and continuous duration is measured from the initial alert onset.
+        """
+        from src.live_data import resolve_kyiv_alert_timeline
+        events = [
+            {"type": "START", "datetime_iso": "2026-10-12T14:00:00+00:00", "text": "🟡 м. Київ — повітряна тривога, жовтий рівень"},
+            {"type": "START", "datetime_iso": "2026-10-12T14:15:00+00:00", "text": "🔴 м. Київ — повітряна тривога, червоний рівень"},
+            {"type": "START", "datetime_iso": "2026-10-12T14:30:00+00:00", "text": "🟡 м. Київ — повітряна тривога, жовтий рівень"},
+        ]
+        now_eval = datetime.fromisoformat("2026-10-12T14:40:00+00:00")
+        state = resolve_kyiv_alert_timeline(events, now_utc=now_eval)
+
+        self.assertTrue(state["is_active"])
+        self.assertEqual(state["time_since_last_alert_min"], 0.0)
+        # Should be 40 minutes active from 14:00, NOT reset to 10m or 25m!
+        self.assertEqual(state["minutes_active"], 40.0)
+        self.assertIn("40 хв", state["detail_ua"])
+        self.assertIn("40m", state["detail_en"])
+
+    def test_kyiv_alert_timeline_all_clear_duration(self):
+        """Verify that after an all-clear, time_since_last_alert_min accurately measures quiet duration."""
+        from src.live_data import resolve_kyiv_alert_timeline
+        events = [
+            {"type": "START", "datetime_iso": "2026-10-12T14:00:00+00:00", "text": "🟡 м. Київ — повітряна тривога"},
+            {"type": "CLEAR", "datetime_iso": "2026-10-12T14:45:00+00:00", "text": "🟢 м. Київ — відбій повітряної тривоги"},
+        ]
+        now_eval = datetime.fromisoformat("2026-10-12T16:00:00+00:00")
+        state = resolve_kyiv_alert_timeline(events, now_utc=now_eval)
+
+        self.assertFalse(state["is_active"])
+        self.assertEqual(state["minutes_active"], 0.0)
+        # 75 minutes from 14:45 to 16:00
+        self.assertEqual(state["time_since_last_alert_min"], 75.0)
+        self.assertIn("1 год 15 хв", state["detail_ua"])
+        self.assertIn("1h 15m", state["detail_en"])
+
+    def test_suspilne_news_filtered_from_telegram_stream(self):
+        """Verify that general news items from Suspilne are discarded from live stream."""
+        from src.live_data import fetch_live_telegram_stream
+        mock_suspilne = [
+            {"channel": "suspilne_kyiv", "text": "🟢 м. Київ — відбій повітряної тривоги", "datetime_iso": "2026-10-12T14:45:00+00:00", "is_active": True},
+            {"channel": "suspilne_kyiv", "text": "У приватному секторі свиня народила поросят, фермер вражений", "datetime_iso": "2026-10-12T14:50:00+00:00", "is_active": True},
+            {"channel": "suspilne_kyiv", "text": "Чому у столиці перебої з водою: роз'яснення", "datetime_iso": "2026-10-12T14:55:00+00:00", "is_active": True},
+        ]
+
+        with patch("src.live_data.fetch_live_telegram_channel", side_effect=lambda ch, **kwargs: mock_suspilne if ch == "suspilne_kyiv" else []):
+            with patch.dict("src.live_data._telegram_cache", {"timestamp": 0.0, "data": None}):
+                stream = fetch_live_telegram_stream()
+                suspilne_texts = [m["text"] for m in stream if m["channel"] == "suspilne_kyiv"]
+                self.assertEqual(len(suspilne_texts), 1)
+                self.assertIn("відбій", suspilne_texts[0])
+                self.assertNotIn("свиня", " ".join(suspilne_texts))
+
+
 if __name__ == "__main__":
     unittest.main()

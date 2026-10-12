@@ -43,6 +43,8 @@ htmlcov/
 .cache
 .cache_live_alerts.json
 data/.cache_live_alerts.json
+.cache_kyiv_alert_events.json
+data/.cache_kyiv_alert_events.json
 nosetests.xml
 coverage.xml
 *.cover

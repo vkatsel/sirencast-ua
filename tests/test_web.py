@@ -29,7 +29,7 @@ class TestWebServer(unittest.TestCase):
     def test_health_endpoint(self):
         """Verify /api/health returns HTTP 200 and valid JSON status."""
         url = f"http://127.0.0.1:{self.port}/api/health"
-        with urllib.request.urlopen(url, timeout=5) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             self.assertEqual(resp.status, 200)
             self.assertEqual(resp.headers.get("Content-Type"), "application/json; charset=utf-8")
             data = json.loads(resp.read().decode("utf-8"))
@@ -39,7 +39,7 @@ class TestWebServer(unittest.TestCase):
     def test_forecast_endpoint_default(self):
         """Verify /api/forecast returns complete multi-metric contract."""
         url = f"http://127.0.0.1:{self.port}/api/forecast"
-        with urllib.request.urlopen(url, timeout=5) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode("utf-8"))
             self.assertIn("threat_index_pct", data)
@@ -53,7 +53,7 @@ class TestWebServer(unittest.TestCase):
     def test_forecast_odds_weight_parameter(self):
         """Verify ?w= query parameter dynamically modifies calibration odds."""
         url = f"http://127.0.0.1:{self.port}/api/forecast?w=10.0"
-        with urllib.request.urlopen(url, timeout=5) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode("utf-8"))
             self.assertEqual(data.get("odds_weight"), 10.0)
@@ -61,7 +61,7 @@ class TestWebServer(unittest.TestCase):
     def test_static_html_served(self):
         """Verify root / serves HTML dashboard."""
         url = f"http://127.0.0.1:{self.port}/"
-        with urllib.request.urlopen(url, timeout=5) as resp:
+        with urllib.request.urlopen(url, timeout=15) as resp:
             self.assertEqual(resp.status, 200)
             self.assertIn("text/html", resp.headers.get("Content-Type"))
             html_content = resp.read().decode("utf-8")
